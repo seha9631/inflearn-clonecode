@@ -11,6 +11,7 @@ import FindId from "./pages/signin/find/Id";
 import Notfound from './pages/Notfound';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import TopBar from './layout/TopBar';
+import ChannelTalkButton from './layout/ChannelTalkButton';
 import Footer from './layout/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
@@ -26,6 +27,7 @@ function App() {
     <MantineProvider>
       <>
         <TopBar />
+        <ChannelTalkButton />
         <div>
           <Link to={"/"}>Home</Link>
           <Link to={"/courese"}>CoureseList</Link>
