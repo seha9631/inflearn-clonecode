@@ -11,6 +11,7 @@ import FindId from "./pages/signin/find/Id";
 import Notfound from './pages/Notfound';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import TopBar from './layout/TopBar';
+import Footer from './layout/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="/signin/find/id" element={<FindId />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
+        <Footer />
       </>
     </MantineProvider>
   )
