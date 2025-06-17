@@ -1,7 +1,6 @@
 import { Button } from '@mantine/core';
 
 function LoginButton({ onLogin }) {
-
     return <Button
         onClick={onLogin}
         variant="filled"
