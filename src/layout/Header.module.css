@@ -1,0 +1,27 @@
+.HoverGreen {
+    color: #212529 !important;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.HoverGreen:hover {
+    color: #00c471 !important;
+}
+
+.HoverBlack {
+    color: #555555 !important;
+}
+
+.HoverBlack:hover {
+    color: black !important;
+}
+
+.HoverBackgroud .sharp-border {
+    border-radius: 0 !important;
+}
+
+.MenuDropdown {
+    border-radius: 0 !important;
+    margin-left: 4px !important;
+    margin-top: -5px !important;
+}
