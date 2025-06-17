@@ -38,7 +38,13 @@ function NavBarLeft() {
                             <Menu.Sub.Item rightSection>개발 · 프로그래밍</Menu.Sub.Item>
                         </Menu.Sub.Target>
 
-                        <Menu.Sub.Dropdown className={classes['SharpBorder']} style={{ marginTop: `${0 * -35 - 5}px`, marginLeft: '4px' }}>
+                        <Menu.Sub.Dropdown
+                            className={classes['SharpBorder']}
+                            style={{
+                                marginTop: `${0 * -35 - 5}px`,
+                                marginLeft: '4px'
+                            }}
+                        >
                             <Menu.Item>웹 개발</Menu.Item>
                             <Menu.Item>프론트엔드</Menu.Item>
                         </Menu.Sub.Dropdown>
@@ -48,7 +54,13 @@ function NavBarLeft() {
                             <Menu.Sub.Item rightSection>게임 개발</Menu.Sub.Item>
                         </Menu.Sub.Target>
 
-                        <Menu.Sub.Dropdown className={classes['SharpBorder']} style={{ marginTop: `${1 * -35 - 5}px`, marginLeft: '4px' }}>
+                        <Menu.Sub.Dropdown
+                            className={classes['SharpBorder']}
+                            style={{
+                                marginTop: `${1 * -35 - 5}px`,
+                                marginLeft: '4px'
+                            }}
+                        >
                             <Menu.Item>웹 개발</Menu.Item>
                             <Menu.Item>프론트엔드</Menu.Item>
                         </Menu.Sub.Dropdown>
@@ -96,7 +108,10 @@ function NavBarLeft() {
                 arrowOffset={80}
             >
                 <Menu.Target>
-                    <Link to='/community/questions' style={{ textDecoration: 'none' }}>
+                    <Link
+                        to='/community/questions'
+                        style={{ textDecoration: 'none' }}
+                    >
                         <Text
                             fz={16}
                             fw={700}
@@ -108,7 +123,9 @@ function NavBarLeft() {
                     </Link>
                 </Menu.Target>
                 <Menu.Dropdown>
-                    <Menu.Item leftSection={<HiOutlineChatAlt2 size={14} />}>
+                    <Menu.Item
+                        leftSection={<HiOutlineChatAlt2 size={14} />}
+                    >
                         <Anchor
                             href='https://www.inflearn.com/courses?types=ONLINE'
                             fz={14}
@@ -118,11 +135,31 @@ function NavBarLeft() {
                             질문 & 답변
                         </Anchor>
                     </Menu.Item>
-                    <Menu.Item leftSection={<HiOutlineChatAlt size={14} />}>고민있어요</Menu.Item>
-                    <Menu.Item leftSection={<HiOutlineBookOpen size={14} />}>스터디</Menu.Item>
-                    <Menu.Item leftSection={<FaLaptopCode size={14} />}>팀 프로젝트</Menu.Item>
-                    <Menu.Item leftSection={<FaRegStar size={14} />}>수강평</Menu.Item>
-                    <Menu.Item leftSection={<FaRegLightbulb size={14} />}>멘토링 후기</Menu.Item>
+                    <Menu.Item
+                        leftSection={<HiOutlineChatAlt size={14} />}
+                    >
+                        고민있어요
+                    </Menu.Item>
+                    <Menu.Item
+                        leftSection={<HiOutlineBookOpen size={14} />}
+                    >
+                        스터디
+                    </Menu.Item>
+                    <Menu.Item
+                        leftSection={<FaLaptopCode size={14} />}
+                    >
+                        팀 프로젝트
+                    </Menu.Item>
+                    <Menu.Item
+                        leftSection={<FaRegStar size={14} />}
+                    >
+                        수강평
+                    </Menu.Item>
+                    <Menu.Item
+                        leftSection={<FaRegLightbulb size={14} />}
+                    >
+                        멘토링 후기
+                    </Menu.Item>
                 </Menu.Dropdown>
             </Menu>
         </Group>

@@ -13,7 +13,7 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import TopBar from './layout/TopBar';
 import Header from './layout/Header/Header';
 import ChannelTalkButton from './layout/ChannelTalkButton';
-import Footer from './layout/Footer';
+import Footer from './layout/Footer/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
