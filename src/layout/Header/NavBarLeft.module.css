@@ -8,14 +8,6 @@
     color: #00c471 !important;
 }
 
-.HoverBlack {
-    color: #555555 !important;
-}
-
-.HoverBlack:hover {
-    color: black !important;
-}
-
 .HoverBackgroud .sharp-border {
     border-radius: 0 !important;
 }
