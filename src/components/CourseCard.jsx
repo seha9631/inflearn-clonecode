@@ -1,10 +1,10 @@
 import { Card, Image, Text, Button, Group, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
 
-function CourseCard({ courseCode, thumbnail, title, instructor, originalPrice, discountRate, discountPrice }) {
+function CourseCard({ courseCode, thumbnail, title, instructor, level, originalPrice, discountRate, discountPrice }) {
     return (
         <Link to={`/course/${courseCode}`} style={{ textDecoration: 'none', color: 'black' }}>
-            <Card shadow='sm' padding='lg' radius='md' withBorder w={300} h={400}>
+            <Card shadow='sm' padding='lg' radius='md' withBorder w={240} h={400}>
                 <Card.Section>
                     <Image
                         src={thumbnail}
@@ -14,7 +14,10 @@ function CourseCard({ courseCode, thumbnail, title, instructor, originalPrice, d
 
                 <Stack mt='md' mb='xs'>
                     <Text fz={16} fw={600}>{title}</Text>
-                    <Text fz={14} fw={400}>{instructor}</Text>
+                    <Group justify='space-between'>
+                        <Text fz={14} fw={400}>{instructor}</Text>
+                        <Text fz={12} fw={400}>{level}</Text>
+                    </Group>
                 </Stack>
 
                 <Group mt='xs' spacing='xs'>
