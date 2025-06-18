@@ -17,22 +17,23 @@ import Footer from './layout/Footer/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
-import DiscountFilter from './components/DiscountFilter'
 import { useState } from 'react';
+import DifficultyFilter from './components/DifficultyFilter';
 
 function App() {
-  const [isDiscounted, setIsDiscounted] = useState(false);
+  const [difficulty, setDifficulty] = useState([]);
 
-  const handleDiscountChange = (discounted) => {
-    setIsDiscounted(discounted);
+  const handleDifficultyChange = (levels) => {
+    setDifficulty(levels);
   };
+
   return (
     <MantineProvider>
       <>
         <TopBar />
         <Header />
         <ChannelTalkButton />
-        <DiscountFilter selected={isDiscounted} onChange={handleDiscountChange} />
+        <DifficultyFilter selected={difficulty} onChange={handleDifficultyChange} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/courses/:category" element={<CourseList />} />
