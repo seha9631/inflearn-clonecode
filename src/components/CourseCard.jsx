@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function CourseCard({ courseCode, thumbnail, title, instructor, level, originalPrice, discountRate, discountPrice }) {
     return (
         <Link to={`/course/${courseCode}`} style={{ textDecoration: 'none', color: 'black' }}>
-            <Card shadow='sm' padding='lg' radius='md' withBorder w={240} h={400}>
+            <Card shadow='sm' padding='lg' radius='md' withBorder w={250} h={400}>
                 <Card.Section>
                     <Image
                         src={thumbnail}
@@ -12,27 +12,28 @@ function CourseCard({ courseCode, thumbnail, title, instructor, level, originalP
                     />
                 </Card.Section>
 
-                <Stack mt='md' mb='xs'>
-                    <Text fz={16} fw={600}>{title}</Text>
+                <Stack mt='md' mb='xs' gap={2}>
+                    <Text fz='md' fw={600}>{title}</Text>
                     <Group justify='space-between'>
-                        <Text fz={14} fw={400}>{instructor}</Text>
-                        <Text fz={12} fw={400}>{level}</Text>
+                        <Text fz='sm' fw={400}>{instructor}</Text>
+                        <Text fz='xs' fw={400}>{level}</Text>
+                    </Group>
+
+
+                    <Group mt='xs' spacing='xs'>
+                        {discountRate && discountPrice ? (
+                            <Stack gap={0}>
+                                <Text c='gray' td='line-through'>₩{originalPrice.toLocaleString()}</Text>
+                                <Group>
+                                    <Text c='red' fw={700}>{discountRate}%</Text>
+                                    <Text fw={700}>₩{discountPrice.toLocaleString()}</Text>
+                                </Group>
+                            </Stack>
+                        ) : (
+                            <Text fw={700}>₩{originalPrice.toLocaleString()}</Text>
+                        )}
                     </Group>
                 </Stack>
-
-                <Group mt='xs' spacing='xs'>
-                    {discountRate && discountPrice ? (
-                        <Stack gap='xs'>
-                            <Text c='gray' td='line-through'>₩{originalPrice.toLocaleString()}</Text>
-                            <Group>
-                                <Text c='red' fw={700}>{discountRate}%</Text>
-                                <Text fw={700}>₩{discountPrice.toLocaleString()}</Text>
-                            </Group>
-                        </Stack>
-                    ) : (
-                        <Text fw={700}>₩{originalPrice.toLocaleString()}</Text>
-                    )}
-                </Group>
 
                 <Group mt='md'>
                     <Button color='#00c471' radius='md'>
