@@ -1,5 +1,16 @@
 [
     {
+        "title": "타입스크립트로 배우는 리액트(React.js) : 기초부터 최신 기술까지 완벽하게",
+        "courseCode": "typescript-react-perfect-course",
+        "instructor": "수코딩",
+        "originalPrice": 99000,
+        "discountRate": 35,
+        "discountPrice": 64350,
+        "category": "it-programming",
+        "level": "입문",
+        "thumbnail": "https://cdn.inflearn.com/public/files/courses/336365/cover/01jwp2td4xrh4szbxwa1m9qptn?w=420"
+    },
+    {
         "title": "한 입 크기로 잘라먹는 타입스크립트(TypeScript)",
         "courseCode": "한입-크기-타입스크립트",
         "instructor": "이정환",

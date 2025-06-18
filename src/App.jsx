@@ -9,7 +9,7 @@ import CourseList from './pages/Courses';
 import FindPassword from './pages/signin/find/Password';
 import FindId from './pages/signin/find/Id';
 import Notfound from './pages/Notfound';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import TopBar from './layout/TopBar';
 import Header from './layout/Header/Header';
 import ChannelTalkButton from './layout/ChannelTalkButton';
@@ -21,10 +21,12 @@ import { useState } from 'react';
 
 function App() {
   const [query, setQuery] = useState('');
-  const [submittedQuery, setSubmittedQuery] = useState('');
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    setSubmittedQuery(query);
+    if (query.trim()) {
+      navigate(`/search?s=${encodeURIComponent(query.trim())}`);
+    }
   };
 
   return (
@@ -32,10 +34,6 @@ function App() {
       <>
         <TopBar />
         <Header query={query} setQuery={setQuery} onSearch={handleSearch} />
-        <div style={{ padding: 20 }}>
-          <h2>검색 결과</h2>
-          <p>{submittedQuery ? `'${submittedQuery}'에 대한 결과입니다.` : '검색어를 입력해 주세요.'}</p>
-        </div>
         <ChannelTalkButton />
         <Routes>
           <Route path='/' element={<Home />} />
