@@ -11,16 +11,8 @@ import LanguageButton from './LanguageButton';
 import LoginButton from './LoginButton';
 import NavBarRight from './NavBarRight';
 
-function Header() {
+function Header({ query, setQuery, onSearch }) {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-    const handleLogOut = () => {
-        setIsLoggedIn(false);
-    };
-
-    const handleLogIn = () => {
-        setIsLoggedIn(true);
-    };
 
     return (
         <Box component='header' bg='white' py='xs'>
@@ -31,15 +23,15 @@ function Header() {
                         <NavBarLeft />
                     </Group>
 
-                    <SearchInput />
+                    <SearchInput query={query} setQuery={setQuery} onSearch={onSearch} />
 
                     <Group spacing='sm'>
                         <LanguageButton />
 
                         {isLoggedIn ? (
-                            <NavBarRight onLogout={handleLogOut} />
+                            <NavBarRight onLogout={() => setIsLoggedIn(false)} />
                         ) : (
-                            <LoginButton onLogin={handleLogIn} />
+                            <LoginButton onLogin={() => setIsLoggedIn(true)} />
                         )}
                     </Group>
                 </Group>
