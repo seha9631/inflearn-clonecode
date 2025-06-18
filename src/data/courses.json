@@ -6,7 +6,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -17,7 +17,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -28,7 +28,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -39,7 +39,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -50,7 +50,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -61,7 +61,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -72,7 +72,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -83,7 +83,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -94,7 +94,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -105,7 +105,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -116,7 +116,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -127,7 +127,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -138,7 +138,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -149,7 +149,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -160,7 +160,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -171,7 +171,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -182,7 +182,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -193,7 +193,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -204,7 +204,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -215,7 +215,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -226,7 +226,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -237,7 +237,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -248,7 +248,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -259,7 +259,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -270,7 +270,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -281,7 +281,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -292,7 +292,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -303,7 +303,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -314,7 +314,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -325,7 +325,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -336,7 +336,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -347,7 +347,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -358,7 +358,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -369,7 +369,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -380,7 +380,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -391,7 +391,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -402,7 +402,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -413,7 +413,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -424,7 +424,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -435,7 +435,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -446,7 +446,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -457,7 +457,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -468,7 +468,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -479,7 +479,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -490,7 +490,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -501,7 +501,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -512,7 +512,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -523,7 +523,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -534,7 +534,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -545,7 +545,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -556,7 +556,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -567,7 +567,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -578,7 +578,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -589,7 +589,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -600,7 +600,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -611,7 +611,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -622,7 +622,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -633,7 +633,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -644,7 +644,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -655,7 +655,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -666,7 +666,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -677,7 +677,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -688,7 +688,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -699,7 +699,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -710,7 +710,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -721,7 +721,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -732,7 +732,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -743,7 +743,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -754,7 +754,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -765,7 +765,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -776,7 +776,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -787,7 +787,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -798,7 +798,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -809,7 +809,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -820,7 +820,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -831,7 +831,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -842,7 +842,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -853,7 +853,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -864,7 +864,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -875,7 +875,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -886,7 +886,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -897,7 +897,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -908,7 +908,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -919,7 +919,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -930,7 +930,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -941,7 +941,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -952,7 +952,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -963,7 +963,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -974,7 +974,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -985,7 +985,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -996,7 +996,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -1007,7 +1007,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -1018,7 +1018,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -1029,7 +1029,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -1040,7 +1040,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -1051,7 +1051,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -1062,7 +1062,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -1073,7 +1073,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -1084,7 +1084,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     },
@@ -1095,7 +1095,7 @@
         "originalPrice": 55000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "개발 프로그래밍",
+        "category": "개발 프로그래밍",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/330452/cover/01jx9xw8c433n8hppthehe9r1g?w=420"
     },
@@ -1106,7 +1106,7 @@
         "originalPrice": 37400,
         "discountRate": 90,
         "discountPrice": 3740,
-        "tags": "개임 개발",
+        "category": "개임 개발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336790/cover/01jvkmc0wrdznymhj6tpb4pkaq?w=420"
     },
@@ -1117,7 +1117,7 @@
         "originalPrice": 69300,
         "discountRate": 30,
         "discountPrice": 69300,
-        "tags": "데이터 사이언스",
+        "category": "데이터 사이언스",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337395/cover/01jxykk5a498ng5tkg1mznk2vn?w=420"
     },
@@ -1128,7 +1128,7 @@
         "originalPrice": 69300,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "인공지능",
+        "category": "인공지능",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/335334/cover/01jsscts2737mjts7sw05264g5?w=420"
     },
@@ -1139,7 +1139,7 @@
         "originalPrice": 44000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "보안 네트워크",
+        "category": "보안 네트워크",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/courses/324389/course_cover/30f8a3b0-0738-4bf5-80e9-bc7c2640cca9/Banner.jpg?w=420"
     },
@@ -1150,7 +1150,7 @@
         "originalPrice": 38500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "하드웨어",
+        "category": "하드웨어",
         "level": "초급",
         "thumbnail": "https://cdn.inflearn.com/public/courses/326971/cover/bf201a0a-42cd-4fae-9fc9-5c287d559f38/Artboard 1.png?w=420"
     },
@@ -1161,7 +1161,7 @@
         "originalPrice": 110000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "디자인 아트",
+        "category": "디자인 아트",
         "level": "중급이상",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337539/cover/01jvtts1ynj1tk3bg1621qt5g8?w=420"
     },
@@ -1172,7 +1172,7 @@
         "originalPrice": 28600,
         "discountRate": 30,
         "discountPrice": 20020,
-        "tags": "기획 경영 마케팅",
+        "category": "기획 경영 마케팅",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/336834/cover/01jvcj3jg3ax6cbbg92d13rv9d?w=420"
     },
@@ -1183,7 +1183,7 @@
         "originalPrice": 99000,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "업무 생산성",
+        "category": "업무 생산성",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/332177/cover/f6c70258-d097-4820-adec-2d98fb46bd58/332177-eng.jpg?w=420"
     },
@@ -1194,7 +1194,7 @@
         "originalPrice": 94600,
         "discountRate": 30,
         "discountPrice": 66220,
-        "tags": "커리어 자기계발",
+        "category": "커리어 자기계발",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/files/courses/337501/cover/01jvfdz4nry64w1wvg3savkq5t?w=420"
     },
@@ -1205,7 +1205,7 @@
         "originalPrice": 71500,
         "discountRate": null,
         "discountPrice": null,
-        "tags": "대학 교육",
+        "category": "대학 교육",
         "level": "입문",
         "thumbnail": "https://cdn.inflearn.com/public/courses/327789/cover/569b2b42-5b84-44c1-b0b0-da9286b18403/327789-eng.png?w=420"
     }
