@@ -17,23 +17,16 @@ import Footer from './layout/Footer/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
-import { useState } from 'react';
-import DifficultyFilter from './components/DifficultyFilter';
+import FilterBar from './components/FilterBar';
 
 function App() {
-  const [difficulty, setDifficulty] = useState([]);
-
-  const handleDifficultyChange = (levels) => {
-    setDifficulty(levels);
-  };
-
   return (
     <MantineProvider>
       <>
         <TopBar />
         <Header />
         <ChannelTalkButton />
-        <DifficultyFilter selected={difficulty} onChange={handleDifficultyChange} />
+        <FilterBar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/courses/:category" element={<CourseList />} />
