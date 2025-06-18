@@ -17,9 +17,7 @@ import Footer from './layout/Footer/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
-import CategoryTabs from './components/CategoryTabs';
-
-
+import FilterBar from './components/FilterBar';
 
 function App() {
   return (
@@ -28,7 +26,7 @@ function App() {
         <TopBar />
         <Header />
         <ChannelTalkButton />
-        <CategoryTabs />
+        <FilterBar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/courses/:category" element={<CourseList />} />
