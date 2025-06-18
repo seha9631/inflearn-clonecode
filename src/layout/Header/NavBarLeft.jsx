@@ -19,7 +19,7 @@ function NavBarLeft() {
                 arrowOffset={18}
             >
                 <Menu.Target>
-                    <Link to='/courese' style={{ textDecoration: 'none' }}>
+                    <Link to='/courses/all' style={{ textDecoration: 'none' }}>
                         <Text
                             fz={16}
                             fw={700}

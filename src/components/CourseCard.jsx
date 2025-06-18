@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function CourseCard({ courseCode, thumbnail, title, instructor, originalPrice, discountRate, discountPrice }) {
     return (
         <Link to={`/course/${courseCode}`} style={{ textDecoration: 'none', color: 'black' }}>
-            <Card shadow='sm' padding='lg' radius='md' withBorder w={300} h={400}>
+            <Card shadow='sm' padding='lg' radius='md' withBorder w={240} h={400}>
                 <Card.Section>
                     <Image
                         src={thumbnail}
