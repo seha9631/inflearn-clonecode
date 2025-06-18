@@ -26,7 +26,7 @@ function CategoryTabs() {
 
     return (
         <Container size='xl'>
-            <Tabs defaultValue={category || 'all'} onChange={handleTabChange} color='#00c471'>
+            <Tabs value={category || 'all'} onChange={handleTabChange} color='#00c471'>
                 <Tabs.List grow>
                     {categories.map((cat) => (
                         <Tabs.Tab key={cat.value} value={cat.value} fz='xs'>
