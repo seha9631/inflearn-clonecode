@@ -12,17 +12,17 @@ function CourseCard({ courseCode, thumbnail, title, instructor, originalPrice, d
                     />
                 </Card.Section>
 
-                <Stack mt="md" mb="xs">
+                <Stack mt='md' mb='xs'>
                     <Text fz={16} fw={600}>{title}</Text>
                     <Text fz={14} fw={400}>{instructor}</Text>
                 </Stack>
 
-                <Group mt="xs" spacing="xs">
+                <Group mt='xs' spacing='xs'>
                     {discountRate && discountPrice ? (
-                        <Stack gap="xs">
-                            <Text c="gray" td="line-through">₩{originalPrice.toLocaleString()}</Text>
+                        <Stack gap='xs'>
+                            <Text c='gray' td='line-through'>₩{originalPrice.toLocaleString()}</Text>
                             <Group>
-                                <Text c="red" fw={700}>{discountRate}%</Text>
+                                <Text c='red' fw={700}>{discountRate}%</Text>
                                 <Text fw={700}>₩{discountPrice.toLocaleString()}</Text>
                             </Group>
                         </Stack>

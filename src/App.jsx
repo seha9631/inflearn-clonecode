@@ -17,18 +17,22 @@ import Footer from './layout/Footer/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
-import CategoryTabs from './components/CategoryTabs';
-
-
+import DiscountFilter from './components/DiscountFilter'
+import { useState } from 'react';
 
 function App() {
+  const [isDiscounted, setIsDiscounted] = useState(false);
+
+  const handleDiscountChange = (discounted) => {
+    setIsDiscounted(discounted);
+  };
   return (
     <MantineProvider>
       <>
         <TopBar />
         <Header />
         <ChannelTalkButton />
-        <CategoryTabs />
+        <DiscountFilter selected={isDiscounted} onChange={handleDiscountChange} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/courses/:category" element={<CourseList />} />
