@@ -17,13 +17,25 @@ import Footer from './layout/Footer/Footer';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
+import { useState } from 'react';
 
 function App() {
+  const [query, setQuery] = useState('');
+  const [submittedQuery, setSubmittedQuery] = useState('');
+
+  const handleSearch = () => {
+    setSubmittedQuery(query);
+  };
+
   return (
     <MantineProvider>
       <>
         <TopBar />
-        <Header />
+        <Header query={query} setQuery={setQuery} onSearch={handleSearch} />
+        <div style={{ padding: 20 }}>
+          <h2>검색 결과</h2>
+          <p>{submittedQuery ? `'${submittedQuery}'에 대한 결과입니다.` : '검색어를 입력해 주세요.'}</p>
+        </div>
         <ChannelTalkButton />
         <Routes>
           <Route path='/' element={<Home />} />
