@@ -4,7 +4,7 @@ import { Container, Grid, Center, Pagination, Title, Text } from '@mantine/core'
 import CategoryTabs from '../components/CategoryTabs';
 import FilterBar from '../components/FilterBar';
 import CourseCard from '../components/CourseCard';
-import courses from '../data/courses.json';
+import CATEGORIES from '../data/courses.json';
 
 const ITEMS_PER_PAGE = 40;
 
@@ -21,7 +21,7 @@ function Search() {
     };
 
     const filteredCourses = useMemo(() => {
-        return courses.filter((course) => {
+        return CATEGORIES.filter((course) => {
             const matchKeyword = keyword === '' || course.title.toLowerCase().includes(keyword);
             const matchDifficulty =
                 filters.difficulty.length === 0 || filters.difficulty.includes(course.level);
