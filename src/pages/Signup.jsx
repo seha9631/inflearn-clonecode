@@ -5,17 +5,18 @@ import {
     Text,
     TextInput,
     Stack,
-    Card
+    Card,
 } from '@mantine/core';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
     validateEmail,
-    validatePhone,
-    isPhoneDuplicate,
     validatePassword,
     validateConfirmPassword,
+    validatePhone,
+    isPhoneDuplicate,
+    validateAll,
 } from '../utils/validators';
-import { useNavigate } from 'react-router-dom';
+import useFormRedirect from '../hooks/useFormRedirect';
 
 function Signup() {
     const [email, setEmail] = useState('');
@@ -33,31 +34,22 @@ function Signup() {
 
     const [successMessage, setSuccessMessage] = useState('');
 
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (successMessage) {
-            const timeout = setTimeout(() => {
-                navigate('/');
-            }, 1000);
-            return () => clearTimeout(timeout);
-        }
-    }, [successMessage, navigate]);
+    const { scheduleRedirect } = useFormRedirect('/');
 
     const handleSubmit = () => {
         setSuccessMessage('');
 
-        const emailResult = validateEmail(email);
-        const passwordResult = validatePassword(password);
-        const confirmResult = validateConfirmPassword(password, confirmPassword);
-        const phoneResult = validatePhone(phoneNumber);
+        const result = validateAll(
+            { email, password, confirmPassword, phoneNumber },
+            { validateEmail, validatePassword, validateConfirmPassword, validatePhone }
+        );
 
-        setEmailError(emailResult.message);
-        setPasswordErrors(passwordResult.messages);
-        setConfirmError(confirmResult.message);
-        setPhoneError(phoneResult.message);
+        setEmailError(result.emailError);
+        setPasswordErrors(result.passwordErrors);
+        setConfirmError(result.confirmError);
+        setPhoneError(result.phoneError);
 
-        if (!emailResult.isValid || !passwordResult.isValid || !confirmResult.isValid || !phoneResult.isValid) return;
+        if (!result.isValid) return;
 
         if (localStorage.getItem(email)) {
             setEmailError('✗ 이미 가입된 이메일입니다.');
@@ -82,6 +74,7 @@ function Signup() {
 
         localStorage.setItem(email, JSON.stringify(userInfo));
         setSuccessMessage('회원가입이 완료되었습니다! 홈으로 이동합니다.');
+        scheduleRedirect();
 
         setEmail('');
         setPassword('');
@@ -110,7 +103,8 @@ function Signup() {
                     onChange={(e) => {
                         const val = e.currentTarget.value;
                         setEmail(val);
-                        setEmailError(validateEmail(val).message);
+                        const result = validateEmail(val);
+                        setEmailError(result.message);
                     }}
                     error={emailError}
                 />
@@ -151,7 +145,8 @@ function Signup() {
                     onChange={(e) => {
                         const val = e.currentTarget.value;
                         setConfirmPassword(val);
-                        setConfirmError(validateConfirmPassword(password, val).message);
+                        const result = validateConfirmPassword(password, val);
+                        setConfirmError(result.message);
                     }}
                     error={confirmError}
                 />
@@ -170,7 +165,8 @@ function Signup() {
                     onChange={(e) => {
                         const val = e.currentTarget.value;
                         setPhoneNumber(val);
-                        setPhoneError(validatePhone(val).message);
+                        const result = validatePhone(val);
+                        setPhoneError(result.message);
                     }}
                     error={phoneError}
                 />
