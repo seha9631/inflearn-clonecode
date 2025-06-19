@@ -6,9 +6,10 @@ import {
     Group,
     Stack,
     Image,
-    Anchor
+    Text
 } from '@mantine/core';
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
 
 export default function LoginModal({ opened, onClose }) {
     const [email, setEmail] = useState('');
@@ -42,9 +43,21 @@ export default function LoginModal({ opened, onClose }) {
                 </Button>
 
                 <Group position="apart" spacing="xs" mt="xs">
-                    <Anchor size="xs" href="#" c='black'>비밀번호 찾기</Anchor>
-                    <Anchor size="xs" href="#" c='black'>회원가입</Anchor>
-                    <Anchor size="xs" href="#" c='black'>아이디(이메일) 찾기</Anchor>
+                    <Link to='/signin/find/password' onClick={onClose}>
+                        <Text fz='xs' c='black'>
+                            비밀번호 찾기
+                        </Text>
+                    </Link>
+                    <Link to='/signup' onClick={onClose}>
+                        <Text fz='xs' c='black'>
+                            회원가입
+                        </Text>
+                    </Link>
+                    <Link to='/signin/find/id' onClick={onClose}>
+                        <Text fz='xs' c='black'>
+                            아이디(이메일) 찾기
+                        </Text>
+                    </Link>
                 </Group>
             </Stack>
         </Modal>
