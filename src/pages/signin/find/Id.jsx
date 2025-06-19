@@ -6,21 +6,27 @@ import {
     TextInput,
     Select,
 } from '@mantine/core';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { COUNTRY_CODES } from '../../../utils/constants';
 import { validatePhone } from '../../../utils/validators';
+import useVerification from '../../../hooks/useVerification';
 
 function Id() {
     const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
-
-    const [generatedCode, setGeneratedCode] = useState('');
-    const [code, setCode] = useState('');
-    const [codeError, setCodeError] = useState('');
-    const [verified, setVerified] = useState(false);
-
     const [showVerification, setShowVerification] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(0);
+
+    const {
+        code,
+        setCode,
+        codeError,
+        verified,
+        timeLeft,
+        formatTime,
+        generateCode,
+        verifyCode,
+        generatedCode,
+    } = useVerification();
 
     const handleRequest = () => {
         if (!phone.trim()) {
@@ -34,45 +40,13 @@ function Id() {
             return;
         }
 
-        const randomCode = Math.floor(100000 + Math.random() * 900000).toString();
-        setGeneratedCode(randomCode);
-        console.log('인증번호:', randomCode);
-
+        generateCode();
         setShowVerification(true);
-        setTimeLeft(180);
         setError('');
-        setCode('');
-        setCodeError('');
-        setVerified(false);
     };
 
     const handleVerify = () => {
-        if (timeLeft <= 0) {
-            setCodeError('✗ 인증 시간이 만료되었습니다. 다시 요청해 주세요.');
-            return;
-        }
-
-        if (code.trim() === generatedCode) {
-            setVerified(true);
-            setCodeError('');
-        } else {
-            setCodeError('✗ 인증번호가 일치하지 않습니다.');
-        }
-    };
-
-    useEffect(() => {
-        if (timeLeft > 0) {
-            const timer = setInterval(() => {
-                setTimeLeft((prev) => prev - 1);
-            }, 1000);
-            return () => clearInterval(timer);
-        }
-    }, [timeLeft]);
-
-    const formatTime = (sec) => {
-        const m = String(Math.floor(sec / 60)).padStart(2, '0');
-        const s = String(sec % 60).padStart(2, '0');
-        return `${m}:${s}`;
+        verifyCode();
     };
 
     return (
@@ -82,12 +56,15 @@ function Id() {
             </Text>
             <Text align="center" size="sm" c="dimmed" mb={24}>
                 계정에 등록된 휴대폰 번호를 입력하시면
-                <br />
-                사용 중인 계정의 이메일 주소를 알려드립니다.
+                <br />사용 중인 계정의 이메일 주소를 알려드립니다.
             </Text>
 
             <Stack>
-                <Select label="국가 선택" defaultValue="+82" data={COUNTRY_CODES} />
+                <Select
+                    label="국가 선택"
+                    defaultValue="+82"
+                    data={COUNTRY_CODES}
+                />
 
                 <TextInput
                     placeholder="휴대폰 번호 입력 예시) 01012345678"
