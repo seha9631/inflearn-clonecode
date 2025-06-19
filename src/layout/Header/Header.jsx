@@ -10,33 +10,41 @@ import SearchInput from './SearchInput';
 import LanguageButton from './LanguageButton';
 import LoginButton from './LoginButton';
 import NavBarRight from './NavBarRight';
+import LoginModal from '../../components/LoginModal';
 
 function Header({ query, setQuery, onSearch }) {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loginModalOpened, setLoginModalOpened] = useState(false);
 
     return (
-        <Box component='header' bg='white' py='xs'>
-            <Container size='xl'>
-                <Group position='apart' align='center'>
-                    <Group spacing='xl'>
-                        <BrandHeader />
-                        <NavBarLeft />
+        <>
+            <Box component='header' bg='white' py='xs'>
+                <Container size='xl'>
+                    <Group position='apart' align='center'>
+                        <Group spacing='xl'>
+                            <BrandHeader />
+                            <NavBarLeft />
+                        </Group>
+
+                        <SearchInput query={query} setQuery={setQuery} onSearch={onSearch} />
+
+                        <Group spacing='sm'>
+                            <LanguageButton />
+                            {isLoggedIn ? (
+                                <NavBarRight onLogout={() => setIsLoggedIn(false)} />
+                            ) : (
+                                <LoginButton onLogin={() => setLoginModalOpened(true)} />
+                            )}
+                        </Group>
                     </Group>
+                </Container>
+            </Box>
 
-                    <SearchInput query={query} setQuery={setQuery} onSearch={onSearch} />
-
-                    <Group spacing='sm'>
-                        <LanguageButton />
-
-                        {isLoggedIn ? (
-                            <NavBarRight onLogout={() => setIsLoggedIn(false)} />
-                        ) : (
-                            <LoginButton onLogin={() => setIsLoggedIn(true)} />
-                        )}
-                    </Group>
-                </Group>
-            </Container>
-        </Box >
+            <LoginModal
+                opened={loginModalOpened}
+                onClose={() => setLoginModalOpened(false)}
+            />
+        </>
     );
 }
 
