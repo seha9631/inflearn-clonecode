@@ -39,7 +39,7 @@ function Signup() {
         if (successMessage) {
             const timeout = setTimeout(() => {
                 navigate('/');
-            }, 1000);
+            }, 2000);
             return () => clearTimeout(timeout);
         }
     }, [successMessage, navigate]);
