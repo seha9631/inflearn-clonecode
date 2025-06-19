@@ -1,7 +1,7 @@
 import { Group, Menu, Text, Anchor } from '@mantine/core';
 import { FaChevronRight } from 'react-icons/fa6';
 import { TbCalendarStats } from 'react-icons/tb';
-import { categories } from '../../util/constants';
+import { categories } from '../../utils/constants';
 import { Link } from 'react-router-dom';
 import classes from './NavBarLeft.module.css';
 

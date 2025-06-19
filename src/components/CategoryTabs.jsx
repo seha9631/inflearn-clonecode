@@ -1,6 +1,6 @@
 import { Tabs, Container } from '@mantine/core';
 import { useNavigate, useParams } from 'react-router-dom';
-import { categories } from '../util/constants';
+import { categories } from '../utils/constants';
 
 function CategoryTabs() {
     const navigate = useNavigate();
