@@ -8,7 +8,7 @@ import BrandHeader from './BrandHeader';
 import NavBarLeft from './NavBarLeft';
 import SearchInput from './SearchInput';
 import LanguageButton from './LanguageButton';
-import LoginButton from './LoginButton';
+import LoginButton from '../../components/LoginButton';
 import NavBarRight from './NavBarRight';
 import LoginModal from '../../components/LoginModal';
 import { getUser, logout } from '../../utils/auth';
