@@ -15,12 +15,36 @@ function Signup() {
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [confirmPassword, setConfirmPassword] = useState('');
     const [confirmError, setConfirmError] = useState('');
+    const [name, setName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneError, setPhoneError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
     const validateEmail = (value) => {
         const isValid = /\S+@\S+\.\S+/.test(value);
         setEmailError(isValid ? '' : '✗ 이메일 형식이 올바르지 않습니다.');
         return isValid;
+    };
+
+    const validatePhone = (value) => {
+        const isValid = /^010\d{7,8}$/.test(value);
+        setPhoneError(isValid ? '' : '✗ 전화번호 형식이 올바르지 않습니다.');
+        return isValid;
+    };
+
+    const isPhoneDuplicate = (value) => {
+        for (let key in localStorage) {
+            try {
+                const user = JSON.parse(localStorage.getItem(key));
+                if (user?.phoneNumber === value) {
+                    setPhoneError('✗ 이미 가입된 전화번호입니다.');
+                    return true;
+                }
+            } catch (e) {
+                continue;
+            }
+        }
+        return false;
     };
 
     const validatePassword = (value) => {
@@ -56,17 +80,23 @@ function Signup() {
         const emailValid = validateEmail(email);
         const passwordValid = validatePassword(password);
         const confirmValid = validateConfirmPassword(confirmPassword);
+        const phoneValid = validatePhone(phoneNumber);
 
-        if (!emailValid || !passwordValid || !confirmValid) return;
+        if (!emailValid || !passwordValid || !confirmValid || !phoneValid) return;
 
         if (localStorage.getItem(email)) {
             setEmailError('✗ 이미 가입된 이메일입니다.');
             return;
         }
 
+        if (isPhoneDuplicate(phoneNumber)) {
+            return;
+        }
 
         const userInfo = {
             password,
+            name,
+            phoneNumber,
             cart: [],
             wishlist: [],
             enrolled: [],
@@ -80,6 +110,8 @@ function Signup() {
         setEmail('');
         setPassword('');
         setConfirmPassword('');
+        setName('');
+        setPhoneNumber('');
     };
 
     return (
@@ -135,6 +167,23 @@ function Signup() {
                     error={confirmError}
                 />
 
+                <TextInput
+                    label="이름"
+                    placeholder="홍길동"
+                    value={name}
+                    onChange={(e) => setName(e.currentTarget.value)}
+                />
+
+                <TextInput
+                    label="전화번호"
+                    placeholder="01012345678"
+                    value={phoneNumber}
+                    onChange={(e) => {
+                        setPhoneNumber(e.currentTarget.value);
+                        validatePhone(e.currentTarget.value);
+                    }}
+                    error={phoneError}
+                />
 
                 <Button fullWidth mt="md" onClick={handleSubmit} color="green">
                     가입하기
