@@ -5,8 +5,9 @@ import {
     Text,
     TextInput,
     Stack,
+    Card
 } from '@mantine/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     validateEmail,
     validatePhone,
@@ -14,6 +15,7 @@ import {
     validatePassword,
     validateConfirmPassword,
 } from '../utils/validators';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
     const [email, setEmail] = useState('');
@@ -30,6 +32,17 @@ function Signup() {
     const [phoneError, setPhoneError] = useState('');
 
     const [successMessage, setSuccessMessage] = useState('');
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (successMessage) {
+            const timeout = setTimeout(() => {
+                navigate('/');
+            }, 1000);
+            return () => clearTimeout(timeout);
+        }
+    }, [successMessage, navigate]);
 
     const handleSubmit = () => {
         setSuccessMessage('');
@@ -68,7 +81,7 @@ function Signup() {
         };
 
         localStorage.setItem(email, JSON.stringify(userInfo));
-        setSuccessMessage('가입 성공!');
+        setSuccessMessage('회원가입이 완료되었습니다! 홈으로 이동합니다.');
 
         setEmail('');
         setPassword('');
@@ -80,6 +93,15 @@ function Signup() {
     return (
         <Box maw={400} mx="auto">
             <h2>회원가입</h2>
+
+            {successMessage && (
+                <Card withBorder shadow="sm" mb="md" padding="md" radius="md" bg="green.0">
+                    <Text c="green.8" fw={600}>
+                        {successMessage}
+                    </Text>
+                </Card>
+            )}
+
             <Stack mb={40}>
                 <TextInput
                     label="이메일"
@@ -156,12 +178,6 @@ function Signup() {
                 <Button fullWidth mt="md" onClick={handleSubmit} color="green">
                     가입하기
                 </Button>
-
-                {successMessage && (
-                    <Text size="sm" c="green" align="center">
-                        {successMessage}
-                    </Text>
-                )}
             </Stack>
         </Box>
     );
