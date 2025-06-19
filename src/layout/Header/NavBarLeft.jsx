@@ -1,7 +1,7 @@
 import { Group, Menu, Text, Anchor } from '@mantine/core';
 import { FaChevronRight } from 'react-icons/fa6';
 import { TbCalendarStats } from 'react-icons/tb';
-import { categories } from '../../utils/constants';
+import { CATEGORIES } from '../../utils/constants';
 import { Link } from 'react-router-dom';
 import classes from './NavBarLeft.module.css';
 
@@ -33,7 +33,7 @@ function NavBarLeft() {
 
                 </Menu.Target>
                 <Menu.Dropdown className={classes['SharpBorder']}>
-                    {categories.filter((cat) => cat.value !== 'all')
+                    {CATEGORIES.filter((cat) => cat.value !== 'all')
                         .map((cat) => (
                             <Menu.Item key={cat.value}>
                                 <Link to={`/courses/${cat.value}`} style={{ textDecoration: 'none' }}>
