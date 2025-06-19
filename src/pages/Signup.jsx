@@ -7,82 +7,44 @@ import {
     Stack,
 } from '@mantine/core';
 import { useState } from 'react';
+import {
+    validateEmail,
+    validatePhone,
+    isPhoneDuplicate,
+    validatePassword,
+    validateConfirmPassword,
+} from '../utils/validators';
 
 function Signup() {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
+
     const [password, setPassword] = useState('');
     const [passwordErrors, setPasswordErrors] = useState([]);
+
     const [confirmPassword, setConfirmPassword] = useState('');
     const [confirmError, setConfirmError] = useState('');
+
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [phoneError, setPhoneError] = useState('');
+
     const [successMessage, setSuccessMessage] = useState('');
-
-    const validateEmail = (value) => {
-        const isValid = /\S+@\S+\.\S+/.test(value);
-        setEmailError(isValid ? '' : '✗ 이메일 형식이 올바르지 않습니다.');
-        return isValid;
-    };
-
-    const validatePhone = (value) => {
-        const isValid = /^010\d{7,8}$/.test(value);
-        setPhoneError(isValid ? '' : '✗ 전화번호 형식이 올바르지 않습니다.');
-        return isValid;
-    };
-
-    const isPhoneDuplicate = (value) => {
-        for (let key in localStorage) {
-            try {
-                const user = JSON.parse(localStorage.getItem(key));
-                if (user?.phoneNumber === value) {
-                    setPhoneError('✗ 이미 가입된 전화번호입니다.');
-                    return true;
-                }
-            } catch (e) {
-                continue;
-            }
-        }
-        return false;
-    };
-
-    const validatePassword = (value) => {
-        const errors = [];
-
-        if (
-            !/(?=.*[a-zA-Z])(?=.*[0-9])|(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])|(?=.*[0-9])(?=.*[^a-zA-Z0-9])/.test(value)
-        ) {
-            errors.push('영문/숫자/특수문자 중 2가지 이상 포함');
-        }
-
-        if (value.length < 8 || value.length > 32) {
-            errors.push('8자 이상 32자 이하 입력 (공백 제외)');
-        }
-
-        if (/(.)\1\1/.test(value)) {
-            errors.push('연속 3자 이상 동일한 문자/숫자 제외');
-        }
-
-        setPasswordErrors(errors);
-        return errors.length === 0;
-    };
-
-    const validateConfirmPassword = (value) => {
-        const isMatch = value === password;
-        setConfirmError(isMatch ? '' : '✗ 비밀번호가 일치하지 않습니다.');
-        return isMatch;
-    };
 
     const handleSubmit = () => {
         setSuccessMessage('');
 
-        const emailValid = validateEmail(email);
-        const passwordValid = validatePassword(password);
-        const confirmValid = validateConfirmPassword(confirmPassword);
-        const phoneValid = validatePhone(phoneNumber);
+        const emailResult = validateEmail(email);
+        const passwordResult = validatePassword(password);
+        const confirmResult = validateConfirmPassword(password, confirmPassword);
+        const phoneResult = validatePhone(phoneNumber);
 
-        if (!emailValid || !passwordValid || !confirmValid || !phoneValid) return;
+        setEmailError(emailResult.message);
+        setPasswordErrors(passwordResult.messages);
+        setConfirmError(confirmResult.message);
+        setPhoneError(phoneResult.message);
+
+        if (!emailResult.isValid || !passwordResult.isValid || !confirmResult.isValid || !phoneResult.isValid) return;
 
         if (localStorage.getItem(email)) {
             setEmailError('✗ 이미 가입된 이메일입니다.');
@@ -90,6 +52,7 @@ function Signup() {
         }
 
         if (isPhoneDuplicate(phoneNumber)) {
+            setPhoneError('✗ 이미 가입된 전화번호입니다.');
             return;
         }
 
@@ -123,8 +86,9 @@ function Signup() {
                     placeholder="example@inflab.com"
                     value={email}
                     onChange={(e) => {
-                        setEmail(e.currentTarget.value);
-                        validateEmail(e.currentTarget.value);
+                        const val = e.currentTarget.value;
+                        setEmail(val);
+                        setEmailError(validateEmail(val).message);
                     }}
                     error={emailError}
                 />
@@ -134,9 +98,11 @@ function Signup() {
                     placeholder="********"
                     value={password}
                     onChange={(e) => {
-                        setPassword(e.currentTarget.value);
-                        validatePassword(e.currentTarget.value);
-                        validateConfirmPassword(confirmPassword);
+                        const val = e.currentTarget.value;
+                        setPassword(val);
+                        const result = validatePassword(val);
+                        setPasswordErrors(result.messages);
+                        setConfirmError(validateConfirmPassword(val, confirmPassword).message);
                     }}
                 />
 
@@ -161,8 +127,9 @@ function Signup() {
                     placeholder="********"
                     value={confirmPassword}
                     onChange={(e) => {
-                        setConfirmPassword(e.currentTarget.value);
-                        validateConfirmPassword(e.currentTarget.value);
+                        const val = e.currentTarget.value;
+                        setConfirmPassword(val);
+                        setConfirmError(validateConfirmPassword(password, val).message);
                     }}
                     error={confirmError}
                 />
@@ -179,8 +146,9 @@ function Signup() {
                     placeholder="01012345678"
                     value={phoneNumber}
                     onChange={(e) => {
-                        setPhoneNumber(e.currentTarget.value);
-                        validatePhone(e.currentTarget.value);
+                        const val = e.currentTarget.value;
+                        setPhoneNumber(val);
+                        setPhoneError(validatePhone(val).message);
                     }}
                     error={phoneError}
                 />
