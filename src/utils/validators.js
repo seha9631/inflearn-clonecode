@@ -1,3 +1,36 @@
+export const validateAll = (fields, validators) => {
+  const {
+    email,
+    password,
+    confirmPassword,
+    phoneNumber,
+  } = fields;
+
+  const {
+    validateEmail,
+    validatePassword,
+    validateConfirmPassword,
+    validatePhone,
+  } = validators;
+
+  const emailResult = validateEmail(email);
+  const passwordResult = validatePassword(password);
+  const confirmResult = validateConfirmPassword(password, confirmPassword);
+  const phoneResult = validatePhone(phoneNumber);
+
+  return {
+    emailError: emailResult.message,
+    passwordErrors: passwordResult.messages,
+    confirmError: confirmResult.message,
+    phoneError: phoneResult.message,
+    isValid:
+      emailResult.isValid &&
+      passwordResult.isValid &&
+      confirmResult.isValid &&
+      phoneResult.isValid,
+  };
+};
+
 export const validateEmail = (value) => {
   const isValid = /\S+@\S+\.\S+/.test(value);
   return {
