@@ -10,20 +10,24 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { login } from '../utils/auth';
+import { verifyUser } from '../utils/auth';
+import { useAuth } from '../contexts/AuthContext';
 
-export default function LoginModal({ opened, onClose, onLoginSuccess }) {
+export default function LoginModal({ opened, onClose }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [loginError, setLoginError] = useState('');
 
+    const { login } = useAuth();
+
     const handleLogin = () => {
-        let isValid = true;
         setEmailError('');
         setPasswordError('');
         setLoginError('');
+
+        let isValid = true;
 
         if (!email) {
             setEmailError('이메일을 입력해주세요.');
@@ -37,13 +41,13 @@ export default function LoginModal({ opened, onClose, onLoginSuccess }) {
 
         if (!isValid) return;
 
-        const result = login(email, password);
+        const result = verifyUser(email, password);
         if (!result.success) {
             setLoginError(result.error);
             return;
         }
 
-        onLoginSuccess();
+        login(result.user);
         onClose();
     };
 

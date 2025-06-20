@@ -3,7 +3,6 @@ import {
     Container,
     Group
 } from '@mantine/core';
-import { useEffect, useState } from 'react';
 import BrandHeader from './BrandHeader';
 import NavBarLeft from './NavBarLeft';
 import SearchInput from './SearchInput';
@@ -11,21 +10,13 @@ import LanguageButton from './LanguageButton';
 import LoginButton from '../../components/LoginButton';
 import NavBarRight from './NavBarRight';
 import LoginModal from '../../components/LoginModal';
-import { getUser, logout } from '../../utils/auth';
+import { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Header({ query, setQuery, onSearch }) {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { user, logout } = useAuth();
     const [loginModalOpened, setLoginModalOpened] = useState(false);
-
-    useEffect(() => {
-        const user = getUser();
-        setIsLoggedIn(!!user);
-    }, []);
-
-    const handleLogout = () => {
-        logout();
-        setIsLoggedIn(false);
-    };
+    const isLoggedIn = !!user;
 
     return (
         <>
@@ -42,7 +33,7 @@ function Header({ query, setQuery, onSearch }) {
                         <Group spacing='sm'>
                             <LanguageButton />
                             {isLoggedIn ? (
-                                <NavBarRight onLogout={handleLogout} />
+                                <NavBarRight onLogout={logout} />
                             ) : (
                                 <LoginButton onLogin={() => setLoginModalOpened(true)} />
                             )}
@@ -50,10 +41,7 @@ function Header({ query, setQuery, onSearch }) {
                         <LoginModal
                             opened={loginModalOpened}
                             onClose={() => setLoginModalOpened(false)}
-                            onLoginSuccess={() => {
-                                setIsLoggedIn(true);
-                                setLoginModalOpened(false);
-                            }}
+                            onLoginSuccess={() => setLoginModalOpened(false)}
                         />
                     </Group>
                 </Container>

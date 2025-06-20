@@ -15,11 +15,13 @@ import Header from './layout/Header/Header';
 import ChannelTalkButton from './layout/ChannelTalkButton';
 import Footer from './layout/Footer/Footer';
 import { MantineProvider } from '@mantine/core';
+import { AuthProvider } from './contexts/AuthContext';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
 import { useState } from 'react';
 
 function App() {
+  console.log(JSON.parse(localStorage.getItem('loggedInUser'))?.enrolled);
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
@@ -31,7 +33,7 @@ function App() {
 
   return (
     <MantineProvider>
-      <>
+      <AuthProvider>
         <TopBar />
         <Header query={query} setQuery={setQuery} onSearch={handleSearch} />
         <ChannelTalkButton />
@@ -48,7 +50,7 @@ function App() {
           <Route path='*' element={<Notfound />} />
         </Routes>
         <Footer />
-      </>
+      </AuthProvider>
     </MantineProvider>
   )
 }
