@@ -52,6 +52,22 @@ function Carts() {
         updateUser({ ...user, cart: updatedCart });
     };
 
+    const handlePurchase = () => {
+        const enrolledCourses = selectedIds;
+        const updatedCart = courses
+            .filter(course => !selectedIds.includes(course.courseCode))
+            .map(course => course.courseCode);
+
+        const updatedUser = {
+            ...user,
+            cart: updatedCart,
+            enrolled: [...(user.enrolled || []), ...enrolledCourses],
+        };
+
+        updateUser(updatedUser);
+        setSelectedIds([]);
+    }
+
     return (
         <Box p='lg' maw={800} mx='auto'>
             <Text fw={700} fz={24} mb='lg'>
@@ -85,7 +101,7 @@ function Carts() {
                 />
             </Stack>
 
-            <CartSummary courses={courses} selectedIds={selectedIds} />
+            <CartSummary courses={courses} selectedIds={selectedIds} onPurchase={handlePurchase} />
         </Box>
     );
 }

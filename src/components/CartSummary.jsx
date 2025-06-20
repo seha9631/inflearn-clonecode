@@ -7,7 +7,7 @@ import {
     Text,
 } from '@mantine/core';
 
-function CartSummary({ courses, selectedIds }) {
+function CartSummary({ courses, selectedIds, onPurchase }) {
     const selectedCourses = courses.filter((course) =>
         selectedIds.includes(course.courseCode)
     );
@@ -58,7 +58,7 @@ function CartSummary({ courses, selectedIds }) {
                     </Text>
                 </Box>
 
-                <Button color='green' fullWidth disabled={selectedCourses.length === 0}>
+                <Button color='green' fullWidth onClick={onPurchase} disabled={selectedCourses.length === 0}>
                     결제하기
                 </Button>
             </Stack>
