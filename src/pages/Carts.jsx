@@ -13,7 +13,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { getCoursesByCodes } from '../utils/courseUtils';
 
 function Carts() {
-    const { user } = useAuth();
+    const { user, updateUser } = useAuth();
     const [courses, setCourses] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
 
@@ -30,18 +30,26 @@ function Carts() {
         );
     };
 
-    const handleDelete = (courseCode) => {
-        setCourses((prev) => prev.filter((c) => c.courseCode !== courseCode));
-        setSelectedIds((prev) => prev.filter((v) => v !== courseCode));
-    };
-
     const handleSelectAll = (checked) => {
         setSelectedIds(checked ? courses.map((c) => c.courseCode) : []);
     };
 
+    const handleDelete = (courseCode) => {
+        const updatedCourses = courses.filter((c) => c.courseCode !== courseCode);
+        setCourses(updatedCourses);
+        setSelectedIds((prev) => prev.filter((v) => v !== courseCode));
+
+        const updatedCart = user.cart.filter((code) => code !== courseCode);
+        updateUser({ ...user, cart: updatedCart });
+    };
+
     const handleBulkDelete = () => {
-        setCourses((prev) => prev.filter((c) => !selectedIds.includes(c.courseCode)));
+        const updatedCourses = courses.filter((c) => !selectedIds.includes(c.courseCode));
+        setCourses(updatedCourses);
         setSelectedIds([]);
+
+        const updatedCart = user.cart.filter((code) => !selectedIds.includes(code));
+        updateUser({ ...user, cart: updatedCart });
     };
 
     return (

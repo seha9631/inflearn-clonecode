@@ -1,3 +1,4 @@
+// AuthContext.jsx
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
@@ -7,13 +8,13 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         try {
-            const stored = localStorage.getItem('loggedInUser');
-            if (stored) {
-                setUser(JSON.parse(stored));
+            const data = localStorage.getItem('loggedInUser');
+            if (data) {
+                setUser(JSON.parse(data));
             }
-        } catch (e) {
-            console.error('잘못된 로그인 데이터:', e);
-            localStorage.removeItem('loggedInUser');
+        } catch (error) {
+            console.error('Failed to parse user from localStorage', error);
+            setUser(null);
         }
     }, []);
 
@@ -27,8 +28,14 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('loggedInUser');
     };
 
+    const updateUser = (newUser) => {
+        setUser(newUser);
+        localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+        localStorage.setItem(newUser.id, JSON.stringify(newUser)); // 원래 유저 정보도 덮어씀
+    };
+
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, updateUser }}>
             {children}
         </AuthContext.Provider>
     );
