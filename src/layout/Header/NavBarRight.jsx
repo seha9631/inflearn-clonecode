@@ -14,28 +14,22 @@ import {
     Image,
 } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PiPlay, PiPlayFill, PiShoppingCart } from 'react-icons/pi';
-import { getUser } from '../../utils/auth';
+import { useAuth } from '../../contexts/AuthContext';
 import { getCoursesByCodes } from '../../utils/courseUtils';
 
 function NavBarRight({ onLogout }) {
     const [hovered, setHovered] = useState(false);
     const [userOpened, setUserOpened] = useState(false);
     const [cartOpened, setCartOpened] = useState(false);
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const data = getUser();
-        setUser(data);
-    }, []);
+    const { user } = useAuth();
 
     const cartItemCodes = user?.cart ?? [];
     const couponCount = user?.coupon?.length ?? 0;
     const userPoint = user?.point ?? 0;
 
     const cartItems = getCoursesByCodes(cartItemCodes);
-
     const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
 
     return (
