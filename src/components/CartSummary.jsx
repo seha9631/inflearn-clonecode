@@ -9,16 +9,16 @@ import {
 
 function CartSummary({ courses, selectedIds }) {
     const selectedCourses = courses.filter((course) =>
-        selectedIds.includes(course.id)
+        selectedIds.includes(course.courseCode)
     );
 
     const totalOriginalPrice = selectedCourses.reduce(
-        (sum, c) => sum + c.price,
+        (sum, c) => sum + c.originalPrice,
         0
     );
 
     const totalDiscountPrice = selectedCourses.reduce(
-        (sum, c) => sum + (c.discountPrice ?? c.price),
+        (sum, c) => sum + (c.discountPrice ?? c.originalPrice),
         0
     );
 

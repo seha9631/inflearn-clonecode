@@ -6,54 +6,41 @@ import {
     Stack,
     Text,
 } from '@mantine/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CartList from '../components/CartList';
 import CartSummary from '../components/CartSummary';
-
-const initialCourses = [
-    {
-        id: 1,
-        title: '[코드캠프] 강력한 CSS',
-        instructor: '수코딩',
-        price: 22000,
-        discountPrice: 16500,
-        isDiscounted: true,
-    },
-    {
-        id: 2,
-        title: '제대로 파는 HTML CSS - by 얄코',
-        price: 44000,
-        instructor: '수코딩',
-    },
-    {
-        id: 3,
-        title: '웹 개발의 핵심, HTTP 완벽 마스터하기!',
-        price: 55000,
-        instructor: '수코딩',
-    },
-];
+import { useAuth } from '../contexts/AuthContext';
+import { getCoursesByCodes } from '../utils/courseUtils';
 
 function Carts() {
-    const [courses, setCourses] = useState(initialCourses);
+    const { user } = useAuth();
+    const [courses, setCourses] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
 
-    const toggleSelect = (id) => {
+    useEffect(() => {
+        if (user && user.cart) {
+            const courseList = getCoursesByCodes(user.cart);
+            setCourses(courseList);
+        }
+    }, [user]);
+
+    const toggleSelect = (courseCode) => {
         setSelectedIds((prev) =>
-            prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]
+            prev.includes(courseCode) ? prev.filter((v) => v !== courseCode) : [...prev, courseCode]
         );
     };
 
-    const handleDelete = (id) => {
-        setCourses((prev) => prev.filter((c) => c.id !== id));
-        setSelectedIds((prev) => prev.filter((v) => v !== id));
+    const handleDelete = (courseCode) => {
+        setCourses((prev) => prev.filter((c) => c.courseCode !== courseCode));
+        setSelectedIds((prev) => prev.filter((v) => v !== courseCode));
     };
 
     const handleSelectAll = (checked) => {
-        setSelectedIds(checked ? courses.map((c) => c.id) : []);
+        setSelectedIds(checked ? courses.map((c) => c.courseCode) : []);
     };
 
     const handleBulkDelete = () => {
-        setCourses((prev) => prev.filter((c) => !selectedIds.includes(c.id)));
+        setCourses((prev) => prev.filter((c) => !selectedIds.includes(c.courseCode)));
         setSelectedIds([]);
     };
 

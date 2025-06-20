@@ -30,7 +30,10 @@ function NavBarRight({ onLogout }) {
     const userPoint = user?.point ?? 0;
 
     const cartItems = getCoursesByCodes(cartItemCodes);
-    const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+    const totalPrice = cartItems.reduce(
+        (sum, item) => sum + (item.discountPrice ?? item.originalPrice ?? 0),
+        0
+    );
 
     return (
         <>
@@ -85,7 +88,7 @@ function NavBarRight({ onLogout }) {
                             수강바구니 <Text span c='green'>{cartItems.length}</Text>
                         </Text>
                         <Text size='sm' c='dimmed'>
-                            총 결제금액 <Text span fw={700} c='black'>{totalPrice.toLocaleString()}</Text>원
+                            총 결제금액 <Text span fw={700} c='black'>{totalPrice}</Text>원
                         </Text>
                     </Group>
 
@@ -96,7 +99,7 @@ function NavBarRight({ onLogout }) {
                             {cartItems.map((item) => (
                                 <Group key={item.id} align='flex-start' spacing='sm'>
                                     <Image
-                                        src={item.image}
+                                        src={item.thumbnail}
                                         radius='sm'
                                         alt={item.title}
                                         style={{ width: 80, height: 56, objectFit: 'cover' }}
@@ -106,12 +109,14 @@ function NavBarRight({ onLogout }) {
                                             {item.title}
                                         </Text>
                                         <Group spacing={4}>
-                                            {item.originalPrice && (
+                                            {item.discountPrice && (
                                                 <Text size='xs' c='dimmed' td='line-through'>
                                                     {item.originalPrice.toLocaleString()}원
                                                 </Text>
                                             )}
-                                            <Text fw={600}>{item.price.toLocaleString()}원</Text>
+                                            <Text fw={600}>
+                                                {(item.discountPrice ?? item.originalPrice)?.toLocaleString()}원
+                                            </Text>
                                         </Group>
                                     </Box>
                                 </Group>

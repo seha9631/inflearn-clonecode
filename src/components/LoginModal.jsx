@@ -10,7 +10,7 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { verifyUser } from '../utils/verifyUser';
+import { verifyUser } from '../utils/auth';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function LoginModal({ opened, onClose }) {

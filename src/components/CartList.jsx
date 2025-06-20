@@ -14,11 +14,11 @@ function CartList({ courses, selectedIds, onToggle, onDelete }) {
         <Stack spacing='sm' mb='lg'>
             {courses.map((course) => (
                 <CartItem
-                    key={course.id}
+                    key={course.courseCode}
                     course={course}
-                    checked={selectedIds.includes(course.id)}
-                    onToggle={() => onToggle(course.id)}
-                    onDelete={() => onDelete(course.id)}
+                    checked={selectedIds.includes(course.courseCode)}
+                    onToggle={() => onToggle(course.courseCode)}
+                    onDelete={() => onDelete(course.courseCode)}
                 />
             ))}
         </Stack>
