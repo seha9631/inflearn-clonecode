@@ -1,13 +1,5 @@
-import {
-    Box,
-    Button,
-    Checkbox,
-    Group,
-    Stack,
-    Text,
-} from '@mantine/core';
-import { useState } from 'react';
-import CartItem from '../components/CartItem';
+import { Box, Text } from '@mantine/core';
+import CartList from '../components/CartList';
 
 const initialCourses = [
     {
@@ -33,21 +25,9 @@ const initialCourses = [
 ];
 
 function Carts() {
-    const [courses, setCourses] = useState(initialCourses);
-    const [selectedIds, setSelectedIds] = useState([]);
-
-    const toggleSelect = (id) => {
-        setSelectedIds((prev) =>
-            prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]
-        );
-    };
-
-    const handleDelete = (id) => {
-        setCourses((prev) => prev.filter((c) => c.id !== id));
-        setSelectedIds((prev) => prev.filter((v) => v !== id));
-    };
-
-    const course = courses[0];
+    const selectedIds = [];
+    const dummyToggle = () => { };
+    const dummyDelete = () => { };
 
     return (
         <Box p="lg" maw={800} mx="auto">
@@ -55,11 +35,18 @@ function Carts() {
                 수강바구니
             </Text>
 
-            <CartItem
-                course={course}
-                checked={selectedIds.includes(course.id)}
-                onToggle={() => toggleSelect(course.id)}
-                onDelete={() => handleDelete(course.id)}
+            <CartList
+                courses={initialCourses}
+                selectedIds={selectedIds}
+                onToggle={dummyToggle}
+                onDelete={dummyDelete}
+            />
+
+            <CartList
+                courses={[]}
+                selectedIds={selectedIds}
+                onToggle={dummyToggle}
+                onDelete={dummyDelete}
             />
         </Box>
     );
