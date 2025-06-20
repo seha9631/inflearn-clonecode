@@ -97,7 +97,7 @@ function NavBarRight({ onLogout }) {
                     <ScrollArea h={280}>
                         <Stack spacing='md'>
                             {cartItems.map((item) => (
-                                <Group key={item.id} align='flex-start' spacing='sm'>
+                                <Group key={item.courseCode} align='flex-start' spacing='sm'>
                                     <Image
                                         src={item.thumbnail}
                                         radius='sm'
