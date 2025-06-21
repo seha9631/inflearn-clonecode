@@ -13,6 +13,7 @@ import { Link, useParams } from 'react-router-dom';
 import courses from '../data/courses.json';
 import { CATEGORIES } from '../utils/constants';
 import CourseSidebar from '../components/CourseSidebar';
+import Curriculum from '../components/Curriculum';
 
 function Course() {
     const isEnrolled = false;
@@ -73,8 +74,8 @@ function Course() {
                         </Tabs.Panel>
 
                         <Tabs.Panel value="curriculum">
-                            <Title>커리큘럼</Title>
-                            커리큘럼 : 나중에 강의 데이터를 업데이트하면 구현
+                            <Title order={3} mb="md">커리큘럼</Title>
+                            <Curriculum sections={course.sections} />
                         </Tabs.Panel>
 
                         <Tabs.Panel value="reviews">
