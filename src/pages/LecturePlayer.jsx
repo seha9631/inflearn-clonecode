@@ -3,6 +3,7 @@ import useEnrollmentCheck from '../hooks/useEnrollmentCheck'
 import useAutoHideSidebar from '../hooks/useAutoHideSidebar'
 import usePanel from '../hooks/usePanel'
 import { Box, Text, Stack } from '@mantine/core'
+import LectureBackLink from '../components/LectureBackLink';
 import LectureSidebar from '../components/LectureSidebar'
 import CurriculumPanel from '../components/CurriculumPanel'
 import LectureNavigation from '../components/LectureNavigation'
@@ -28,6 +29,8 @@ function LecturePlayer() {
     return (
         <Stack onMouseMove={handleMouseMove} style={{ height: '100vh', background: 'black' }} gap={0}>
             <Box style={{ height: 'calc(100vh - 60px)', position: 'relative' }}>
+                {showSidebar && <LectureBackLink courseCode={courseCode} />}
+
                 <Box style={{
                     width: '100%',
                     height: '100%',
@@ -49,7 +52,9 @@ function LecturePlayer() {
                         }}
                     />
                 </Box>
+
                 <LectureSidebar show={showSidebar} onPanelOpen={openPanel} />
+
                 <CurriculumPanel
                     opened={activePanel === 'curriculum'}
                     onClose={closePanel}
