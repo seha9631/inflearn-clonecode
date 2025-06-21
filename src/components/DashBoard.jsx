@@ -2,7 +2,7 @@ import { Title, Group } from '@mantine/core';
 import Curriculum from './Curriculum'
 import DownloadButton from './DownloadButton'
 
-function DashBoard({ course }) {
+function DashBoard({ course, isEnrolled }) {
     return (
         <>
             {course.courseMaterials && course.courseMaterials.length > 0 && (
@@ -20,7 +20,7 @@ function DashBoard({ course }) {
                 </>
             )}
 
-            <Curriculum sections={course.sections} />
+            <Curriculum courseCode={course.courseCode} sections={course.sections} isEnrolled={isEnrolled} />
         </>
     );
 }

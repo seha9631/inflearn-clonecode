@@ -10,8 +10,8 @@ import DashBoard from '../components/DashBoard';
 import { useAuth } from '../contexts/AuthContext'
 
 function Course() {
-    const { id } = useParams();
-    const course = courses.find(c => c.courseCode === id);
+    const { courseCode } = useParams();
+    const course = courses.find(c => c.courseCode === courseCode);
     const { user } = useAuth();
 
     if (!course) {
@@ -42,11 +42,11 @@ function Course() {
                         </Tabs.Panel>
 
                         <Tabs.Panel value='curriculum'>
-                            <Curriculum sections={course.sections} />
+                            <Curriculum sections={course.sections} isEnrolled={isEnrolled} />
                         </Tabs.Panel>
 
                         <Tabs.Panel value='dashboard'>
-                            <DashBoard course={course} />
+                            <DashBoard course={course} isEnrolled={isEnrolled} />
                         </Tabs.Panel>
                     </Box>
 

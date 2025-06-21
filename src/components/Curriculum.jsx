@@ -9,8 +9,10 @@ import {
 } from '@mantine/core';
 import { FaRegPlayCircle } from 'react-icons/fa';
 import { formatSeconds, formatSecondsToKorean, getTotalLectureDuration } from '../utils/time';
+import { Link } from 'react-router-dom';
 
-function Curriculum({ sections }) {
+function Curriculum({ courseCode, sections, isEnrolled }) {
+    console.log(courseCode)
     return (
         <>
             <Title order={3} mb='md'>커리큘럼</Title>
@@ -35,7 +37,16 @@ function Curriculum({ sections }) {
                                                 <ThemeIcon variant='light' size='sm' color='green'>
                                                     <FaRegPlayCircle size={14} />
                                                 </ThemeIcon>
-                                                <Text>{lecture.title}</Text>
+                                                {isEnrolled ? (
+                                                    <Link
+                                                        to={`/course/${courseCode}/${lecture.lectureCode}`}
+                                                        style={{ textDecoration: 'none', color: 'inherit' }}
+                                                    >
+                                                        {lecture.title}
+                                                    </Link>
+                                                ) : (
+                                                    <Text>{lecture.title}</Text>
+                                                )}
                                             </Group>
                                             <Badge variant='light' color='gray'>
                                                 {formatSeconds(lecture.videoDuration)}
