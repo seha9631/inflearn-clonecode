@@ -1,9 +1,9 @@
 import { Button } from '@mantine/core';
-import { IconShoppingCart } from '@tabler/icons-react';
-import useCartToggle from '../hooks/useCartToggle';
+import { IconHeart } from '@tabler/icons-react';
 import CustomNotification from './CustomNotification';
+import useWishlistToggle from '../hooks/useWishlistToggle';
 
-function CartToggleButton({ courseCode, title, originalPrice, discountPrice, discountRate }) {
+function WishlistToggleButton({ courseCode, title, originalPrice, discountPrice, discountRate }) {
     const course = {
         courseCode,
         title,
@@ -12,19 +12,19 @@ function CartToggleButton({ courseCode, title, originalPrice, discountPrice, dis
         discountRate,
     };
 
-    const { toggleCart, status, resetStatus } = useCartToggle(course);
+    const { toggleWishlist, status, resetStatus } = useWishlistToggle(course);
 
     const getNotificationProps = () => {
         switch (status) {
             case 'added':
                 return {
                     color: 'green',
-                    title: '장바구니에 담겼습니다.',
+                    title: '찜한 강의로 추가되었습니다.',
                 };
             case 'removed':
                 return {
                     color: 'red',
-                    title: '장바구니에서 제거되었습니다.',
+                    title: '찜 목록에서 제거되었습니다.',
                 };
             case 'unauth':
                 return {
@@ -44,13 +44,13 @@ function CartToggleButton({ courseCode, title, originalPrice, discountPrice, dis
                 color='#00c471'
                 radius='md'
                 size='xs'
-                leftSection={<IconShoppingCart size={16} />}
+                leftSection={<IconHeart size={16} />}
                 onClick={(e) => {
                     e.preventDefault();
-                    toggleCart();
+                    toggleWishlist();
                 }}
             >
-                장바구니
+                찜하기
             </Button>
 
             {status !== 'idle' && notificationProps && (
@@ -65,4 +65,4 @@ function CartToggleButton({ courseCode, title, originalPrice, discountPrice, dis
     );
 }
 
-export default CartToggleButton;
+export default WishlistToggleButton;

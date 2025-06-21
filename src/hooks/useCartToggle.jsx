@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function useCartToggle(course) {
+function useCartToggle(course) {
     const { user, updateUser } = useAuth();
     const [status, setStatus] = useState('idle');
+
 
     const toggleCart = () => {
         if (!user) {
@@ -24,3 +25,5 @@ export default function useCartToggle(course) {
 
     return { toggleCart, status, resetStatus };
 }
+
+export default useCartToggle;
