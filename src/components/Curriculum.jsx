@@ -7,7 +7,7 @@ import {
     Stack
 } from '@mantine/core';
 import { FaRegPlayCircle } from "react-icons/fa";
-import { formatSeconds } from '../utils/time';
+import { formatSeconds } from '../utils/timeFormat';
 
 
 function Curriculum({ sections }) {

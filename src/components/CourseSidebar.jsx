@@ -6,9 +6,23 @@ import {
     Paper,
     Divider
 } from '@mantine/core';
+import { formatSecondsToKorean } from '../utils/timeFormat'
 
 function CourseSidebar({ course }) {
     const isDiscounted = course.discountPrice != null && course.discountRate != null;
+
+    const totalVideosCount = course.sections.reduce(
+        (total, section) => total + section.lectures.length,
+        0
+    );
+
+    const totalDuration = course.sections.reduce(
+        (sum, section) => sum + section.lectures.reduce(
+            (innerSum, lecture) => innerSum + lecture.videoDuration,
+            0
+        ),
+        0
+    );
 
     return (
         <Box
@@ -41,8 +55,8 @@ function CourseSidebar({ course }) {
                 <Divider my='sm' />
 
                 <Text size='sm'>지식공유자: {course.instructor}</Text>
-                <Text size='sm'>커리큘럼: 수업 {course.lectureCount ?? '0'}개</Text>
-                <Text size='sm'>강의 시간: {course.duration ?? '정보 없음'}</Text>
+                <Text size='sm'>커리큘럼: 수업 {totalVideosCount ?? '0'}개</Text>
+                <Text size='sm'>강의 시간: {formatSecondsToKorean(totalDuration) ?? '정보 없음'}</Text>
                 <Text size='sm'>난이도: {course.level}</Text>
             </Paper>
         </Box>

@@ -13,3 +13,17 @@ export function formatSeconds(seconds, forceHour = false) {
 
   return `${MM}:${SS}`;
 }
+
+export function formatSecondsToKorean(seconds) {
+  const hrs = Math.floor(seconds / 3600);
+  const mins = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+
+  const parts = [];
+
+  if (hrs > 0) parts.push(`${hrs}시간`);
+  if (mins > 0) parts.push(`${mins}분`);
+  if (secs > 0 || parts.length === 0) parts.push(`${secs}초`);
+
+  return parts.join(' ');
+}
