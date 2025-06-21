@@ -1,45 +1,17 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
-import { Box, Stack, Text } from '@mantine/core';
-import courses from '../data/courses.json';
-import { useAuth } from '../contexts/AuthContext';
-import LectureSidebar from '../components/LectureSidebar';
-import CurriculumPanel from '../components/CurriculumPanel';
-import LectureNavigation from '../components/LectureNavigation';
+import useCourseLecture from '../hooks/useCourseLecture'
+import useEnrollmentCheck from '../hooks/useEnrollmentCheck'
+import useAutoHideSidebar from '../hooks/useAutoHideSidebar'
+import usePanel from '../hooks/usePanel'
+import { Box, Text, Stack } from '@mantine/core'
+import LectureSidebar from '../components/LectureSidebar'
+import CurriculumPanel from '../components/CurriculumPanel'
+import LectureNavigation from '../components/LectureNavigation'
 
 function LecturePlayer() {
-    const { courseCode, lectureCode } = useParams();
-    const { user } = useAuth();
-
-    const [showSidebar, setShowSidebar] = useState(false);
-    const [activePanel, setActivePanel] = useState(null);
-    const hideTimeoutRef = useRef(null);
-
-    const course = courses.find((c) => c.courseCode === courseCode);
-    const lecture = course?.sections
-        .flatMap((section) => section.lectures)
-        .find((lec) => lec.lectureCode === lectureCode);
-
-    const isEnrolled = user?.enrolled?.includes(courseCode);
-
-    useEffect(() => {
-        return () => clearTimeout(hideTimeoutRef.current);
-    }, []);
-
-    const handleMouseMove = () => {
-        if (!isEnrolled) return;
-        setShowSidebar(true);
-        clearTimeout(hideTimeoutRef.current);
-        hideTimeoutRef.current = setTimeout(() => setShowSidebar(false), 2000);
-    };
-
-    const handlePanelOpen = (key) => {
-        setActivePanel(key);
-    };
-
-    const handlePanelClose = () => {
-        setActivePanel(null);
-    };
+    const { course, lecture, courseCode, lectureCode } = useCourseLecture();
+    const isEnrolled = useEnrollmentCheck(courseCode);
+    const { show: showSidebar, handleMouseMove } = useAutoHideSidebar(isEnrolled);
+    const { activePanel, openPanel, closePanel } = usePanel();
 
     if (!course || !lecture) {
         return <Text>강의나 코스를 찾을 수 없습니다.</Text>;
@@ -54,32 +26,17 @@ function LecturePlayer() {
     }
 
     return (
-        <Stack
-            onMouseMove={handleMouseMove}
-            style={{
-                height: '100vh',
-                background: 'black',
-            }}
-            gap={0}
-        >
-
-            <Box
-                style={{
-                    height: 'calc(100vh - 60px)',
+        <Stack onMouseMove={handleMouseMove} style={{ height: '100vh', background: 'black' }} gap={0}>
+            <Box style={{ height: 'calc(100vh - 60px)', position: 'relative' }}>
+                <Box style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
                     position: 'relative',
-                }}
-            >
-                <Box
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        overflow: 'hidden',
-                        position: 'relative',
-                    }}
-                >
+                }}>
                     <video
                         src={lecture.videoUrl}
                         controls
@@ -92,21 +49,17 @@ function LecturePlayer() {
                         }}
                     />
                 </Box>
-
-                <LectureSidebar show={showSidebar} onPanelOpen={handlePanelOpen} />
+                <LectureSidebar show={showSidebar} onPanelOpen={openPanel} />
                 <CurriculumPanel
                     opened={activePanel === 'curriculum'}
-                    onClose={handlePanelClose}
+                    onClose={closePanel}
                     course={course}
                     isEnrolled={isEnrolled}
                 />
             </Box>
 
             <Box style={{ height: 60, flexShrink: 0 }}>
-                <LectureNavigation
-                    course={course}
-                    currentLectureCode={lectureCode}
-                />
+                <LectureNavigation course={course} currentLectureCode={lectureCode} />
             </Box>
         </Stack>
     );
