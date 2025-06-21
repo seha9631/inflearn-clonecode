@@ -40,15 +40,15 @@ function Search() {
     return (
         <>
             <CategoryTabs />
-            <Container size="xl" py="md">
-                <Title order={2} mb="xs">‘{keyword}’ 검색 결과</Title>
-                <Text mb="md" size="sm" c="dimmed">
+            <Container size='xl' py='md'>
+                <Title order={2} mb='xs'>‘{keyword}’ 검색 결과</Title>
+                <Text mb='md' size='sm' c='dimmed'>
                     {filteredCourses.length}개의 강의가 검색되었습니다.
                 </Text>
 
                 <FilterBar onFilterChange={handleFilterChange} />
 
-                <Grid gutter="lg">
+                <Grid gutter='lg'>
                     {currentCourses.map((course) => (
                         <Grid.Col key={course.courseCode} span={2.4}>
                             <CourseCard {...course} />
@@ -56,12 +56,12 @@ function Search() {
                     ))}
                 </Grid>
 
-                <Center mt="xl">
+                <Center mt='xl'>
                     <Pagination
                         value={activePage}
                         onChange={setActivePage}
                         total={totalPages}
-                        color="#00c471"
+                        color='#00c471'
                         withEdges
                     />
                 </Center>

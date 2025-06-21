@@ -31,21 +31,21 @@ function Password() {
     };
 
     return (
-        <Box maw={400} mx="auto" mt={80} mb={80}>
-            <Text align="center" fw={700} fz={24} mb={20}>비밀번호 찾기</Text>
+        <Box maw={400} mx='auto' mt={80} mb={80}>
+            <Text align='center' fw={700} fz={24} mb={20}>비밀번호 찾기</Text>
             {successMessage ? (
-                <Card withBorder shadow="sm" padding="md" radius="md" bg="green.0">
-                    <Text align="center" c="green.8" fw={600}>{successMessage}</Text>
-                    <Text align="center" c="dimmed" size="sm">잠시 후 홈으로 이동합니다...</Text>
+                <Card withBorder shadow='sm' padding='md' radius='md' bg='green.0'>
+                    <Text align='center' c='green.8' fw={600}>{successMessage}</Text>
+                    <Text align='center' c='dimmed' size='sm'>잠시 후 홈으로 이동합니다...</Text>
                 </Card>
             ) : (
-                <Stack spacing="sm">
-                    <Text align="center" size="sm" c="dimmed">
+                <Stack spacing='sm'>
+                    <Text align='center' size='sm' c='dimmed'>
                         가입한 이메일을 입력해 주세요.
                         <br />이메일을 통해 비밀번호 변경 링크가 전송됩니다.
                     </Text>
                     <TextInput
-                        placeholder="example@inflab.com"
+                        placeholder='example@inflab.com'
                         value={email}
                         onChange={(e) => {
                             const value = e.currentTarget.value;
@@ -55,7 +55,7 @@ function Password() {
                         error={emailError}
                         onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
                     />
-                    <Button fullWidth onClick={handleSubmit} color="#00c471">변경 링크 전송하기</Button>
+                    <Button fullWidth onClick={handleSubmit} color='#00c471'>변경 링크 전송하기</Button>
                 </Stack>
             )}
         </Box>

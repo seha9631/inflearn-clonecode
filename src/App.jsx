@@ -6,11 +6,12 @@ import Search from './pages/Search';
 import Carts from './pages/Carts';
 import CourseDetail from './pages/Course';
 import CourseList from './pages/Courses';
+import LecturePlayer from './pages/LecturePlayer';
 import FindPassword from './pages/signin/find/Password';
 import FindId from './pages/signin/find/Id';
 import Notfound from './pages/Notfound';
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import TopBar from './layout/TopBar';
+import Topbar from './layout/Topbar';
 import Header from './layout/Header/Header';
 import ChannelTalkButton from './layout/ChannelTalkButton';
 import Footer from './layout/Footer/Footer';
@@ -33,13 +34,14 @@ function App() {
   return (
     <MantineProvider>
       <AuthProvider>
-        <TopBar />
+        <Topbar />
         <Header query={query} setQuery={setQuery} onSearch={handleSearch} />
         <ChannelTalkButton />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/courses/:category" element={<CourseList />} />
-          <Route path='/course/:id' element={<CourseDetail />} />
+          <Route path='/course/:courseCode' element={<CourseDetail />} />
+          <Route path="/course/:courseCode/:lectureCode" element={<LecturePlayer />} />
           <Route path='/search' element={<Search />} />
           <Route path='/community/questions' element={<Questions />} />
           <Route path='/carts' element={<Carts />} />

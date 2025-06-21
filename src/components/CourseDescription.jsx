@@ -7,7 +7,7 @@ function CourseDescription({ course, categoryLabel }) {
             <Text style={{ fontSize: 25 }}>{categoryLabel} 강의입니다.</Text>
             <Box
                 h={800}
-                p="md"
+                p='md'
                 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <Text style={{ fontSize: 50 }}>{course.title} 강의 소개</Text>

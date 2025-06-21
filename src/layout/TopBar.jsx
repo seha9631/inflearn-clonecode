@@ -1,6 +1,6 @@
 import { Container, Group, Anchor, Box, Divider } from '@mantine/core';
 
-function TopBar() {
+function Topbar() {
     return (
         <Box bg='white' py={4} style={{ borderBottom: '1px solid #e9ecef' }}>
             <Container size='xl'>
@@ -64,4 +64,4 @@ function TopBar() {
     );
 }
 
-export default TopBar;
+export default Topbar;

@@ -4,9 +4,9 @@ function LoginButton({ onLogin }) {
     return (
         <Button
             onClick={onLogin}
-            variant="filled"
-            size="xs"
-            color="green"
+            variant='filled'
+            size='xs'
+            color='green'
         >
             로그인
         </Button>
