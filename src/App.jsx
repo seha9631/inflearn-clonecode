@@ -21,7 +21,6 @@ import Questions from './pages/community/questions';
 import { useState } from 'react';
 
 function App() {
-  console.log(JSON.parse(localStorage.getItem('loggedInUser'))?.enrolled);
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
 

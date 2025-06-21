@@ -6,9 +6,9 @@ import {
     Paper,
     Divider
 } from '@mantine/core';
-import { formatSecondsToKorean } from '../utils/timeFormat'
+import { formatSecondsToKorean, getTotalLectureDuration } from '../utils/time'
 import CustomNotification from './CustomNotification';
-import { useAddToCart } from '../hooks/useAddToCart';
+import useAddToCart from '../hooks/useAddToCart';
 import { IconCheck, IconAlertTriangle, IconLogin } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,13 +23,7 @@ function CourseSidebar({ course }) {
         0
     );
 
-    const totalDuration = course.sections.reduce(
-        (sum, section) => sum + section.lectures.reduce(
-            (innerSum, lecture) => innerSum + lecture.videoDuration,
-            0
-        ),
-        0
-    );
+    const totalDuration = getTotalLectureDuration(course.sections);
 
     const getNotificationProps = () => {
         switch (status) {

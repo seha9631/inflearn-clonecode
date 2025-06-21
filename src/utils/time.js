@@ -1,3 +1,13 @@
+export function getTotalLectureDuration(sections) {
+  return sections.reduce(
+    (total, section) => total + section.lectures.reduce(
+      (sum, lecture) => sum + lecture.videoDuration,
+      0
+    ),
+    0
+  );
+}
+
 export function formatSeconds(seconds, forceHour = false) {
   const hrs = Math.floor(seconds / 3600);
   const mins = Math.floor((seconds % 3600) / 60);
