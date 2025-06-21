@@ -22,13 +22,23 @@ function CustomNotification({
     if (!visible) return null;
 
     return (
-        <Notification
-            icon={icon}
-            color={color}
-            title={title}
-            withCloseButton={false}
-            mt='md'
-        />
+        <div
+            style={{
+                position: 'fixed',
+                bottom: 40,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                zIndex: 9999,
+            }}
+        >
+            <Notification
+                icon={icon}
+                color={color}
+                title={title}
+                withCloseButton={false}
+                mt='md'
+            />
+        </div>
     );
 }
 

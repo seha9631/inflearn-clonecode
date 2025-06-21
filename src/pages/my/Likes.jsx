@@ -15,7 +15,7 @@ function Likes() {
         <Container size="xl" py="md">
             <Title order={2} mb="sm">좋아요한 강의</Title>
             {wishlistCourses.length === 0 ? (
-                <Text size="sm" color="dimmed">
+                <Text size="sm" c="dimmed">
                     좋아요한 강의가 없습니다.
                 </Text>
             ) : (

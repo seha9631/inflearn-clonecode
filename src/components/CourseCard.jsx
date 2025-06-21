@@ -1,5 +1,6 @@
 import { Card, Image, Text, Button, Group, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
+import CartToggleButton from './CartToggleButton'
 
 function CourseCard({ courseCode, thumbnail, title, instructor, level, originalPrice, discountRate, discountPrice }) {
     return (
@@ -36,9 +37,13 @@ function CourseCard({ courseCode, thumbnail, title, instructor, level, originalP
                 </Stack>
 
                 <Group mt='md'>
-                    <Button color='#00c471' radius='md'>
-                        장바구니
-                    </Button>
+                    <CartToggleButton
+                        courseCode={courseCode}
+                        title={title}
+                        originalPrice={originalPrice}
+                        discountPrice={discountPrice}
+                        discountRate={discountRate}
+                    />
                     <Button color='#00c471' radius='md'>
                         찜하기
                     </Button>
