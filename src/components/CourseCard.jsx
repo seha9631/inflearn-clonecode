@@ -2,8 +2,11 @@ import { Card, Image, Text, Button, Group, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import CartToggleButton from './CartToggleButton';
 import WishlistToggleButton from './WishlistToggleButton';
+import useEnrollmentCheck from '../hooks/useEnrollmentCheck';
 
 function CourseCard({ courseCode, thumbnail, title, instructor, level, originalPrice, discountRate, discountPrice }) {
+    const isEnrolled = useEnrollmentCheck(courseCode);
+
     return (
         <Link to={`/course/${courseCode}`} style={{ textDecoration: 'none', color: 'black' }}>
             <Card shadow='sm' padding='lg' radius='md' withBorder w={250} h={400}>
@@ -37,22 +40,24 @@ function CourseCard({ courseCode, thumbnail, title, instructor, level, originalP
                     </Group>
                 </Stack>
 
-                <Group mt='md'>
-                    <CartToggleButton
-                        courseCode={courseCode}
-                        title={title}
-                        originalPrice={originalPrice}
-                        discountPrice={discountPrice}
-                        discountRate={discountRate}
-                    />
-                    <WishlistToggleButton
-                        courseCode={courseCode}
-                        title={title}
-                        originalPrice={originalPrice}
-                        discountPrice={discountPrice}
-                        discountRate={discountRate}
-                    />
-                </Group>
+                {!isEnrolled && (
+                    <Group mt='md'>
+                        <CartToggleButton
+                            courseCode={courseCode}
+                            title={title}
+                            originalPrice={originalPrice}
+                            discountPrice={discountPrice}
+                            discountRate={discountRate}
+                        />
+                        <WishlistToggleButton
+                            courseCode={courseCode}
+                            title={title}
+                            originalPrice={originalPrice}
+                            discountPrice={discountPrice}
+                            discountRate={discountRate}
+                        />
+                    </Group>
+                )}
             </Card>
         </Link >
     );
