@@ -27,7 +27,7 @@ function CustomNotification({
             color={color}
             title={title}
             withCloseButton={false}
-            mt="md"
+            mt='md'
         />
     );
 }

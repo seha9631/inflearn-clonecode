@@ -38,10 +38,10 @@ function NavBarLeft() {
                             <Menu.Item key={cat.value}>
                                 <Link to={`/courses/${cat.value}`} style={{ textDecoration: 'none' }}>
                                     <Text
-                                        c="black"
-                                        fz="sm"
+                                        c='black'
+                                        fz='sm'
                                         fw={400}
-                                        underline="never"
+                                        underline='never'
                                     >
                                         {cat.label}
                                     </Text>

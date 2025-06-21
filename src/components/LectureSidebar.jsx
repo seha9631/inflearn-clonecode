@@ -18,9 +18,9 @@ function LectureSidebar({ show = true, onPanelOpen }) {
 
     return (
         <Paper
-            shadow="md"
-            p="xs"
-            radius="md"
+            shadow='md'
+            p='xs'
+            radius='md'
             style={{
                 position: 'fixed',
                 top: '50%',
@@ -30,20 +30,20 @@ function LectureSidebar({ show = true, onPanelOpen }) {
                 zIndex: 1000,
             }}
         >
-            <Stack align="center" gap={20}>
+            <Stack align='center' gap={20}>
                 {sidebarItems.map(({ icon: Icon, label, key }) => (
                     <Box key={key} style={{ textAlign: 'center' }}>
                         <ActionIcon
-                            variant="light"
-                            color="gray"
-                            radius="xl"
-                            size="xl"
+                            variant='light'
+                            color='gray'
+                            radius='xl'
+                            size='xl'
                             style={{ backgroundColor: 'white' }}
                             onClick={() => onPanelOpen(key)}
                         >
                             <Icon size={24} />
                         </ActionIcon>
-                        <Text size="xs" mt={4}>{label}</Text>
+                        <Text size='xs' mt={4}>{label}</Text>
                     </Box>
                 ))}
             </Stack>

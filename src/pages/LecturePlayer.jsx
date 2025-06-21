@@ -47,7 +47,7 @@ function LecturePlayer() {
     if (!isEnrolled) {
         return (
             <Box style={{ padding: 80, textAlign: 'center' }}>
-                <Text size="xl" fw={600}>수강 중인 사용자만 강의를 시청할 수 있습니다.</Text>
+                <Text size='xl' fw={600}>수강 중인 사용자만 강의를 시청할 수 있습니다.</Text>
             </Box>
         );
     }

@@ -84,12 +84,12 @@ function Signup() {
     };
 
     return (
-        <Box maw={400} mx="auto">
+        <Box maw={400} mx='auto'>
             <h2>회원가입</h2>
 
             {successMessage && (
-                <Card withBorder shadow="sm" mb="md" padding="md" radius="md" bg="green.0">
-                    <Text c="green.8" fw={600}>
+                <Card withBorder shadow='sm' mb='md' padding='md' radius='md' bg='green.0'>
+                    <Text c='green.8' fw={600}>
                         {successMessage}
                     </Text>
                 </Card>
@@ -97,8 +97,8 @@ function Signup() {
 
             <Stack mb={40}>
                 <TextInput
-                    label="이메일"
-                    placeholder="example@inflab.com"
+                    label='이메일'
+                    placeholder='example@inflab.com'
                     value={email}
                     onChange={(e) => {
                         const val = e.currentTarget.value;
@@ -110,8 +110,8 @@ function Signup() {
                 />
 
                 <PasswordInput
-                    label="비밀번호"
-                    placeholder="********"
+                    label='비밀번호'
+                    placeholder='********'
                     value={password}
                     onChange={(e) => {
                         const val = e.currentTarget.value;
@@ -130,7 +130,7 @@ function Signup() {
                     ].map((rule, idx) => (
                         <Text
                             key={idx}
-                            size="xs"
+                            size='xs'
                             c={passwordErrors.includes(rule) ? 'red' : password ? 'green' : 'gray'}
                         >
                             {passwordErrors.includes(rule) ? '✗' : '✓'} {rule}
@@ -139,8 +139,8 @@ function Signup() {
                 </Stack>
 
                 <PasswordInput
-                    label="비밀번호 확인"
-                    placeholder="********"
+                    label='비밀번호 확인'
+                    placeholder='********'
                     value={confirmPassword}
                     onChange={(e) => {
                         const val = e.currentTarget.value;
@@ -152,15 +152,15 @@ function Signup() {
                 />
 
                 <TextInput
-                    label="이름"
-                    placeholder="홍길동"
+                    label='이름'
+                    placeholder='홍길동'
                     value={name}
                     onChange={(e) => setName(e.currentTarget.value)}
                 />
 
                 <TextInput
-                    label="전화번호"
-                    placeholder="01012345678"
+                    label='전화번호'
+                    placeholder='01012345678'
                     value={phoneNumber}
                     onChange={(e) => {
                         const val = e.currentTarget.value;
@@ -171,7 +171,7 @@ function Signup() {
                     error={phoneError}
                 />
 
-                <Button fullWidth mt="md" onClick={handleSubmit} color="green">
+                <Button fullWidth mt='md' onClick={handleSubmit} color='green'>
                     가입하기
                 </Button>
             </Stack>
