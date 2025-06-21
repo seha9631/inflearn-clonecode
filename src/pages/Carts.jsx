@@ -11,18 +11,24 @@ import CartList from '../components/CartList';
 import CartSummary from '../components/CartSummary';
 import { useAuth } from '../contexts/AuthContext';
 import { getCoursesByCodes } from '../utils/courseUtils';
+import { useLocation } from 'react-router-dom';
 
 function Carts() {
     const { user, updateUser } = useAuth();
+    const location = useLocation();
     const [courses, setCourses] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
 
     useEffect(() => {
-        if (user && user.cart) {
+        if (user?.cart) {
             const courseList = getCoursesByCodes(user.cart);
             setCourses(courseList);
+
+            if (location.state?.selectedCourse) {
+                setSelectedIds([location.state.selectedCourse]);
+            }
         }
-    }, [user]);
+    }, [user, location.state]);
 
     const toggleSelect = (courseCode) => {
         setSelectedIds((prev) =>
