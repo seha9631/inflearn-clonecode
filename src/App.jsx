@@ -9,6 +9,7 @@ import CourseList from './pages/Courses';
 import LecturePlayer from './pages/LecturePlayer';
 import FindPassword from './pages/signin/find/Password';
 import FindId from './pages/signin/find/Id';
+import Likes from './pages/my/Likes';
 import Notfound from './pages/Notfound';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Topbar from './layout/Topbar';
@@ -48,6 +49,7 @@ function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/signin/find/password' element={<FindPassword />} />
           <Route path='/signin/find/id' element={<FindId />} />
+          <Route path='/my/likes' element={<Likes />} />
           <Route path='*' element={<Notfound />} />
         </Routes>
         <Footer />
