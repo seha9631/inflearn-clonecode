@@ -10,9 +10,11 @@ import { formatSecondsToKorean } from '../utils/timeFormat'
 import CustomNotification from './CustomNotification';
 import { useAddToCart } from '../hooks/useAddToCart';
 import { IconCheck, IconAlertTriangle, IconLogin } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 
 function CourseSidebar({ course }) {
     const { addToCart, status, resetStatus } = useAddToCart(course);
+    const navigate = useNavigate();
 
     const isDiscounted = course.discountPrice != null && course.discountRate != null;
 
@@ -80,7 +82,20 @@ function CourseSidebar({ course }) {
                 )}
 
                 <Stack mt='md' spacing='xs'>
-                    <Button fullWidth color='#00c471'>수강신청 하기</Button>
+                    <Button
+                        fullWidth
+                        color='#00c471'
+                        onClick={() => {
+                            const result = addToCart();
+                            if (result === 'success') {
+                                navigate('/carts', {
+                                    state: { selectedCourse: course.courseCode }
+                                });
+                            }
+                        }}
+                    >
+                        수강신청 하기
+                    </Button>
                     <Button fullWidth variant='default' onClick={addToCart}>
                         장바구니에 담기
                     </Button>

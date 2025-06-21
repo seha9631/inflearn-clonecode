@@ -16,4 +16,5 @@ export function useFindEmailByPhone() {
 
   return { findEmailByPhone, maskEmail };
 }
+
 export default useFindEmailByPhone;

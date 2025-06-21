@@ -11,7 +11,16 @@ import {
 function CartItem({ course, checked, onToggle, onDelete }) {
     const isDiscounted = !(course.discountRate === null);
     return (
-        <Card withBorder p='md' radius='md' shadow='xs'>
+        <Card
+            withBorder
+            p='md'
+            radius='md'
+            shadow='xs'
+            style={{
+                opacity: checked ? 1 : 0.5,
+                transition: 'opacity 0.3s ease',
+            }}
+        >
             <Group justify='space-between'>
                 <Group>
                     <Checkbox checked={checked} onChange={onToggle} />
