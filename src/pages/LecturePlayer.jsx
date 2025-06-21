@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import { Box, Text } from '@mantine/core';
+import { Box, Stack, Text } from '@mantine/core';
 import courses from '../data/courses.json';
 import { useAuth } from '../contexts/AuthContext';
 import LectureSidebar from '../components/LectureSidebar';
 import CurriculumPanel from '../components/CurriculumPanel';
+import LectureNavigation from '../components/LectureNavigation';
 
 function LecturePlayer() {
     const { courseCode, lectureCode } = useParams();
@@ -53,31 +54,61 @@ function LecturePlayer() {
     }
 
     return (
-        <Box
+        <Stack
             onMouseMove={handleMouseMove}
             style={{
-                position: 'relative',
-                width: '100%',
                 height: '100vh',
                 background: 'black',
-                overflow: 'hidden'
             }}
+            gap={0}
         >
-            <video
-                src={lecture.videoUrl}
-                controls
-                autoPlay
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    backgroundColor: 'black'
-                }}
-            />
 
-            <LectureSidebar show={showSidebar} onPanelOpen={handlePanelOpen} />
-            <CurriculumPanel opened={activePanel === 'curriculum'} onClose={handlePanelClose} course={course} isEnrolled={isEnrolled} />
-        </Box>
+            <Box
+                style={{
+                    height: 'calc(100vh - 60px)',
+                    position: 'relative',
+                }}
+            >
+                <Box
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        overflow: 'hidden',
+                        position: 'relative',
+                    }}
+                >
+                    <video
+                        src={lecture.videoUrl}
+                        controls
+                        autoPlay
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain',
+                            backgroundColor: 'black',
+                        }}
+                    />
+                </Box>
+
+                <LectureSidebar show={showSidebar} onPanelOpen={handlePanelOpen} />
+                <CurriculumPanel
+                    opened={activePanel === 'curriculum'}
+                    onClose={handlePanelClose}
+                    course={course}
+                    isEnrolled={isEnrolled}
+                />
+            </Box>
+
+            <Box style={{ height: 60, flexShrink: 0 }}>
+                <LectureNavigation
+                    course={course}
+                    currentLectureCode={lectureCode}
+                />
+            </Box>
+        </Stack>
     );
 }
 
