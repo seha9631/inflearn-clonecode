@@ -18,8 +18,10 @@ import { SearchProvider } from './contexts/SearchContext';
 import MainLayout from './layout/MainLayout';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
+import { initializeDefaultUsers } from './utils/initDefaultUsers';
 
 function App() {
+  initializeDefaultUsers();
   return (
     <MantineProvider>
       <AuthProvider>
