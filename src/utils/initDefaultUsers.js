@@ -16,7 +16,7 @@ export function initializeDefaultUsers() {
 
   const user2Id = 'jhlim@naver.com';
   const user2Info = {
-    password: 'itnd0937',
+    password: 'itnc0937',
     phoneNumber: '01011112222',
     name: '임준현',
     cart: ['랭그래프-활용한-llm에이전트-개발', '기초-대수학-중고등'],
