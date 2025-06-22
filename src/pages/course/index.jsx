@@ -1,15 +1,15 @@
 import { Tabs, Box, Container, Text } from '@mantine/core';
 import { useParams } from 'react-router-dom';
-import courses from '../data/courses.json';
-import { CATEGORIES } from '../utils/constants';
-import CourseHeader from '../components/CourseHeader';
-import CourseDescription from '../components/CourseDescription';
-import CourseSidebar from '../components/CourseSidebar';
-import Curriculum from '../components/Curriculum';
-import DashBoard from '../components/DashBoard';
-import { useAuth } from '../contexts/AuthContext'
+import courses from '../../data/courses.json';
+import { CATEGORIES } from '../../utils/constants';
+import CourseHeader from './CourseHeader';
+import CourseDescription from './CourseDescription';
+import CourseSidebar from './CourseSidebar';
+import Curriculum from '../../components/Curriculum';
+import DashBoard from './DashBoard';
+import { useAuth } from '../../contexts/AuthContext'
 
-function Course() {
+function CoursePage() {
     const { courseCode } = useParams();
     const course = courses.find(c => c.courseCode === courseCode);
     const { user } = useAuth();
@@ -57,4 +57,4 @@ function Course() {
     );
 }
 
-export default Course;
+export default CoursePage;

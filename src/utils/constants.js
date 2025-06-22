@@ -1,26 +1,23 @@
 import {
-    IconListDetails,
-    IconMessageQuestion,
-    IconNotes,
-    IconWorld, 
-    IconCheck, 
-    IconAlertTriangle, 
-    IconLogin
+  IconListDetails,
+  IconMessageQuestion,
+  IconNotes,
+  IconWorld,
 } from '@tabler/icons-react';
 
 export const CATEGORIES = [
-    { label: '전체', value: 'all' },
-    { label: '개발 · 프로그래밍', value: 'it-programming' },
-    { label: '게임 개발', value: 'game-dev-all' },
-    { label: '데이터 사이언스', value: 'data-science' },
-    { label: '인공지능', value: 'artificial-intelligence' },
-    { label: '보안 · 네트워크', value: 'it' },
-    { label: '하드웨어', value: 'hardware' },
-    { label: '디자인 · 아트', value: 'design' },
-    { label: '기획 · 경영 · 마케팅', value: 'business' },
-    { label: '업무 생산성', value: 'productivity' },
-    { label: '커리어 · 자기계발', value: 'career' },
-    { label: '대학 교육', value: 'academics' },
+  { label: '전체', value: 'all' },
+  { label: '개발 · 프로그래밍', value: 'it-programming' },
+  { label: '게임 개발', value: 'game-dev-all' },
+  { label: '데이터 사이언스', value: 'data-science' },
+  { label: '인공지능', value: 'artificial-intelligence' },
+  { label: '보안 · 네트워크', value: 'it' },
+  { label: '하드웨어', value: 'hardware' },
+  { label: '디자인 · 아트', value: 'design' },
+  { label: '기획 · 경영 · 마케팅', value: 'business' },
+  { label: '업무 생산성', value: 'productivity' },
+  { label: '커리어 · 자기계발', value: 'career' },
+  { label: '대학 교육', value: 'academics' },
 ];
 
 export const COUNTRY_CODES = [
@@ -44,10 +41,10 @@ export const COUNTRY_CODES = [
 export const LEVELS = ['입문', '초급', '중급이상'];
 
 export const SIDEBAR_ITEMS = [
-    { icon: IconListDetails, label: '커리큘럼', key: 'curriculum' },
-    { icon: IconMessageQuestion, label: '질문&답변', key: 'qa' },
-    { icon: IconNotes, label: '노트', key: 'notes' },
-    { icon: IconWorld, label: '글로벌', key: 'global' },
+  { icon: IconListDetails, label: '커리큘럼', key: 'curriculum' },
+  { icon: IconMessageQuestion, label: '질문&답변', key: 'qa' },
+  { icon: IconNotes, label: '노트', key: 'notes' },
+  { icon: IconWorld, label: '글로벌', key: 'global' },
 ];
 
 export const WISHLIST_NOTIFICATION_MESSAGES = {
@@ -84,18 +81,18 @@ export const CART_NOTIFICATION_MESSAGES = {
 export const COURSE_SIDEBAR_NOTIFICATION = {
   success: {
     color: 'green',
-    icon: <IconCheck size={20} />,
     title: '장바구니에 담겼습니다.',
+    iconType: 'success',
   },
   duplicate: {
     color: 'yellow',
-    icon: <IconAlertTriangle size={20} />,
     title: '이미 장바구니에 담긴 강의입니다.',
+    iconType: 'duplicate',
   },
   unauth: {
     color: 'red',
-    icon: <IconLogin size={20} />,
     title: '로그인이 필요합니다.',
+    iconType: 'unauth',
   },
 };
 

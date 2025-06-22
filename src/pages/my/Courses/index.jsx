@@ -1,7 +1,7 @@
-import { useAuth } from '../../contexts/AuthContext';
-import courses from '../../data/courses.json';
+import { useAuth } from '../../../contexts/AuthContext';
+import courses from '../../../data/courses.json';
 import { Title, Text, Container, Grid } from '@mantine/core';
-import PurchasedCourseCard from '../../components/PurchasedCourseCard';
+import PurchasedCourseCard from './PurchasedCourseCard';
 
 function Courses() {
     const { user } = useAuth();
