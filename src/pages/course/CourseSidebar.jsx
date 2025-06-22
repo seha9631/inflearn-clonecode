@@ -6,11 +6,12 @@ import {
     Paper,
     Divider
 } from '@mantine/core';
-import { formatSecondsToKorean, getTotalLectureDuration } from '../utils/time'
-import CustomNotification from './CustomNotification';
-import useAddToCart from '../hooks/useAddToCart';
+import { IconCheck, IconAlertTriangle, IconLogin } from '@tabler/icons-react';
+import { formatSecondsToKorean, getTotalLectureDuration } from '../../utils/time'
+import CustomNotification from '../../components/CustomNotification';
+import useAddToCart from '../../hooks/useAddToCart';
 import { useNavigate } from 'react-router-dom';
-import { COURSE_SIDEBAR_NOTIFICATION } from '../utils/constants';
+import { COURSE_SIDEBAR_NOTIFICATION } from '../../utils/constants';
 
 function CourseSidebar({ course }) {
     const { addToCart, status, resetStatus } = useAddToCart(course);
@@ -25,7 +26,20 @@ function CourseSidebar({ course }) {
 
     const totalDuration = getTotalLectureDuration(course.sections);
 
-    const notificationProps = COURSE_SIDEBAR_NOTIFICATION[status] ?? null;
+    const notificationData = COURSE_SIDEBAR_NOTIFICATION[status] ?? null;
+
+    const iconMap = {
+        success: <IconCheck size={20} />,
+        duplicate: <IconAlertTriangle size={20} />,
+        unauth: <IconLogin size={20} />,
+    };
+
+    const notificationProps = notificationData
+        ? {
+            ...notificationData,
+            icon: iconMap[notificationData.iconType],
+        }
+        : null;
 
     return (
         <Box

@@ -1,14 +1,14 @@
-import useCourseLecture from '../hooks/useCourseLecture'
-import useEnrollmentCheck from '../hooks/useEnrollmentCheck'
-import useAutoHideSidebar from '../hooks/useAutoHideSidebar'
-import usePanel from '../hooks/usePanel'
+import useCourseLecture from '../../hooks/useCourseLecture'
+import useEnrollmentCheck from '../../hooks/useEnrollmentCheck'
+import useAutoHideSidebar from '../../hooks/useAutoHideSidebar'
+import usePanel from '../../hooks/usePanel'
 import { Box, Text, Stack } from '@mantine/core'
-import LectureBackLink from '../components/LectureBackLink';
-import LectureSidebar from '../components/LectureSidebar'
-import CurriculumPanel from '../components/CurriculumPanel'
-import LectureNavigation from '../components/LectureNavigation'
+import LectureBackLink from './LectureBackLink';
+import LectureSidebar from './LectureSidebar'
+import CurriculumPanel from './CurriculumPanel'
+import LectureNavigation from './LectureNavigation'
 
-function LecturePlayer() {
+function LecturePlayerPage() {
     const { course, lecture, courseCode, lectureCode } = useCourseLecture();
     const isEnrolled = useEnrollmentCheck(courseCode);
     const { show: showSidebar, handleMouseMove } = useAutoHideSidebar(isEnrolled);
@@ -70,4 +70,4 @@ function LecturePlayer() {
     );
 }
 
-export default LecturePlayer;
+export default LecturePlayerPage;

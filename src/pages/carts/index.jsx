@@ -7,13 +7,13 @@ import {
     Text,
 } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import CartList from '../components/CartList';
-import CartSummary from '../components/CartSummary';
-import { useAuth } from '../contexts/AuthContext';
-import { getCoursesByCodes } from '../utils/courseUtils';
+import CartList from './CartList';
+import CartSummary from './CartSummary';
+import { useAuth } from '../../contexts/AuthContext';
+import { getCoursesByCodes } from '../../utils/courseUtils';
 import { useLocation } from 'react-router-dom';
 
-function Carts() {
+function CartsPage() {
     const { user, updateUser } = useAuth();
     const location = useLocation();
     const [courses, setCourses] = useState([]);
@@ -113,4 +113,4 @@ function Carts() {
     );
 }
 
-export default Carts;
+export default CartsPage;

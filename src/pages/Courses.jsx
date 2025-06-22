@@ -5,7 +5,7 @@ import FilterBar from '../components/FilterBar';
 import CourseListView from '../components/CourseListView';
 import courses from '../data/courses.json';
 
-function Courses() {
+function CoursesPage() {
     const { category } = useParams();
     const [filters, setFilters] = useState({ difficulty: [], discounted: false });
     const [activePage, setActivePage] = useState(1);
@@ -38,4 +38,4 @@ function Courses() {
     );
 }
 
-export default Courses;
+export default CoursesPage;

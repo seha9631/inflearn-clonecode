@@ -1,6 +1,6 @@
 import { Accordion, Drawer, ScrollArea, Text, Stack, Box } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { formatSeconds } from '../utils/time';
+import { formatSeconds } from '../../utils/time';
 
 function CurriculumPanel({ opened, onClose, course, isEnrolled }) {
     return (
@@ -21,9 +21,9 @@ function CurriculumPanel({ opened, onClose, course, isEnrolled }) {
                             </Accordion.Control>
 
                             <Accordion.Panel >
-                                {section.lectures.map((lec, lecIdx) => (
-                                    <Box h={50}>
-                                        <Stack key={lecIdx} gap={0} >
+                                {section.lectures.map((lec) => (
+                                    <Box key={lec.lectureCode} h={50}>
+                                        <Stack gap={0}>
                                             {isEnrolled ? (
                                                 <Link
                                                     to={`/course/${course.courseCode}/${lec.lectureCode}`}
@@ -34,7 +34,6 @@ function CurriculumPanel({ opened, onClose, course, isEnrolled }) {
                                             ) : (
                                                 <Text size='sm' c='dimmed'>{lec.title}</Text>
                                             )}
-
                                             <Text c='gray' size='sm'>
                                                 {formatSeconds(lec.videoDuration)}
                                             </Text>

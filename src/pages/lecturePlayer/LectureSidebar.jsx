@@ -1,5 +1,5 @@
 import { Stack, Text, Box, ActionIcon, Paper } from '@mantine/core';
-import { SIDEBAR_ITEMS } from '../utils/constants';
+import { SIDEBAR_ITEMS } from '../../utils/constants';
 
 function LectureSidebar({ show = true, onPanelOpen }) {
     if (!show) return null;

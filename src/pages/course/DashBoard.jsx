@@ -1,6 +1,6 @@
 import { Title, Group } from '@mantine/core';
-import Curriculum from './Curriculum'
-import DownloadButton from './DownloadButton'
+import Curriculum from '../../components/Curriculum'
+import DownloadButton from '../../components/DownloadButton'
 
 function DashBoard({ course, isEnrolled }) {
     return (

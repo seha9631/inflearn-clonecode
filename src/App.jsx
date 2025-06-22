@@ -2,10 +2,10 @@ import './App.css'
 import Home from './pages/Home'
 import Signup from './pages/Signup';
 import Search from './pages/Search';
-import Carts from './pages/Carts';
-import CourseDetail from './pages/Course';
-import CourseList from './pages/Courses';
-import LecturePlayer from './pages/LecturePlayer';
+import CartsPage from './pages/carts';
+import CoursePage from './pages/course';
+import CoursesPage from './pages/Courses';
+import LecturePlayer from './pages/lecturePlayer';
 import FindPassword from './pages/signin/find/Password';
 import FindId from './pages/signin/find/Id';
 import Likes from './pages/my/Likes';
@@ -26,10 +26,10 @@ function App() {
         <Routes>
           <Route element={<SearchProvider><MainLayout /></SearchProvider>}>
             <Route path='/' element={<Home />} />
-            <Route path='/courses/:category' element={<CourseList />} />
-            <Route path='/course/:courseCode' element={<CourseDetail />} />
+            <Route path='/courses/:category' element={<CoursesPage />} />
+            <Route path='/course/:courseCode' element={<CoursePage />} />
             <Route path='/search' element={<Search />} />
-            <Route path='/carts' element={<Carts />} />
+            <Route path='/carts' element={<CartsPage />} />
             <Route path='/my/likes' element={<Likes />} />
             <Route path='/my/courses' element={<MyCourses />} />
             <Route path='/community/questions' element={<Questions />} />
