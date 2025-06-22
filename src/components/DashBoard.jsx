@@ -8,6 +8,7 @@ function DashBoard({ course, isEnrolled }) {
             {course.courseMaterials && course.courseMaterials.length > 0 && (
                 <>
                     <Title order={3} mb='md'>강의 자료</Title>
+
                     <Group spacing='xs' mb='md'>
                         {course.courseMaterials.map((material, index) => (
                             <DownloadButton

@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { verifyUser } from '../utils/auth';
 import { useAuth } from '../contexts/AuthContext';
+import { INFLEARN_LOGO } from '../utils/constants';
 
 export default function LoginModal({ opened, onClose }) {
     const [email, setEmail] = useState('');
@@ -63,7 +64,7 @@ export default function LoginModal({ opened, onClose }) {
             onClose={onClose}
             title={
                 <Image
-                    src='https://cdn.inflearn.com/assets/brand/logo.png'
+                    src={INFLEARN_LOGO}
                     alt='Inflearn'
                     height={40}
                     fit='contain'

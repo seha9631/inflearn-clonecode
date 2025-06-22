@@ -19,6 +19,7 @@ function CurriculumPanel({ opened, onClose, course, isEnrolled }) {
                             <Accordion.Control>
                                 <Text fw={600}>{section.title}</Text>
                             </Accordion.Control>
+
                             <Accordion.Panel >
                                 {section.lectures.map((lec, lecIdx) => (
                                     <Box h={50}>
@@ -33,6 +34,7 @@ function CurriculumPanel({ opened, onClose, course, isEnrolled }) {
                                             ) : (
                                                 <Text size='sm' c='dimmed'>{lec.title}</Text>
                                             )}
+
                                             <Text c='gray' size='sm'>
                                                 {formatSeconds(lec.videoDuration)}
                                             </Text>

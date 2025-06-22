@@ -19,11 +19,11 @@ function CourseCard({ courseCode, thumbnail, title, instructor, level, originalP
 
                 <Stack mt='md' mb='xs' gap={2}>
                     <Text fz='md' fw={600}>{title}</Text>
+
                     <Group justify='space-between'>
                         <Text fz='sm' fw={400}>{instructor}</Text>
                         <Text fz='xs' fw={400}>{level}</Text>
                     </Group>
-
 
                     <Group mt='xs' spacing='xs'>
                         {discountRate && discountPrice ? (

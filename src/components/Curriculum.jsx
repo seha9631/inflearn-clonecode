@@ -16,9 +16,11 @@ function Curriculum({ courseCode, sections, isEnrolled }) {
     return (
         <>
             <Title order={3} mb='md'>커리큘럼</Title>
+
             <Accordion chevronPosition='left' variant='separated' multiple>
                 {sections.map((section, sectionIndex) => {
                     const sectionDuration = getTotalLectureDuration([section]);
+
                     return (
                         <Accordion.Item value={`section-${sectionIndex}`} key={sectionIndex}>
                             <Accordion.Control>
@@ -29,6 +31,7 @@ function Curriculum({ courseCode, sections, isEnrolled }) {
                                     </Text>
                                 </Group>
                             </Accordion.Control>
+
                             <Accordion.Panel>
                                 <Stack gap={8}>
                                     {section.lectures.map((lecture, lectureIndex) => (
@@ -48,6 +51,7 @@ function Curriculum({ courseCode, sections, isEnrolled }) {
                                                     <Text>{lecture.title}</Text>
                                                 )}
                                             </Group>
+
                                             <Badge variant='light' color='gray'>
                                                 {formatSeconds(lecture.videoDuration)}
                                             </Badge>

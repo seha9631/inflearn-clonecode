@@ -24,17 +24,20 @@ function CartItem({ course, checked, onToggle, onDelete }) {
             <Group justify='space-between'>
                 <Group>
                     <Checkbox checked={checked} onChange={onToggle} />
+
                     <Image
                         src={course.thumbnail}
                         radius='sm'
                         alt={course.title}
                         style={{ width: 80, height: 56, objectFit: 'cover' }}
                     />
+
                     <div>
                         <Stack gap={0} mb='sm'>
                             <Text fw={600}>{course.title}</Text>
                             <Text fz='sm' fw={400}>{course.instructor}</Text>
                         </Stack>
+
                         <Text size='sm' c='gray' fw={500}>
                             {isDiscounted ? (
                                 <>
@@ -50,6 +53,7 @@ function CartItem({ course, checked, onToggle, onDelete }) {
                         </Text>
                     </div>
                 </Group>
+
                 <CloseButton onClick={onDelete} size='md' />
             </Group>
         </Card>

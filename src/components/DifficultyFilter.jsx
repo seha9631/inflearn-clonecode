@@ -1,8 +1,9 @@
 import { Menu, Button, Checkbox, Stack } from '@mantine/core';
-
-const levels = ['입문', '초급', '중급이상'];
+import { LEVELS } from '../utils/constants';
 
 function DifficultyFilter({ selected, onChange }) {
+    const isSelected = selected.length > 0;
+
     const toggleLevel = (level) => {
         if (selected.includes(level)) {
             onChange(selected.filter((l) => l !== level));
@@ -10,8 +11,6 @@ function DifficultyFilter({ selected, onChange }) {
             onChange([...selected, level]);
         }
     };
-
-    const isSelected = selected.length > 0;
 
     return (
         <Menu shadow='md' width={200}>
@@ -24,9 +23,10 @@ function DifficultyFilter({ selected, onChange }) {
                     난이도
                 </Button>
             </Menu.Target>
+
             <Menu.Dropdown>
                 <Stack spacing='xs'>
-                    {levels.map((level) => (
+                    {LEVELS.map((level) => (
                         <Checkbox
                             color='#00c471'
                             key={level}
