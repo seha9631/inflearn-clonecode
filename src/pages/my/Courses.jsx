@@ -14,6 +14,7 @@ function Courses() {
     return (
         <Container size="xl" py="md">
             <Title order={2} mb="sm">구매한 강의</Title>
+
             {enrolledCourses.length === 0 ? (
                 <Text size="sm" c="dimmed">구매한 강의가 없습니다.</Text>
             ) : (

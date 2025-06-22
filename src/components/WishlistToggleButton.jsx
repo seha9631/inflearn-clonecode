@@ -2,6 +2,7 @@ import { Button } from '@mantine/core';
 import { IconHeart } from '@tabler/icons-react';
 import CustomNotification from './CustomNotification';
 import useWishlistToggle from '../hooks/useWishlistToggle';
+import { WISHLIST_NOTIFICATION_MESSAGES } from '../utils/constants';
 
 function WishlistToggleButton({ courseCode, title, originalPrice, discountPrice, discountRate }) {
     const course = {
@@ -14,29 +15,7 @@ function WishlistToggleButton({ courseCode, title, originalPrice, discountPrice,
 
     const { toggleWishlist, status, resetStatus } = useWishlistToggle(course);
 
-    const getNotificationProps = () => {
-        switch (status) {
-            case 'added':
-                return {
-                    color: 'green',
-                    title: '찜한 강의로 추가되었습니다.',
-                };
-            case 'removed':
-                return {
-                    color: 'red',
-                    title: '찜 목록에서 제거되었습니다.',
-                };
-            case 'unauth':
-                return {
-                    color: 'red',
-                    title: '로그인이 필요합니다.',
-                };
-            default:
-                return null;
-        }
-    };
-
-    const notificationProps = getNotificationProps();
+    const notificationProps = WISHLIST_NOTIFICATION_MESSAGES[status] ?? null;
 
     return (
         <>

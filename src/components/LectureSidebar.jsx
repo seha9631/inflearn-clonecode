@@ -1,17 +1,5 @@
 import { Stack, Text, Box, ActionIcon, Paper } from '@mantine/core';
-import {
-    IconListDetails,
-    IconMessageQuestion,
-    IconNotes,
-    IconWorld
-} from '@tabler/icons-react';
-
-const sidebarItems = [
-    { icon: IconListDetails, label: '커리큘럼', key: 'curriculum' },
-    { icon: IconMessageQuestion, label: '질문&답변', key: 'qa' },
-    { icon: IconNotes, label: '노트', key: 'notes' },
-    { icon: IconWorld, label: '글로벌', key: 'global' },
-];
+import { SIDEBAR_ITEMS } from '../utils/constants';
 
 function LectureSidebar({ show = true, onPanelOpen }) {
     if (!show) return null;
@@ -31,7 +19,7 @@ function LectureSidebar({ show = true, onPanelOpen }) {
             }}
         >
             <Stack align='center' gap={20}>
-                {sidebarItems.map(({ icon: Icon, label, key }) => (
+                {SIDEBAR_ITEMS.map(({ icon: Icon, label, key }) => (
                     <Box key={key} style={{ textAlign: 'center' }}>
                         <ActionIcon
                             variant='light'
@@ -43,6 +31,7 @@ function LectureSidebar({ show = true, onPanelOpen }) {
                         >
                             <Icon size={24} />
                         </ActionIcon>
+
                         <Text size='xs' mt={4}>{label}</Text>
                     </Box>
                 ))}

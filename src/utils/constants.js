@@ -1,3 +1,13 @@
+import {
+    IconListDetails,
+    IconMessageQuestion,
+    IconNotes,
+    IconWorld, 
+    IconCheck, 
+    IconAlertTriangle, 
+    IconLogin
+} from '@tabler/icons-react';
+
 export const CATEGORIES = [
     { label: '전체', value: 'all' },
     { label: '개발 · 프로그래밍', value: 'it-programming' },
@@ -30,3 +40,65 @@ export const COUNTRY_CODES = [
   { value: '+65', label: '싱가포르 +65' },
   { value: '+886', label: '대만 +886' }
 ];
+
+export const LEVELS = ['입문', '초급', '중급이상'];
+
+export const SIDEBAR_ITEMS = [
+    { icon: IconListDetails, label: '커리큘럼', key: 'curriculum' },
+    { icon: IconMessageQuestion, label: '질문&답변', key: 'qa' },
+    { icon: IconNotes, label: '노트', key: 'notes' },
+    { icon: IconWorld, label: '글로벌', key: 'global' },
+];
+
+export const WISHLIST_NOTIFICATION_MESSAGES = {
+  added: {
+    color: 'green',
+    title: '찜한 강의로 추가되었습니다.',
+  },
+  removed: {
+    color: 'red',
+    title: '찜 목록에서 제거되었습니다.',
+  },
+  unauth: {
+    color: 'red',
+    title: '로그인이 필요합니다.',
+  },
+};
+
+export const CART_NOTIFICATION_MESSAGES = {
+  added: {
+    color: 'green',
+    title: '장바구니에 담겼습니다.',
+  },
+  removed: {
+    color: 'red',
+    title: '장바구니에서 제거되었습니다.',
+  },
+  unauth: {
+    color: 'red',
+    title: '로그인이 필요합니다.',
+  },
+};
+
+
+export const COURSE_SIDEBAR_NOTIFICATION = {
+  success: {
+    color: 'green',
+    icon: <IconCheck size={20} />,
+    title: '장바구니에 담겼습니다.',
+  },
+  duplicate: {
+    color: 'yellow',
+    icon: <IconAlertTriangle size={20} />,
+    title: '이미 장바구니에 담긴 강의입니다.',
+  },
+  unauth: {
+    color: 'red',
+    icon: <IconLogin size={20} />,
+    title: '로그인이 필요합니다.',
+  },
+};
+
+export const ITEMS_PER_PAGE = 40;
+
+export const INFLEARN_LOGO = 'https://cdn.inflearn.com/assets/brand/logo.png';

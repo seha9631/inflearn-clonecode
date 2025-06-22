@@ -15,11 +15,14 @@ function CourseHeader({ course, categoryLabel }) {
                 >
                     {categoryLabel}
                 </Anchor>
+
                 <Title c='white' order={2} ml={12}>{course.title}</Title>
+
                 <Text c='white' size='sm' ml={16}>
                     {course.title} 강의 짧은 소개
                 </Text>
             </Stack>
+
             <Image
                 src={course.thumbnail}
                 radius='sm'

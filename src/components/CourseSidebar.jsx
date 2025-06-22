@@ -9,8 +9,8 @@ import {
 import { formatSecondsToKorean, getTotalLectureDuration } from '../utils/time'
 import CustomNotification from './CustomNotification';
 import useAddToCart from '../hooks/useAddToCart';
-import { IconCheck, IconAlertTriangle, IconLogin } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
+import { COURSE_SIDEBAR_NOTIFICATION } from '../utils/constants';
 
 function CourseSidebar({ course }) {
     const { addToCart, status, resetStatus } = useAddToCart(course);
@@ -25,32 +25,7 @@ function CourseSidebar({ course }) {
 
     const totalDuration = getTotalLectureDuration(course.sections);
 
-    const getNotificationProps = () => {
-        switch (status) {
-            case 'success':
-                return {
-                    color: 'green',
-                    icon: <IconCheck size={20} />,
-                    title: '장바구니에 담겼습니다.'
-                };
-            case 'duplicate':
-                return {
-                    color: 'yellow',
-                    icon: <IconAlertTriangle size={20} />,
-                    title: '이미 장바구니에 담긴 강의입니다.'
-                };
-            case 'unauth':
-                return {
-                    color: 'red',
-                    icon: <IconLogin size={20} />,
-                    title: '로그인이 필요합니다.'
-                };
-            default:
-                return null;
-        }
-    };
-
-    const notificationProps = getNotificationProps();
+    const notificationProps = COURSE_SIDEBAR_NOTIFICATION[status] ?? null;
 
     return (
         <Box
@@ -90,6 +65,7 @@ function CourseSidebar({ course }) {
                     >
                         수강신청 하기
                     </Button>
+
                     <Button fullWidth variant='default' onClick={addToCart}>
                         장바구니에 담기
                     </Button>

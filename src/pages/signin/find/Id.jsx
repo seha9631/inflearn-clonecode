@@ -39,6 +39,7 @@ function Id() {
     return (
         <Box maw={400} mx='auto' mt={80} mb={80}>
             <Text align='center' fw={700} fz={24} mb={4}>아이디(이메일)</Text>
+
             {verified ? (
                 <Card withBorder p='md' radius='md' shadow='sm'>
                     <Stack spacing='xs'>
@@ -49,6 +50,7 @@ function Id() {
             ) : (
                 <Stack>
                     <Select label='국가 선택' defaultValue='+82' data={COUNTRY_CODES} />
+
                     <TextInput
                         placeholder='01012345678'
                         value={phone}
@@ -56,6 +58,7 @@ function Id() {
                         onKeyDown={(e) => e.key === 'Enter' && handleRequest()}
                         error={error}
                     />
+
                     <Button fullWidth onClick={handleRequest} color='#00c471'>인증 요청</Button>
                     {showVerification && (
                         <>
@@ -67,7 +70,9 @@ function Id() {
                                 onKeyDown={(e) => e.key === 'Enter' && handleVerify()}
                                 error={codeError}
                             />
+
                             <Button fullWidth onClick={handleVerify} color='#00c471'>인증 확인</Button>
+
                             <Text align='center' size='sm' mt={4} c={timeLeft > 0 ? 'gray' : 'red'}>
                                 {timeLeft > 0
                                     ? `인증 유효 시간: ${formatTime(timeLeft)}`

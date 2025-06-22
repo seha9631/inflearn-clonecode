@@ -6,6 +6,7 @@ function MessageCard({ message, subMessage, color = 'green.8' }) {
             <Text align='center' c={color} fw={600}>
                 {message}
             </Text>
+
             {subMessage && (
                 <Text align='center' c='dimmed' size='sm'>
                     {subMessage}

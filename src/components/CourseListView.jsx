@@ -1,7 +1,6 @@
 import { Container, Grid, Center, Pagination } from '@mantine/core';
 import CourseCard from './CourseCard';
-
-const ITEMS_PER_PAGE = 40;
+import { ITEMS_PER_PAGE } from '../utils/constants';
 
 function CourseListView({ title, description, courses, activePage, setActivePage }) {
     const totalPages = Math.ceil(courses.length / ITEMS_PER_PAGE);
