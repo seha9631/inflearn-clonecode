@@ -11,11 +11,13 @@ import LoginButton from '../../components/LoginButton';
 import NavBarRight from './NavBarRight';
 import LoginModal from '../../components/LoginModal';
 import { useState } from 'react';
+import { useSearch } from '../../contexts/SearchContext';
 import { useAuth } from '../../contexts/AuthContext';
 
-function Header({ query, setQuery, onSearch }) {
+function Header() {
     const { user, logout } = useAuth();
     const [loginModalOpened, setLoginModalOpened] = useState(false);
+    const { query, setQuery } = useSearch();
     const isLoggedIn = !!user;
 
     return (
@@ -28,7 +30,7 @@ function Header({ query, setQuery, onSearch }) {
                             <NavBarLeft />
                         </Group>
 
-                        <SearchInput query={query} setQuery={setQuery} onSearch={onSearch} />
+                        <SearchInput query={query} setQuery={setQuery} />
 
                         <Group spacing='sm'>
                             <LanguageButton />

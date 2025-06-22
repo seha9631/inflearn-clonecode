@@ -1,11 +1,20 @@
 import { TextInput } from '@mantine/core';
 import { TbSearch } from 'react-icons/tb';
 import { ActionIcon } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
 
-function SearchInput({ query, setQuery, onSearch }) {
+function SearchInput({ query, setQuery }) {
+    const navigate = useNavigate();
+
+    const handleSearch = () => {
+        if (query.trim()) {
+            navigate(`/search?s=${encodeURIComponent(query.trim())}`);
+        }
+    };
+
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            onSearch();
+            handleSearch();
         }
     };
 
@@ -18,7 +27,7 @@ function SearchInput({ query, setQuery, onSearch }) {
             radius='md'
             size='sm'
             rightSection={
-                <ActionIcon onClick={onSearch} variant='transparent'>
+                <ActionIcon onClick={handleSearch} variant='transparent'>
                     <TbSearch size={20} color='black' />
                 </ActionIcon>
             }
