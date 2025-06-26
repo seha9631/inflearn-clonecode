@@ -38,25 +38,24 @@ const Search = () => {
         setActivePage(1);
     };
 
-    if (coursesError || countError) {
-        return <div>에러가 발생했습니다: {coursesError?.message || countError?.message}</div>;
-    }
-
-    if (coursesLoading || countLoading) {
-        return <div>로딩 중입니다...</div>;
-    }
-
     return (
         <>
-            <FilterBar onFilterChange={handleFilterChange} />
-            <CourseListView
-                title={`‘${keyword}’ 검색 결과`}
-                description={`${filteredCount}개의 강의가 검색되었습니다.`}
-                courses={courses}
-                totalCourseCount={filteredCount}
-                activePage={activePage}
-                setActivePage={setActivePage}
-            />
+            <FilterBar filters={filters} onFilterChange={handleFilterChange} />
+
+            {coursesError || countError ? (
+                <div>에러가 발생했습니다: {coursesError?.message || countError?.message}</div>
+            ) : coursesLoading || countLoading ? (
+                <div>로딩 중입니다...</div>
+            ) : (
+                <CourseListView
+                    title={`‘${keyword}’ 검색 결과`}
+                    description={`${filteredCount}개의 강의가 검색되었습니다.`}
+                    courses={courses}
+                    totalCourseCount={filteredCount}
+                    activePage={activePage}
+                    setActivePage={setActivePage}
+                />
+            )}
         </>
     );
 

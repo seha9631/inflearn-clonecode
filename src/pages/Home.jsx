@@ -37,26 +37,23 @@ const Home = () => {
         setActivePage(1);
     };
 
-    if (coursesError || countError) {
-        return <div>에러가 발생했습니다: {coursesError?.message || countError?.message}</div>;
-    }
-
-    if (coursesLoading || countLoading) {
-        return <div>로딩 중입니다...</div>;
-    }
-
     return (
         <>
             <CategoryTabs />
             <FilterBar filters={filters} onFilterChange={handleFilterChange} />
-            <CourseListView
-                courses={courses}
-                loading={false}
-                error={null}
-                totalCourseCount={filteredCount}
-                activePage={activePage}
-                setActivePage={setActivePage}
-            />
+
+            {coursesError || countError ? (
+                <div>에러가 발생했습니다: {coursesError?.message || countError?.message}</div>
+            ) : coursesLoading || countLoading ? (
+                <div>로딩 중입니다...</div>
+            ) : (
+                <CourseListView
+                    courses={courses}
+                    totalCourseCount={filteredCount}
+                    activePage={activePage}
+                    setActivePage={setActivePage}
+                />
+            )}
         </>
     );
 };
