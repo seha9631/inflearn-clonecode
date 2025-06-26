@@ -22,37 +22,39 @@ function useCourses({
             setLoading(true);
             setError(null);
 
-            let query = supabase.from('courses').select('*', { count: 'exact' });
+            let dataQuery = supabase.from('courses').select('*', { count: 'exact' });
+            let countQuery = supabase.from('courses').select('*', { count: 'exact', head: true });
 
             if (category && category !== 'all') {
-                query = query.eq('category', category);
+                dataQuery = dataQuery.eq('category', category);
+                countQuery = dataQuery.eq('category', category);
             }
 
             if (searchInput) {
-                query = query.or(`title.ilike.%${searchInput}%,instructor.ilike.%${searchInput}%`);
+                dataQuery = dataQuery.or(`title.ilike.%${searchInput}%,instructor.ilike.%${searchInput}%`);
+                countQuery = dataQuery.or(`title.ilike.%${searchInput}%,instructor.ilike.%${searchInput}%`);
             }
 
             if (difficulty.length > 0) {
-                query = query.in('level', difficulty);
+                dataQuery = dataQuery.in('level', difficulty);
+                countQuery = dataQuery.in('level', difficulty);
             }
 
             if (discounted) {
-                query = query.gt('discount_rate', 0);
+                dataQuery = dataQuery.gt('discount_rate', 0);
+                countQuery = dataQuery.gt('discount_rate', 0);
             }
 
-            query = query.order(sortBy, { ascending: sortOrder === 'asc' });
+            dataQuery = dataQuery.order(sortBy, { ascending: sortOrder === 'asc' });
 
             const from = (page - 1) * perPage;
             const to = from + perPage - 1;
-            query = query.range(from, to);
+            dataQuery = dataQuery.range(from, to);
 
-            const { count } = await supabase
-                .from('courses')
-                .select('*', { count: 'exact', head: true })
-                .eq('category', category === 'all' ? '*' : category);
-
-            const { data, error } = await query;
+            const { data, error } = await dataQuery;
             console.log(error)
+
+            const { count } = await countQuery;
 
             if (error) {
                 setError(error.message);
