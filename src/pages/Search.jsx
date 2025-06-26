@@ -39,7 +39,7 @@ const Search = () => {
     };
 
     if (coursesError || countError) {
-        return <Error message={coursesError?.message || countError?.message} />;
+        return <div>에러가 발생했습니다: {coursesError?.message || countError?.message}</div>;
     }
 
     if (coursesLoading || countLoading) {
