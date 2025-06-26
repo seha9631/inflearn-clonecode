@@ -14,7 +14,7 @@ function CourseListView({ title, description, courses, totalCourseCount, activeP
 
             <Grid gutter="lg">
                 {courses.map((course) => (
-                    <Grid.Col key={course.course_code} span={2.4}>
+                    <Grid.Col key={course.courseCode} span={2.4}>
                         <CourseCard {...course} />
                     </Grid.Col>
                 ))}

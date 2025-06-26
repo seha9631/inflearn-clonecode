@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ITEMS_PER_PAGE } from '../utils/constants';
+import { camelize } from '../utils/camelize';
 import supabase from '../lib/supabaseClient';
 
 function useCourses({
@@ -50,7 +51,7 @@ function useCourses({
             if (error) {
                 setError(error.message);
             } else {
-                setCourses(data);
+                setCourses(camelize(data));
             }
 
             setLoading(false);
