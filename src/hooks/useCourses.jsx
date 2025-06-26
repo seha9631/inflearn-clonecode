@@ -4,8 +4,7 @@ import supabase from '../lib/supabaseClient';
 
 function useCourses({
     category,
-    searchInput
-    ,
+    searchInput,
     difficulty = [],
     discounted = false,
     sortBy = 'created_at',
@@ -16,6 +15,7 @@ function useCourses({
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [totalCourseCount, setTotalCourseCount] = useState(0);
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -46,12 +46,17 @@ function useCourses({
             const to = from + perPage - 1;
             query = query.range(from, to);
 
+            const { count } = await supabase
+                .from('courses')
+                .select('*', { count: 'exact', head: true });
+
             const { data, error } = await query;
 
             if (error) {
                 setError(error.message);
             } else {
                 setCourses(data);
+                setTotalCourseCount(count);
             }
 
             setLoading(false);
@@ -60,7 +65,7 @@ function useCourses({
         fetchCourses();
     }, [category, searchInput, difficulty, discounted, sortBy, sortOrder, page, perPage]);
 
-    return { courses, loading, error };
+    return { courses, totalCourseCount, loading, error };
 }
 
 export default useCourses;

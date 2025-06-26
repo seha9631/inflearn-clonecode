@@ -1,18 +1,18 @@
-import { Card, Image, Text, Button, Group, Stack } from '@mantine/core';
+import { Card, Image, Text, Group, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import CartToggleButton from './CartToggleButton';
 import WishlistToggleButton from './WishlistToggleButton';
 import useEnrollmentCheck from '../hooks/useEnrollmentCheck';
 
-function CourseCard({ courseCode, thumbnail, title, instructor, level, originalPrice, discountRate, discountPrice }) {
-    const isEnrolled = useEnrollmentCheck(courseCode);
+function CourseCard({ course_code, thumbnail_url, title, instructor, level, original_price, discount_rate, discount_price }) {
+    const isEnrolled = useEnrollmentCheck(course_code);
 
     return (
-        <Link to={`/course/${courseCode}`} style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to={`/course/${course_code}`} style={{ textDecoration: 'none', color: 'black' }}>
             <Card shadow='sm' padding='lg' radius='md' withBorder w={250} h={400}>
                 <Card.Section>
                     <Image
-                        src={thumbnail}
+                        src={thumbnail_url}
                         height={160}
                     />
                 </Card.Section>
@@ -26,16 +26,16 @@ function CourseCard({ courseCode, thumbnail, title, instructor, level, originalP
                     </Group>
 
                     <Group mt='xs' spacing='xs'>
-                        {discountRate && discountPrice ? (
+                        {discount_rate && discount_price ? (
                             <Stack gap={0}>
-                                <Text c='gray' td='line-through'>₩{originalPrice.toLocaleString()}</Text>
+                                <Text c='gray' td='line-through'>₩{original_price.toLocaleString()}</Text>
                                 <Group>
-                                    <Text c='red' fw={700}>{discountRate}%</Text>
-                                    <Text fw={700}>₩{discountPrice.toLocaleString()}</Text>
+                                    <Text c='red' fw={700}>{discount_rate}%</Text>
+                                    <Text fw={700}>₩{discount_price.toLocaleString()}</Text>
                                 </Group>
                             </Stack>
                         ) : (
-                            <Text fw={700}>₩{originalPrice.toLocaleString()}</Text>
+                            <Text fw={700}>₩{original_price.toLocaleString()}</Text>
                         )}
                     </Group>
                 </Stack>
@@ -43,18 +43,18 @@ function CourseCard({ courseCode, thumbnail, title, instructor, level, originalP
                 {!isEnrolled && (
                     <Group mt='md'>
                         <CartToggleButton
-                            courseCode={courseCode}
+                            course_code={course_code}
                             title={title}
-                            originalPrice={originalPrice}
-                            discountPrice={discountPrice}
-                            discountRate={discountRate}
+                            originalPrice={original_price}
+                            discountPrice={discount_price}
+                            discountRate={discount_rate}
                         />
                         <WishlistToggleButton
-                            courseCode={courseCode}
+                            course_code={course_code}
                             title={title}
-                            originalPrice={originalPrice}
-                            discountPrice={discountPrice}
-                            discountRate={discountRate}
+                            originalPrice={original_price}
+                            discountPrice={discount_price}
+                            discountRate={discount_rate}
                         />
                     </Group>
                 )}
