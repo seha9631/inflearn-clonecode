@@ -1,7 +1,8 @@
 ## 실행 방법
 1. 프로젝트를 clone 한다. git clone https://github.com/seha9631/inflearn-clonecode
-2. npm i 명령어로 vite를 로컬 의존성으로 설치한다.
-3. 프로젝트 경로의 터미널에서 npm run dev를 입력하면 실행된다
+2. node.js를 공식 사이트 또는 명령어로 설치한다. (brew install node) 
+3. npm i 명령어로 vite를 로컬 의존성으로 설치한다.
+4. 프로젝트 경로의 터미널에서 npm run dev를 입력하면 실행된다
 
 ## 최초 시작 시 설정
 프로젝트를 최초로 실행하면 사용자가 2명 등록 되어있다.

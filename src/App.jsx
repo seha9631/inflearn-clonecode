@@ -19,9 +19,21 @@ import MainLayout from './layout/MainLayout';
 import '@mantine/core/styles.css';
 import Questions from './pages/community/questions';
 import { initializeDefaultUsers } from './utils/initDefaultUsers';
+import useCourses from './hooks/useCourses'
 
 function App() {
+  const { courses, loading, error } = useCourses({
+    category: 'it-programming',
+    searchInput: '이정환',
+    page: 1
+  });
+
+  console.log(courses);
+  console.log(loading);
+  console.log(error);
+
   initializeDefaultUsers();
+
   return (
     <MantineProvider>
       <AuthProvider>
