@@ -1,27 +1,22 @@
 import { useEffect, useState } from 'react';
-import { ITEMS_PER_PAGE } from '../utils/constants';
 import supabase from '../lib/supabaseClient';
 
-function useCourses({
+function useFilteredCount({
     category = 'all',
     searchInput,
     difficulty = [],
     discounted = false,
-    sortBy = 'created_at',
-    sortOrder = 'desc',
-    page = 1,
-    perPage = ITEMS_PER_PAGE,
-} = {}) {
-    const [courses, setCourses] = useState([]);
+}) {
+    const [count, setCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchCourses = async () => {
+        const fetchCount = async () => {
             setLoading(true);
             setError(null);
 
-            let query = supabase.from('courses').select('*');
+            let query = supabase.from('courses').select('*', { count: 'exact', head: true });
 
             if (category !== 'all') {
                 query = query.eq('category', category);
@@ -39,27 +34,21 @@ function useCourses({
                 query = query.gt('discount_rate', 0);
             }
 
-            query = query.order(sortBy, { ascending: sortOrder === 'asc' });
-
-            const from = (page - 1) * perPage;
-            const to = from + perPage - 1;
-            query = query.range(from, to);
-
-            const { data, error } = await query;
+            const { count, error } = await query;
 
             if (error) {
                 setError(error.message);
             } else {
-                setCourses(data);
+                setCount(count);
             }
 
             setLoading(false);
         };
 
-        fetchCourses();
-    }, [category, searchInput, difficulty, discounted, sortBy, sortOrder, page, perPage]);
+        fetchCount();
+    }, [category, searchInput, difficulty, discounted]);
 
-    return { courses, loading, error };
+    return { filteredCount: count, loading, error };
 }
 
-export default useCourses;
+export default useFilteredCount;
