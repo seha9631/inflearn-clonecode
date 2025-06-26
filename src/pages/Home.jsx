@@ -12,7 +12,6 @@ const Home = () => {
     const [activePage, setActivePage] = useState(1);
 
     const { courses, totalCourseCount, loading, error } = useCourses({
-        category: 'all',
         difficulty: filters.difficulty,
         discounted: filters.discounted,
         page: activePage,
@@ -22,8 +21,6 @@ const Home = () => {
         setFilters(newFilters);
         setActivePage(1);
     };
-
-    console.log(courses)
 
     return (
         <>

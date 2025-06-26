@@ -3,7 +3,7 @@ import { ITEMS_PER_PAGE } from '../utils/constants';
 import supabase from '../lib/supabaseClient';
 
 function useCourses({
-    category,
+    category = 'all',
     searchInput,
     difficulty = [],
     discounted = false,
@@ -37,7 +37,7 @@ function useCourses({
             }
 
             if (discounted) {
-                query = query.neq('discountRate', null);
+                query = query.gt('discount_rate', 0);
             }
 
             query = query.order(sortBy, { ascending: sortOrder === 'asc' });
@@ -48,9 +48,11 @@ function useCourses({
 
             const { count } = await supabase
                 .from('courses')
-                .select('*', { count: 'exact', head: true });
+                .select('*', { count: 'exact', head: true })
+                .eq('category', category === 'all' ? '*' : category);
 
             const { data, error } = await query;
+            console.log(error)
 
             if (error) {
                 setError(error.message);

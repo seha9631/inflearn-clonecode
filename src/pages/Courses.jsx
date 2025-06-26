@@ -3,34 +3,34 @@ import { useState } from 'react';
 import CategoryTabs from '../components/CategoryTabs';
 import FilterBar from '../components/FilterBar';
 import CourseListView from '../components/CourseListView';
-import courses from '../data/courses.json';
+import useCourses from '../hooks/useCourses';
 
 function CoursesPage() {
     const { category } = useParams();
     const [filters, setFilters] = useState({ difficulty: [], discounted: false });
     const [activePage, setActivePage] = useState(1);
 
+    const { courses, totalCourseCount, loading, error } = useCourses({
+        category: category,
+        difficulty: filters.difficulty,
+        discounted: filters.discounted,
+        page: activePage,
+    });
+
     const handleFilterChange = (newFilters) => {
         setFilters(newFilters);
         setActivePage(1);
     };
-
-    const filteredCourses = courses.filter((course) => {
-        const matchCategory = category === 'all' || course.category === category;
-        const matchDifficulty =
-            filters.difficulty.length === 0 || filters.difficulty.includes(course.level);
-        const matchDiscount =
-            !filters.discounted || (filters.discounted && course.discountRate);
-
-        return matchCategory && matchDifficulty && matchDiscount;
-    });
 
     return (
         <>
             <CategoryTabs />
             <FilterBar onFilterChange={handleFilterChange} />
             <CourseListView
-                courses={filteredCourses}
+                courses={courses}
+                totalCourseCount={totalCourseCount}
+                loading={loading}
+                error={error}
                 activePage={activePage}
                 setActivePage={setActivePage}
             />
