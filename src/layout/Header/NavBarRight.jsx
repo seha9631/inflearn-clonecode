@@ -17,7 +17,8 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { PiPlay, PiPlayFill, PiShoppingCart } from 'react-icons/pi';
 import { useAuth } from '../../contexts/AuthContext';
-import { getCoursesByCodes } from '../../utils/courseUtils';
+import { DEFAULT_COURSE_QUERY } from '../../utils/constants';
+import useCourses from '../../hooks/useCourses';
 
 function NavBarRight({ onLogout }) {
     const [hovered, setHovered] = useState(false);
@@ -25,15 +26,27 @@ function NavBarRight({ onLogout }) {
     const [cartOpened, setCartOpened] = useState(false);
     const { user } = useAuth();
 
-    const cartItemCodes = user?.cart ?? [];
     const couponCount = user?.coupon?.length ?? 0;
     const userPoint = user?.point ?? 0;
 
-    const cartItems = getCoursesByCodes(cartItemCodes);
+    const { courses, loading, error } = useCourses(DEFAULT_COURSE_QUERY);
+
+    const cartItems = courses.filter(course =>
+        user.cart.includes(course.courseCode)
+    );
+
     const totalPrice = cartItems.reduce(
         (sum, item) => sum + (item.discountPrice ?? item.originalPrice ?? 0),
         0
     );
+
+    if (loading) {
+        return <Text>로딩 중입니다...</Text>;
+    }
+
+    if (error) {
+        return <Text>에러가 발생했습니다: {error.message}</Text>;
+    }
 
     return (
         <>
@@ -99,7 +112,7 @@ function NavBarRight({ onLogout }) {
                             {cartItems.map((item) => (
                                 <Group key={item.courseCode} align='flex-start' spacing='sm'>
                                     <Image
-                                        src={item.thumbnail}
+                                        src={item.thumbnailUrl}
                                         radius='sm'
                                         alt={item.title}
                                         style={{ width: 80, height: 56, objectFit: 'cover' }}

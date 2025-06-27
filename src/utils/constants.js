@@ -5,6 +5,17 @@ import {
   IconWorld,
 } from '@tabler/icons-react';
 
+export const DEFAULT_COURSE_QUERY = {
+    category: 'all',
+    searchInput: '',
+    difficulty: [],
+    discounted: false,
+    sortBy: 'created_at',
+    sortOrder: 'desc',
+    page: 1,
+    perPage: 40,
+};
+
 export const CATEGORIES = [
   { label: '전체', value: 'all' },
   { label: '개발 · 프로그래밍', value: 'it-programming' },

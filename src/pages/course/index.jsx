@@ -1,26 +1,42 @@
 import { Tabs, Box, Container, Text } from '@mantine/core';
 import { useParams } from 'react-router-dom';
-import courses from '../../data/courses.json';
 import { CATEGORIES } from '../../utils/constants';
 import CourseHeader from './CourseHeader';
 import CourseDescription from './CourseDescription';
 import CourseSidebar from './CourseSidebar';
-import Curriculum from '../../components/Curriculum';
+import Curriculum from './Curriculum';
 import DashBoard from './DashBoard';
-import { useAuth } from '../../contexts/AuthContext'
+import useCourse from '../../hooks/useCourse';
+import useSections from '../../hooks/useSections';
+import useLectures from '../../hooks/useLectures';
+import useEnrollmentCheck from '../../hooks/useEnrollmentCheck'
+import { getTotalLectureDuration } from '../../utils/time'
+import { useMemo } from 'react';
 
 function CoursePage() {
     const { courseCode } = useParams();
-    const course = courses.find(c => c.courseCode === courseCode);
-    const { user } = useAuth();
+    const isEnrolled = useEnrollmentCheck(courseCode);
+
+    const { course, loading: courseLoading, error: courseError } = useCourse(courseCode);
+    const { sections, loading: sectionsLoading, error: sectionsError } = useSections(courseCode);
+    const sectionIds = useMemo(() => sections.map(section => section.id), [sections]);
+    const { lectures, loading: lecturesLoading, error: lecturesError } = useLectures(sectionIds);
+
+    if (courseError || sectionsError || lecturesError) {
+        return <Text>에러가 발생했습니다: {courseError?.message || sectionsError?.message || lecturesError?.message}</Text>;
+    }
+
+    if (courseLoading || sectionsLoading || lecturesLoading) {
+        return <Text>로딩 중입니다...</Text>;
+    }
 
     if (!course) {
         return <Text>강의를 찾을 수 없습니다.</Text>;
     }
 
-    const isEnrolled = user?.enrolled?.includes(course.courseCode);
-
-    const categoryLabel = CATEGORIES.find((cat) => cat.value === course.category)?.label ?? course.category;
+    const categoryLabel = CATEGORIES.find(cat => cat.value === course.category)?.label ?? course.category;
+    const totalVideosCount = lectures.length;
+    const totalDuration = getTotalLectureDuration(lectures);
 
     return (
         <Container size='xl'>
@@ -28,7 +44,12 @@ function CoursePage() {
                 <CourseHeader course={course} categoryLabel={categoryLabel} />
             </Box>
 
-            <Tabs defaultValue={isEnrolled ? 'dashboard' : 'description'} keepMounted={false} color='#00c471' mb='md'>
+            <Tabs
+                defaultValue={isEnrolled ? 'dashboard' : 'description'}
+                keepMounted={false}
+                color='#00c471'
+                mb='md'
+            >
                 <Tabs.List>
                     {isEnrolled && <Tabs.Tab value='dashboard'>대시보드</Tabs.Tab>}
                     {!isEnrolled && <Tabs.Tab value='description'>강의 소개</Tabs.Tab>}
@@ -42,15 +63,31 @@ function CoursePage() {
                         </Tabs.Panel>
 
                         <Tabs.Panel value='curriculum'>
-                            <Curriculum sections={course.sections} isEnrolled={isEnrolled} />
+                            <Curriculum
+                                courseCode={courseCode}
+                                sections={sections}
+                                lectures={lectures}
+                                isEnrolled={isEnrolled}
+                            />
                         </Tabs.Panel>
 
                         <Tabs.Panel value='dashboard'>
-                            <DashBoard course={course} isEnrolled={isEnrolled} />
+                            <DashBoard
+                                courseCode={courseCode}
+                                sections={sections}
+                                lectures={lectures}
+                                isEnrolled={isEnrolled}
+                            />
                         </Tabs.Panel>
                     </Box>
 
-                    {!isEnrolled && <CourseSidebar course={course} />}
+                    {!isEnrolled && (
+                        <CourseSidebar
+                            course={course}
+                            totalVideosCount={totalVideosCount}
+                            totalDuration={totalDuration}
+                        />
+                    )}
                 </Box>
             </Tabs>
         </Container>

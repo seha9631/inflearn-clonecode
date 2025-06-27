@@ -1,10 +1,10 @@
-import { Card, Image, Text, Button, Group, Stack } from '@mantine/core';
+import { Card, Image, Text, Group, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import CartToggleButton from './CartToggleButton';
 import WishlistToggleButton from './WishlistToggleButton';
 import useEnrollmentCheck from '../hooks/useEnrollmentCheck';
 
-function CourseCard({ courseCode, thumbnail, title, instructor, level, originalPrice, discountRate, discountPrice }) {
+function CourseCard({ courseCode, thumbnailUrl, title, instructor, level, originalPrice, discountRate, discountPrice }) {
     const isEnrolled = useEnrollmentCheck(courseCode);
 
     return (
@@ -12,7 +12,7 @@ function CourseCard({ courseCode, thumbnail, title, instructor, level, originalP
             <Card shadow='sm' padding='lg' radius='md' withBorder w={250} h={400}>
                 <Card.Section>
                     <Image
-                        src={thumbnail}
+                        src={thumbnailUrl}
                         height={160}
                     />
                 </Card.Section>
@@ -43,14 +43,14 @@ function CourseCard({ courseCode, thumbnail, title, instructor, level, originalP
                 {!isEnrolled && (
                     <Group mt='md'>
                         <CartToggleButton
-                            courseCode={courseCode}
+                            course_code={courseCode}
                             title={title}
                             originalPrice={originalPrice}
                             discountPrice={discountPrice}
                             discountRate={discountRate}
                         />
                         <WishlistToggleButton
-                            courseCode={courseCode}
+                            course_code={courseCode}
                             title={title}
                             originalPrice={originalPrice}
                             discountPrice={discountPrice}

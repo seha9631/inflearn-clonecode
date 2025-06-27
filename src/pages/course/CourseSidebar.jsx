@@ -7,24 +7,17 @@ import {
     Divider
 } from '@mantine/core';
 import { IconCheck, IconAlertTriangle, IconLogin } from '@tabler/icons-react';
-import { formatSecondsToKorean, getTotalLectureDuration } from '../../utils/time'
+import { formatSecondsToKorean } from '../../utils/time'
 import CustomNotification from '../../components/CustomNotification';
 import useAddToCart from '../../hooks/useAddToCart';
 import { useNavigate } from 'react-router-dom';
 import { COURSE_SIDEBAR_NOTIFICATION } from '../../utils/constants';
 
-function CourseSidebar({ course }) {
+function CourseSidebar({ course, totalVideosCount, totalDuration }) {
     const { addToCart, status, resetStatus } = useAddToCart(course);
     const navigate = useNavigate();
 
     const isDiscounted = course.discountPrice != null && course.discountRate != null;
-
-    const totalVideosCount = course.sections.reduce(
-        (total, section) => total + section.lectures.length,
-        0
-    );
-
-    const totalDuration = getTotalLectureDuration(course.sections);
 
     const notificationData = COURSE_SIDEBAR_NOTIFICATION[status] ?? null;
 

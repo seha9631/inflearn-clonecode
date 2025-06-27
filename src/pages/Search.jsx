@@ -1,9 +1,10 @@
 import { useSearchParams } from 'react-router-dom';
-import { useState, useMemo } from 'react';
-import CategoryTabs from '../components/CategoryTabs';
+import { useState } from 'react';
+import { Text } from '@mantine/core';
 import FilterBar from '../components/FilterBar';
 import CourseListView from '../components/CourseListView';
-import courses from '../data/courses.json';
+import useCourses from '../hooks/useCourses';
+import useFilteredCount from '../hooks/useFilteredCount';
 
 const Search = () => {
     const [searchParams] = useSearchParams();
@@ -12,36 +13,53 @@ const Search = () => {
     const [filters, setFilters] = useState({ difficulty: [], discounted: false });
     const [activePage, setActivePage] = useState(1);
 
+    const filterOptions = {
+        searchInput: keyword,
+        difficulty: filters.difficulty,
+        discounted: filters.discounted,
+    };
+
+    const {
+        courses,
+        loading: coursesLoading,
+        error: coursesError
+    } = useCourses({
+        ...filterOptions,
+        page: activePage,
+    });
+
+    const {
+        filteredCount,
+        loading: countLoading,
+        error: countError,
+    } = useFilteredCount(filterOptions);
+
     const handleFilterChange = (newFilters) => {
         setFilters(newFilters);
         setActivePage(1);
     };
 
-    const filteredCourses = useMemo(() => {
-        return courses.filter((course) => {
-            const matchKeyword = keyword === '' || course.title.toLowerCase().includes(keyword);
-            const matchDifficulty =
-                filters.difficulty.length === 0 || filters.difficulty.includes(course.level);
-            const matchDiscount =
-                !filters.discounted || (filters.discounted && course.discountRate);
-
-            return matchKeyword && matchDifficulty && matchDiscount;
-        });
-    }, [keyword, filters]);
-
     return (
         <>
-            <CategoryTabs />
-            <CourseListView
-                title={`‘${keyword}’ 검색 결과`}
-                description={`${filteredCourses.length}개의 강의가 검색되었습니다.`}
-                courses={filteredCourses}
-                activePage={activePage}
-                setActivePage={setActivePage}
-            />
-            <FilterBar onFilterChange={handleFilterChange} />
+            <FilterBar filters={filters} onFilterChange={handleFilterChange} />
+
+            {coursesError || countError ? (
+                <Text>에러가 발생했습니다: {coursesError?.message || countError?.message}</Text>
+            ) : coursesLoading || countLoading ? (
+                <Text>로딩 중입니다...</Text>
+            ) : (
+                <CourseListView
+                    title={`‘${keyword}’ 검색 결과`}
+                    description={`${filteredCount}개의 강의가 검색되었습니다.`}
+                    courses={courses}
+                    totalCourseCount={filteredCount}
+                    activePage={activePage}
+                    setActivePage={setActivePage}
+                />
+            )}
         </>
     );
+
 };
 
 export default Search;
