@@ -8,13 +8,14 @@ import Curriculum from '../../components/Curriculum';
 import DashBoard from './DashBoard';
 import { useAuth } from '../../contexts/AuthContext'
 import useCourse from '../../hooks/useCourse';
-import useCourseMaterials from '../../hooks/useCourseMaterials';
+import useSections from '../../hooks/useSections';
 
 function CoursePage() {
     const { courseCode } = useParams();
     const { course, loading, error } = useCourse(courseCode);
     const { user } = useAuth();
-    const materials = useCourseMaterials(courseCode);
+
+    const sections = useSections(courseCode);
 
     if (!course) {
         return <Text>강의를 찾을 수 없습니다.</Text>;
@@ -23,8 +24,8 @@ function CoursePage() {
     const isEnrolled = user?.enrolled?.includes(course.courseCode);
 
     const categoryLabel = CATEGORIES.find((cat) => cat.value === course.category)?.label ?? course.category;
-    console.log(course)
 
+    console.log(sections)
     /*
     return (
         <Container size='xl'>
