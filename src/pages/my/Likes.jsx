@@ -1,15 +1,29 @@
 import { useAuth } from '../../contexts/AuthContext';
-import courses from '../../data/courses.json';
 import { Title, Text, Container } from '@mantine/core';
 import CourseListView from '../../components/CourseListView';
+import useCourses from '../../hooks/useCourses';
+import { DEFAULT_COURSE_QUERY } from '../../utils/constants'
+import { useState } from 'react';
 
 function Likes() {
     const { user } = useAuth();
+    const [activePage, setActivePage] = useState(1);
+
     const wishlistCodes = user?.wishlist ?? [];
+
+    const { courses, loading, error } = useCourses(DEFAULT_COURSE_QUERY);
 
     const wishlistCourses = courses.filter(course =>
         wishlistCodes.includes(course.courseCode)
     );
+
+    if (loading) {
+        return <Text>로딩 중입니다...</Text>;
+    }
+
+    if (error) {
+        return <Text>에러가 발생했습니다: {error.message}</Text>;
+    }
 
     return (
         <Container size="xl" py="md">
@@ -22,9 +36,9 @@ function Likes() {
             ) : (
                 <CourseListView
                     courses={wishlistCourses}
-                    activePage={1}
-                    setActivePage={() => { }}
-                    showPagination={false}
+                    totalCourseCount={wishlistCourses.length}
+                    activePage={activePage}
+                    setActivePage={setActivePage}
                 />
             )}
         </Container>

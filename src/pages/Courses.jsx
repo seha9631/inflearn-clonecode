@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { Text } from '@mantine/core';
 import CategoryTabs from '../components/CategoryTabs';
 import FilterBar from '../components/FilterBar';
 import CourseListView from '../components/CourseListView';
@@ -43,9 +44,9 @@ function CoursesPage() {
             <FilterBar filters={filters} onFilterChange={handleFilterChange} />
 
             {coursesError || countError ? (
-                <div>에러가 발생했습니다: {coursesError?.message || countError?.message}</div>
+                <Text>에러가 발생했습니다: {coursesError?.message || countError?.message}</Text>
             ) : coursesLoading || countLoading ? (
-                <div>로딩 중입니다...</div>
+                <Text>로딩 중입니다...</Text>
             ) : (
                 <CourseListView
                     courses={courses}

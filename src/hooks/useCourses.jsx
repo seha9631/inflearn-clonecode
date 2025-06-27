@@ -14,7 +14,7 @@ function useCourses({
     perPage = ITEMS_PER_PAGE,
 } = {}) {
     const [courses, setCourses] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {

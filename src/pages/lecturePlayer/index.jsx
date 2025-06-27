@@ -26,11 +26,11 @@ function LecturePlayerPage() {
     const { activePanel, openPanel, closePanel } = usePanel();
 
     if (courseError || sectionsError || lecturesError) {
-        return <div>에러가 발생했습니다: {courseError?.message || sectionsError?.message || lecturesError?.message}</div>;
+        return <Text>에러가 발생했습니다: {courseError?.message || sectionsError?.message || lecturesError?.message}</Text>;
     }
 
     if (courseLoading || sectionsLoading || lecturesLoading) {
-        return <div>로딩 중입니다...</div>;
+        return <Text>로딩 중입니다...</Text>;
     }
 
     if (!course || !lecture) {
