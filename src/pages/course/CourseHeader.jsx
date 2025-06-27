@@ -24,7 +24,7 @@ function CourseHeader({ course, categoryLabel }) {
             </Stack>
 
             <Image
-                src={course.thumbnail}
+                src={course.thumbnailUrl}
                 radius='sm'
                 alt={course.title}
                 style={{ width: 300, height: 200, objectFit: 'cover' }}
