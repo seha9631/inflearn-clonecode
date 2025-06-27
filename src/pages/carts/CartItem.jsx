@@ -26,7 +26,7 @@ function CartItem({ course, checked, onToggle, onDelete }) {
                     <Checkbox checked={checked} onChange={onToggle} />
 
                     <Image
-                        src={course.thumbnail}
+                        src={course.thumbnailUrl}
                         radius='sm'
                         alt={course.title}
                         style={{ width: 80, height: 56, objectFit: 'cover' }}

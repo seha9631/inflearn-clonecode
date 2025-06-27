@@ -10,25 +10,37 @@ import { useEffect, useState } from 'react';
 import CartList from './CartList';
 import CartSummary from './CartSummary';
 import { useAuth } from '../../contexts/AuthContext';
-import { getCoursesByCodes } from '../../utils/courseUtils';
 import { useLocation } from 'react-router-dom';
+import useCourses from '../../hooks/useCourses';
+import { DEFAULT_COURSE_QUERY } from '../../utils/constants';
 
 function CartsPage() {
     const { user, updateUser } = useAuth();
     const location = useLocation();
-    const [courses, setCourses] = useState([]);
+    const [cartCourses, setCartCourses] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
+    const { courses, loading, error } = useCourses(DEFAULT_COURSE_QUERY);
 
     useEffect(() => {
         if (user?.cart) {
-            const courseList = getCoursesByCodes(user.cart);
-            setCourses(courseList);
+            const courseList = courses.filter(course =>
+                user.cart.includes(course.courseCode)
+            );
+            setCartCourses(courseList);
 
             if (location.state?.selectedCourse) {
                 setSelectedIds([location.state.selectedCourse]);
             }
         }
-    }, [user, location.state]);
+    }, [user, location.state, courses]);
+
+    if (loading) {
+        return <Text>로딩 중입니다...</Text>;
+    }
+
+    if (error) {
+        return <Text>에러가 발생했습니다: {error.message}</Text>;
+    }
 
     const toggleSelect = (courseCode) => {
         setSelectedIds((prev) =>
@@ -37,12 +49,12 @@ function CartsPage() {
     };
 
     const handleSelectAll = (checked) => {
-        setSelectedIds(checked ? courses.map((c) => c.courseCode) : []);
+        setSelectedIds(checked ? cartCourses.map((c) => c.courseCode) : []);
     };
 
     const handleDelete = (courseCode) => {
-        const updatedCourses = courses.filter((c) => c.courseCode !== courseCode);
-        setCourses(updatedCourses);
+        const updatedCourses = cartCourses.filter((c) => c.courseCode !== courseCode);
+        setCartCourses(updatedCourses);
         setSelectedIds((prev) => prev.filter((v) => v !== courseCode));
 
         const updatedCart = user.cart.filter((code) => code !== courseCode);
@@ -50,8 +62,8 @@ function CartsPage() {
     };
 
     const handleBulkDelete = () => {
-        const updatedCourses = courses.filter((c) => !selectedIds.includes(c.courseCode));
-        setCourses(updatedCourses);
+        const updatedCourses = cartCourses.filter((c) => !selectedIds.includes(c.courseCode));
+        setCartCourses(updatedCourses);
         setSelectedIds([]);
 
         const updatedCart = user.cart.filter((code) => !selectedIds.includes(code));
@@ -60,7 +72,7 @@ function CartsPage() {
 
     const handlePurchase = () => {
         const enrolledCourses = selectedIds;
-        const updatedCart = courses
+        const updatedCart = cartCourses
             .filter(course => !selectedIds.includes(course.courseCode))
             .map(course => course.courseCode);
 
@@ -82,9 +94,9 @@ function CartsPage() {
 
             <Group mb='sm'>
                 <Checkbox
-                    checked={selectedIds.length === courses.length && courses.length > 0}
+                    checked={selectedIds.length === cartCourses.length && cartCourses.length > 0}
                     onChange={(e) => handleSelectAll(e.currentTarget.checked)}
-                    label={`전체선택 ${selectedIds.length}/${courses.length}`}
+                    label={`전체선택 ${selectedIds.length}/${cartCourses.length}`}
                 />
 
                 <Button
@@ -101,14 +113,14 @@ function CartsPage() {
 
             <Stack spacing='sm' mb='lg'>
                 <CartList
-                    courses={courses}
+                    courses={cartCourses}
                     selectedIds={selectedIds}
                     onToggle={toggleSelect}
                     onDelete={handleDelete}
                 />
             </Stack>
 
-            <CartSummary courses={courses} selectedIds={selectedIds} onPurchase={handlePurchase} />
+            <CartSummary courses={cartCourses} selectedIds={selectedIds} onPurchase={handlePurchase} />
         </Box>
     );
 }
