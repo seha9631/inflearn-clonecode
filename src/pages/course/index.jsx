@@ -1,6 +1,5 @@
 import { Tabs, Box, Container, Text } from '@mantine/core';
 import { useParams } from 'react-router-dom';
-import courses from '../../data/courses.json';
 import { CATEGORIES } from '../../utils/constants';
 import CourseHeader from './CourseHeader';
 import CourseDescription from './CourseDescription';
@@ -8,10 +7,11 @@ import CourseSidebar from './CourseSidebar';
 import Curriculum from '../../components/Curriculum';
 import DashBoard from './DashBoard';
 import { useAuth } from '../../contexts/AuthContext'
+import useCourse from '../../hooks/useCourse';
 
 function CoursePage() {
     const { courseCode } = useParams();
-    const course = courses.find(c => c.courseCode === courseCode);
+    const { course, loading, error } = useCourse(courseCode);
     const { user } = useAuth();
 
     if (!course) {
@@ -21,7 +21,9 @@ function CoursePage() {
     const isEnrolled = user?.enrolled?.includes(course.courseCode);
 
     const categoryLabel = CATEGORIES.find((cat) => cat.value === course.category)?.label ?? course.category;
+    console.log(course);
 
+    /*
     return (
         <Container size='xl'>
             <Box mb='md' bg='black'>
@@ -54,7 +56,7 @@ function CoursePage() {
                 </Box>
             </Tabs>
         </Container>
-    );
+    );*/
 }
 
 export default CoursePage;

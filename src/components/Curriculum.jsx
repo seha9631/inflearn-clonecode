@@ -12,7 +12,6 @@ import { formatSeconds, formatSecondsToKorean, getTotalLectureDuration } from '.
 import { Link } from 'react-router-dom';
 
 function Curriculum({ courseCode, sections, isEnrolled }) {
-    console.log(courseCode)
     return (
         <>
             <Title order={3} mb='md'>커리큘럼</Title>
