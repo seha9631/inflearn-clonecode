@@ -2,19 +2,18 @@ import { Box, Button, Group, Text } from '@mantine/core';
 import { IconPlayerTrackNext, IconPlayerTrackPrev } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 
-function LectureNavigation({ course, currentLectureCode }) {
+function LectureNavigation({ courseCode, lectures, currentLectureCode }) {
     const navigate = useNavigate();
 
-    const flatLectures = course.sections.flatMap(section => section.lectures);
-    const currentIndex = flatLectures.findIndex(lec => lec.lectureCode === currentLectureCode);
+    const currentIndex = lectures.findIndex(lec => lec.lectureCode === currentLectureCode);
 
-    const prevLecture = currentIndex > 0 ? flatLectures[currentIndex - 1] : null;
-    const nextLecture = currentIndex < flatLectures.length - 1 ? flatLectures[currentIndex + 1] : null;
-    const currentLecture = flatLectures[currentIndex];
+    const prevLecture = currentIndex > 0 ? lectures[currentIndex - 1] : null;
+    const nextLecture = currentIndex < lectures.length - 1 ? lectures[currentIndex + 1] : null;
+    const currentLecture = lectures[currentIndex];
 
     const goToLecture = (lecture) => {
         if (lecture) {
-            navigate(`/course/${course.courseCode}/${lecture.lectureCode}`);
+            navigate(`/course/${courseCode}/${lecture.lectureCode}`);
         }
     };
 
