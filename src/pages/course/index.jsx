@@ -9,13 +9,21 @@ import DashBoard from './DashBoard';
 import { useAuth } from '../../contexts/AuthContext'
 import useCourse from '../../hooks/useCourse';
 import useSections from '../../hooks/useSections';
+import useLectures from '../../hooks/useLectures';
 
 function CoursePage() {
     const { courseCode } = useParams();
-    const { course, loading, error } = useCourse(courseCode);
+    const { course, loading: courseLoading, error: courseError } = useCourse(courseCode);
     const { user } = useAuth();
 
-    const sections = useSections(courseCode);
+    const { sections, loading: sectionsLoading, error: sectionsError } = useSections(courseCode);
+    const firstSectionId = !sectionsLoading ? sections[0].id : null;
+
+    const {
+        lectures,
+        loading: lecturesLoading,
+        error: lecturesError,
+    } = useLectures(firstSectionId);
 
     if (!course) {
         return <Text>강의를 찾을 수 없습니다.</Text>;
@@ -26,6 +34,7 @@ function CoursePage() {
     const categoryLabel = CATEGORIES.find((cat) => cat.value === course.category)?.label ?? course.category;
 
     console.log(sections)
+    console.log(lectures)
     /*
     return (
         <Container size='xl'>
