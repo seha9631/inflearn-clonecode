@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { camelize } from '../utils/camelize';
 import supabase from '../lib/supabaseClient';
 
-function useLectures(sectionId) {
+function useLectures(sectionIds = []) {
     const [lectures, setLectures] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!sectionId) return;
+        if (!sectionIds.length) return;
 
         const fetchLectures = async () => {
             setLoading(true);
@@ -16,8 +16,8 @@ function useLectures(sectionId) {
 
             const { data, error } = await supabase
                 .from('lectures')
-                .select('title, video_url, video_duration')
-                .eq('section_id', sectionId)
+                .select('section_id, title, video_url, video_duration, lecture_code')
+                .in('section_id', sectionIds)
                 .order('title', { ascending: true });
 
             if (error) {
@@ -30,7 +30,7 @@ function useLectures(sectionId) {
         };
 
         fetchLectures();
-    }, [sectionId]);
+    }, [sectionIds]);
 
     return { lectures, loading, error };
 }

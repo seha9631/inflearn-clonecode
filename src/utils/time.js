@@ -1,11 +1,5 @@
-export function getTotalLectureDuration(sections) {
-  return sections.reduce(
-    (total, section) => total + section.lectures.reduce(
-      (sum, lecture) => sum + lecture.videoDuration,
-      0
-    ),
-    0
-  );
+export function getTotalLectureDuration(lectures) {
+  return lectures.reduce((sum, lecture) => sum + (lecture.videoDuration || 0), 0);
 }
 
 export function formatSeconds(seconds, forceHour = false) {

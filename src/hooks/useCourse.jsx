@@ -4,7 +4,7 @@ import supabase from '../lib/supabaseClient';
 
 function useCourse(courseCode) {
     const [course, setCourse] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
