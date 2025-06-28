@@ -8,8 +8,8 @@
 프로젝트를 최초로 실행하면 사용자가 2명 등록 되어있다.
 
 사용자1
-아이디: seha9631@naver.com
-비밀번호: tkddms9631
+아이디: ha9631@naver.com
+비밀번호: sang9631
 
 사용자2
 아이디: jhlim@naver.com
