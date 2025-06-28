@@ -13,12 +13,14 @@ import {
     validatePassword,
     validateConfirmPassword,
     validatePhone,
-    isPhoneDuplicate,
     validateAll,
 } from '../utils/validators';
 import useFormRedirect from '../hooks/useFormRedirect';
+import useSignup from '../hooks/useSignup';
+import supabase from '../lib/supabaseClient';
 
 function Signup() {
+    const { signup, loading, error } = useSignup();
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
 
@@ -36,7 +38,20 @@ function Signup() {
 
     const { scheduleRedirect } = useFormRedirect('/');
 
-    const handleSubmit = () => {
+    const checkPhoneDuplicate = async (phoneNumber) => {
+        const { data, error } = await supabase
+            .from('user_profiles')
+            .select('id')
+            .eq('phone_number', phoneNumber);
+
+        if (error) {
+            return false;
+        }
+
+        return data.length > 0;
+    };
+
+    const handleSubmit = async () => {
         setSuccessMessage('');
 
         const result = validateAll(
@@ -51,28 +66,25 @@ function Signup() {
 
         if (!result.isValid) return;
 
-        if (localStorage.getItem(email)) {
-            setEmailError('✗ 이미 가입된 이메일입니다.');
-            return;
-        }
-
-        if (isPhoneDuplicate(phoneNumber)) {
+        const isDuplicate = await checkPhoneDuplicate(phoneNumber);
+        if (isDuplicate) {
             setPhoneError('✗ 이미 가입된 전화번호입니다.');
             return;
         }
 
-        const userInfo = {
-            password,
-            name,
-            phoneNumber,
-            cart: [],
-            wishlist: [],
-            enrolled: [],
-            coupon: [],
-            point: 0,
-        };
+        const { error: signupError } = await signup(email, password, {
+            user_name: name,
+            phone_number: phoneNumber,
+        });
 
-        localStorage.setItem(email, JSON.stringify(userInfo));
+        if (signupError) {
+            if (signupError.message.includes('is invalid')) {
+                console.error('오류:', signupError.message);
+                setEmailError('✗ 이미 가입된 이메일입니다.');
+            }
+            return;
+        }
+
         setSuccessMessage('회원가입이 완료되었습니다! 홈으로 이동합니다.');
         scheduleRedirect();
 
@@ -82,6 +94,14 @@ function Signup() {
         setName('');
         setPhoneNumber('');
     };
+
+    if (loading) {
+        return <Text>로딩 중입니다...</Text>;
+    }
+
+    if (error) {
+        return <Text>에러가 발생했습니다: {error.message}</Text>;
+    }
 
     return (
         <Box maw={400} mx='auto'>
