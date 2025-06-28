@@ -6,8 +6,9 @@ import CartsPage from './pages/carts';
 import CoursePage from './pages/course';
 import CoursesPage from './pages/Courses';
 import LecturePlayer from './pages/lecturePlayer';
-import FindPassword from './pages/signin/find/Password';
 import FindId from './pages/signin/find/Id';
+import FindPassword from './pages/signin/find/Password';
+import UpdatePassword from './pages/signin/update/Password';
 import Likes from './pages/my/Likes';
 import MyCourses from './pages/my/Courses';
 import Notfound from './pages/Notfound';
@@ -42,8 +43,9 @@ function App() {
 
             <Route path='/course/:courseCode/:lectureCode' element={<LecturePlayer />} />
             <Route path='/signup' element={<Signup />} />
-            <Route path='/signin/find/password' element={<FindPassword />} />
             <Route path='/signin/find/id' element={<FindId />} />
+            <Route path='/signin/find/password' element={<FindPassword />} />
+            <Route path='/signin/update/password' element={<UpdatePassword />} />
             <Route path='*' element={<Notfound />} />
           </Routes>
         </AuthProvider>

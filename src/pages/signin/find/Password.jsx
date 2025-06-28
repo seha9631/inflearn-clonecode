@@ -4,39 +4,59 @@ import {
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validateEmail } from '../../../utils/validators';
+import useCheckEmailExists from '../../../hooks/useCheckEmailExists'
+import supabase from '../../../lib/supabaseClient';
 
 function Password() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
-    const navigate = useNavigate();
+    const [message, setMessage] = useState('');
+    const { loading, error, checkEmail } = useCheckEmailExists();
 
     useEffect(() => {
-        if (successMessage) {
+        if (message) {
             const timeout = setTimeout(() => navigate('/'), 2000);
             return () => clearTimeout(timeout);
         }
-    }, [successMessage, navigate]);
+    }, [message, navigate]);
 
-    const handleSubmit = () => {
-        setSuccessMessage('');
+    const handleSubmit = async () => {
+        setMessage('');
         const { isValid, message } = validateEmail(email);
         if (!isValid) return setEmailError(message);
 
-        const stored = localStorage.getItem(email);
-        if (!stored) return setEmailError('✗ 존재하지 않는 사용자입니다.');
+        const exists = await checkEmail(email);
+        if (!exists) {
+            setEmailError('✗ 존재하지 않는 계정입니다.');
+            return;
+        }
 
-        console.log(`비밀번호 변경 링크 전송됨: ${email}`);
-        setSuccessMessage('비밀번호 변경 링크가 이메일로 전송되었습니다.');
+        const { error } = await supabase.auth.resetPasswordForEmail(email,
+            { redirectTo: 'http://localhost:5173/signin/update/password' });
+        if (error) {
+            setMessage('비밀번호 재설정 이메일 전송에 실패했습니다.');
+        } else {
+            setMessage('비밀번호 재설정 이메일을 전송했습니다. 메일함을 확인하세요.');
+        }
     };
+
+    if (loading) {
+        console.log('계정이 존재하는지 확인 중...')
+    }
+
+    if (error) {
+        console.log('계정이 존재하는지 확인 중 에러 발생!')
+    }
+
 
     return (
         <Box maw={400} mx='auto' mt={80} mb={80}>
             <Text align='center' fw={700} fz={24} mb={20}>비밀번호 찾기</Text>
 
-            {successMessage ? (
+            {message ? (
                 <Card withBorder shadow='sm' padding='md' radius='md' bg='green.0'>
-                    <Text align='center' c='green.8' fw={600}>{successMessage}</Text>
+                    <Text align='center' c='green.8' fw={600}>{message}</Text>
                     <Text align='center' c='dimmed' size='sm'>잠시 후 홈으로 이동합니다...</Text>
                 </Card>
             ) : (
