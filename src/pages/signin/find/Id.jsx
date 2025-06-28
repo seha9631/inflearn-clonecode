@@ -4,21 +4,20 @@ import {
 import { useState } from 'react';
 import { COUNTRY_CODES } from '../../../utils/constants';
 import useVerification from '../../../hooks/useVerification';
-import { useFindEmailByPhone } from '../../../hooks/useFindEmailByPhone';
 import { validatePhone } from '../../../utils/validators';
+import useFindEmailByPhone from '../../../hooks/useFindEmailByPhone';
 
 function Id() {
     const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
     const [showVerification, setShowVerification] = useState(false);
     const [foundEmail, setFoundEmail] = useState('');
+    const { findEmailByPhone, loading, error: rpcError } = useFindEmailByPhone();
 
     const {
         code, setCode, codeError, verified, timeLeft,
         formatTime, generateCode, verifyCode, generatedCode,
     } = useVerification();
-
-    const { findEmailByPhone, maskEmail } = useFindEmailByPhone();
 
     const handleRequest = () => {
         const { isValid, message } = validatePhone(phone);
@@ -32,9 +31,17 @@ function Id() {
         verifyCode();
         if (timeLeft > 0) {
             const email = findEmailByPhone(phone);
-            if (email) setFoundEmail(maskEmail(email));
+            if (email) setFoundEmail(email);
         }
     };
+
+    if (loading) {
+        return <Text>로딩 중입니다...</Text>;
+    }
+
+    if (rpcError) {
+        return <Text>에러가 발생했습니다: {rpcError.message}</Text>;
+    }
 
     return (
         <Box maw={400} mx='auto' mt={80} mb={80}>
