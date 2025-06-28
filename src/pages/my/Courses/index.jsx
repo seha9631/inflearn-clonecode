@@ -1,18 +1,9 @@
-import { useAuth } from '../../../contexts/AuthContext';
 import { Title, Text, Container, Grid } from '@mantine/core';
 import PurchasedCourseCard from './PurchasedCourseCard';
-import useCourses from '../../../hooks/useCourses';
-import { DEFAULT_COURSE_QUERY } from '../../../utils/constants'
+import useUserCoursesByType from '../../../hooks/useCoursesByType';
 
 function Courses() {
-    const { user } = useAuth();
-    const enrolledCodes = user?.enrolled ?? [];
-
-    const { courses, loading, error } = useCourses(DEFAULT_COURSE_QUERY);
-
-    const enrolledCourses = courses.filter(course =>
-        enrolledCodes.includes(course.courseCode)
-    );
+    const { courses: enrolledCourses, loading, error } = useUserCoursesByType('enrolled');
 
     if (loading) {
         return <Text>로딩 중입니다...</Text>;
@@ -23,13 +14,13 @@ function Courses() {
     }
 
     return (
-        <Container size="xl" py="md">
-            <Title order={2} mb="sm">구매한 강의</Title>
+        <Container size='xl' py='md'>
+            <Title order={2} mb='sm'>구매한 강의</Title>
 
             {enrolledCourses.length === 0 ? (
-                <Text size="sm" c="dimmed">구매한 강의가 없습니다.</Text>
+                <Text size='sm' c='dimmed'>구매한 강의가 없습니다.</Text>
             ) : (
-                <Grid gutter="lg">
+                <Grid gutter='lg'>
                     {enrolledCourses.map(course => (
                         <Grid.Col key={course.courseCode} span={2.4}>
                             <PurchasedCourseCard {...course} />
