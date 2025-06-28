@@ -10,20 +10,19 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { verifyUser } from '../utils/auth';
-import { useAuth } from '../contexts/AuthContext';
+import { logIn } from '../utils/auth';
+import { useIsLoggedIn } from '../contexts/IsLoggedInContext';
 import { INFLEARN_LOGO } from '../utils/constants';
 
-export default function LoginModal({ opened, onClose }) {
+function LoginModal({ opened, onClose }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [loginError, setLoginError] = useState('');
+    const { setIsLoggedIn } = useIsLoggedIn();
 
-    const { login } = useAuth();
-
-    const handleLogin = () => {
+    const handleLogin = async () => {
         setEmailError('');
         setPasswordError('');
         setLoginError('');
@@ -42,13 +41,14 @@ export default function LoginModal({ opened, onClose }) {
 
         if (!isValid) return;
 
-        const result = verifyUser(email, password);
-        if (!result.success) {
-            setLoginError(result.error);
+        const logInError = await logIn(email, password);
+        if (logInError) {
+            setLoginError(logInError);
             return;
+        } else {
+            setIsLoggedIn(true);
         }
 
-        login(result.user);
         onClose();
     };
 
@@ -117,3 +117,5 @@ export default function LoginModal({ opened, onClose }) {
         </Modal>
     );
 }
+
+export default LoginModal;

@@ -13,6 +13,7 @@ import MyCourses from './pages/my/Courses';
 import Notfound from './pages/Notfound';
 import { Routes, Route } from 'react-router-dom'
 import { MantineProvider } from '@mantine/core';
+import { IsLoggedInProvider } from './contexts/IsLoggedInContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { SearchProvider } from './contexts/SearchContext';
 import MainLayout from './layout/MainLayout';
@@ -25,26 +26,28 @@ function App() {
 
   return (
     <MantineProvider>
-      <AuthProvider>
-        <Routes>
-          <Route element={<SearchProvider><MainLayout /></SearchProvider>}>
-            <Route path='/' element={<Home />} />
-            <Route path='/courses/:category' element={<CoursesPage />} />
-            <Route path='/course/:courseCode' element={<CoursePage />} />
-            <Route path='/search' element={<Search />} />
-            <Route path='/carts' element={<CartsPage />} />
-            <Route path='/my/likes' element={<Likes />} />
-            <Route path='/my/courses' element={<MyCourses />} />
-            <Route path='/community/questions' element={<Questions />} />
-          </Route>
+      <IsLoggedInProvider>
+        <AuthProvider>
+          <Routes>
+            <Route element={<SearchProvider><MainLayout /></SearchProvider>}>
+              <Route path='/' element={<Home />} />
+              <Route path='/courses/:category' element={<CoursesPage />} />
+              <Route path='/course/:courseCode' element={<CoursePage />} />
+              <Route path='/search' element={<Search />} />
+              <Route path='/carts' element={<CartsPage />} />
+              <Route path='/my/likes' element={<Likes />} />
+              <Route path='/my/courses' element={<MyCourses />} />
+              <Route path='/community/questions' element={<Questions />} />
+            </Route>
 
-          <Route path='/course/:courseCode/:lectureCode' element={<LecturePlayer />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/signin/find/password' element={<FindPassword />} />
-          <Route path='/signin/find/id' element={<FindId />} />
-          <Route path='*' element={<Notfound />} />
-        </Routes>
-      </AuthProvider>
+            <Route path='/course/:courseCode/:lectureCode' element={<LecturePlayer />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/signin/find/password' element={<FindPassword />} />
+            <Route path='/signin/find/id' element={<FindId />} />
+            <Route path='*' element={<Notfound />} />
+          </Routes>
+        </AuthProvider>
+      </IsLoggedInProvider>
     </MantineProvider >
   )
 }

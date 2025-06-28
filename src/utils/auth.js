@@ -1,11 +1,23 @@
-export function verifyUser(id, password) {
-  const stored = localStorage.getItem(id);
-  if (!stored) return { success: false, error: '존재하지 않는 사용자입니다.' };
+import supabase from '../lib/supabaseClient';
 
-  const userData = JSON.parse(stored);
-  if (userData.password !== password) {
-    return { success: false, error: '비밀번호가 일치하지 않습니다.' };
+export async function logIn(email, password) {
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    if (error.message === 'Email not confirmed') {
+      return '가입 이메일 인증이 필요합니다.';
+    }
+    if (error.message === 'Invalid login credentials') {
+      return '아이디 또는 비밀번호를 확인해주세요.';
+    }
+    return '로그인 중 알 수 없는 오류가 발생했습니다.';
   }
 
-  return { success: true, user: { id, ...userData } };
+  return null;
+}
+
+export async function logOut() {
+  const { error } = await supabase.auth.signOut();
+
+  return error ? error.message : null;
 }
