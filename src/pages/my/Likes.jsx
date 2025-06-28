@@ -1,21 +1,11 @@
-import { useAuth } from '../../contexts/AuthContext';
 import { Title, Text, Container } from '@mantine/core';
 import CourseListView from '../../components/CourseListView';
-import useCourses from '../../hooks/useCourses';
-import { DEFAULT_COURSE_QUERY } from '../../utils/constants'
 import { useState } from 'react';
+import useUserCoursesByType from '../../hooks/useCoursesByType';
 
 function Likes() {
-    const { user } = useAuth();
     const [activePage, setActivePage] = useState(1);
-
-    const wishlistCodes = user?.wishlist ?? [];
-
-    const { courses, loading, error } = useCourses(DEFAULT_COURSE_QUERY);
-
-    const wishlistCourses = courses.filter(course =>
-        wishlistCodes.includes(course.courseCode)
-    );
+    const { courses: wishlistCourses, loading, error } = useUserCoursesByType('wishlist');
 
     if (loading) {
         return <Text>로딩 중입니다...</Text>;

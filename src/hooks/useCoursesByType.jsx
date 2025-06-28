@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import supabase from '../lib/supabaseClient';
-import { camelize } from '../utils/camelize'
+import { camelize } from '../utils/camelize';
 
-export default function useCartItems() {
-    const [cartItems, setCartItems] = useState([]);
+function useUserCoursesByType(type) {
+    const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchCartItems = async () => {
+        const fetchCourses = async () => {
             setLoading(true);
             setError(null);
 
@@ -18,12 +18,12 @@ export default function useCartItems() {
             } = await supabase.auth.getUser();
 
             if (!user || userError) {
-                setError(userError || new Error('로그인된 사용자가 없습니다'));
+                setError(userError || new Error('로그인된 사용자가 없습니다.'));
                 setLoading(false);
                 return;
             }
 
-            const { data, error: cartError } = await supabase
+            const { data, error: courseError } = await supabase
                 .from('user_course_meta')
                 .select(`
                     course_code,
@@ -36,10 +36,10 @@ export default function useCartItems() {
                     )
                 `)
                 .eq('user_id', user.id)
-                .eq('type', 'cart');
+                .eq('type', type);
 
-            if (cartError) {
-                setError(cartError);
+            if (courseError) {
+                setError(courseError);
             } else {
                 const flattened = camelize(data).map(item => ({
                     courseCode: item.courseCode,
@@ -49,15 +49,16 @@ export default function useCartItems() {
                     discountPrice: item.courses?.discountPrice,
                     discountRate: item.courses?.discountRate,
                 }));
-
-                setCartItems(flattened);
+                setCourses(flattened);
             }
 
             setLoading(false);
         };
 
-        fetchCartItems();
-    }, []);
+        fetchCourses();
+    }, [type]);
 
-    return { cartItems, loading, error };
+    return { courses, loading, error };
 }
+
+export default useUserCoursesByType;

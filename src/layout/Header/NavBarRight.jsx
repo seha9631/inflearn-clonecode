@@ -17,9 +17,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { PiPlay, PiPlayFill, PiShoppingCart } from 'react-icons/pi';
 import useUserName from '../../hooks/useUserName';
-import useCartItems from '../../hooks/useCartItems';
 import useCouponCount from '../../hooks/useCouponCount';
 import useUserPoint from '../../hooks/useUserPoint';
+import useUserCoursesByType from '../../hooks/useCoursesByType';
 
 function NavBarRight({ onLogout }) {
     const [hovered, setHovered] = useState(false);
@@ -28,7 +28,7 @@ function NavBarRight({ onLogout }) {
     const { name, loading: nameLoading, error: nameError } = useUserName();
     const { couponCount, loading: couponLoading, error: couponError } = useCouponCount();
     const { point, loading: pointLoading, error: pointError } = useUserPoint();
-    const { cartItems, loading: cartLoading, error: cartError } = useCartItems();
+    const { courses: cartItems, loading: cartLoading, error: cartError } = useUserCoursesByType('cart');
 
     const totalPrice = cartItems.reduce(
         (sum, item) => sum + (item.discountPrice ?? item.originalPrice ?? 0),

@@ -10,26 +10,26 @@ import { useEffect, useState } from 'react';
 import CartList from './CartList';
 import CartSummary from './CartSummary';
 import { useLocation } from 'react-router-dom';
-import useCartItems from '../../hooks/useCartItems';
 import useUpdateUserCourseMeta from '../../hooks/useUpdateUserCourseMeta';
 import supabase from '../../lib/supabaseClient';
+import useUserCoursesByType from '../../hooks/useCoursesByType';
 
 function CartsPage() {
     const location = useLocation();
-    const [cartCourses, setCartCourses] = useState([]);
+    const [cartItems, setcartItems] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
-    const { cartItems, loading, error } = useCartItems();
+    const { courses: cartCourses, loading, error } = useUserCoursesByType('cart');
     const { removeCourseMeta, addCourseMeta } = useUpdateUserCourseMeta();
 
     useEffect(() => {
-        if (cartItems) {
-            setCartCourses(cartItems);
+        if (cartCourses) {
+            setcartItems(cartCourses);
 
             if (location.state?.selectedCourse) {
                 setSelectedIds([location.state.selectedCourse]);
             }
         }
-    }, [location.state, cartItems]);
+    }, [location.state, cartCourses]);
 
     if (loading) return <Text>로딩 중입니다...</Text>;
     if (error) return <Text>에러가 발생했습니다: {error.message}</Text>;
@@ -43,7 +43,7 @@ function CartsPage() {
     };
 
     const handleSelectAll = (checked) => {
-        setSelectedIds(checked ? cartCourses.map((c) => c.courseCode) : []);
+        setSelectedIds(checked ? cartItems.map((c) => c.courseCode) : []);
     };
 
     const handleDelete = async (courseCode) => {
@@ -59,8 +59,8 @@ function CartsPage() {
         });
 
         if (success) {
-            const updatedCourses = cartCourses.filter((c) => c.courseCode !== courseCode);
-            setCartCourses(updatedCourses);
+            const updatedCourses = cartItems.filter((c) => c.courseCode !== courseCode);
+            setcartItems(updatedCourses);
             setSelectedIds((prev) => prev.filter((v) => v !== courseCode));
         }
     };
@@ -78,8 +78,8 @@ function CartsPage() {
         });
 
         if (success) {
-            const updatedCourses = cartCourses.filter((c) => !selectedIds.includes(c.courseCode));
-            setCartCourses(updatedCourses);
+            const updatedCourses = cartItems.filter((c) => !selectedIds.includes(c.courseCode));
+            setcartItems(updatedCourses);
             setSelectedIds([]);
         }
     };
@@ -103,10 +103,10 @@ function CartsPage() {
         });
 
         if (removeResult && enrollResults.every(Boolean)) {
-            const updatedCourses = cartCourses.filter(
+            const updatedCourses = cartItems.filter(
                 (course) => !selectedIds.includes(course.courseCode)
             );
-            setCartCourses(updatedCourses);
+            setcartItems(updatedCourses);
             setSelectedIds([]);
         }
     };
@@ -119,9 +119,9 @@ function CartsPage() {
 
             <Group mb='sm'>
                 <Checkbox
-                    checked={selectedIds.length === cartCourses.length && cartCourses.length > 0}
+                    checked={selectedIds.length === cartItems.length && cartItems.length > 0}
                     onChange={(e) => handleSelectAll(e.currentTarget.checked)}
-                    label={`전체선택 ${selectedIds.length}/${cartCourses.length}`}
+                    label={`전체선택 ${selectedIds.length}/${cartItems.length}`}
                 />
 
                 <Button
@@ -136,7 +136,7 @@ function CartsPage() {
 
             <Stack spacing='sm' mb='lg'>
                 <CartList
-                    courses={cartCourses}
+                    courses={cartItems}
                     selectedIds={selectedIds}
                     onToggle={toggleSelect}
                     onDelete={handleDelete}
@@ -144,7 +144,7 @@ function CartsPage() {
             </Stack>
 
             <CartSummary
-                courses={cartCourses}
+                courses={cartItems}
                 selectedIds={selectedIds}
                 onPurchase={handlePurchase}
             />
