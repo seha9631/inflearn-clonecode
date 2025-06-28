@@ -41,7 +41,16 @@ export default function useCartItems() {
             if (cartError) {
                 setError(cartError);
             } else {
-                setCartItems(camelize(data));
+                const flattened = camelize(data).map(item => ({
+                    courseCode: item.courseCode,
+                    title: item.courses?.title,
+                    thumbnailUrl: item.courses?.thumbnailUrl,
+                    originalPrice: item.courses?.originalPrice,
+                    discountPrice: item.courses?.discountPrice,
+                    discountRate: item.courses?.discountRate,
+                }));
+
+                setCartItems(flattened);
             }
 
             setLoading(false);
