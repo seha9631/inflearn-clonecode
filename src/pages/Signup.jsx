@@ -95,6 +95,14 @@ function Signup() {
         setPhoneNumber('');
     };
 
+    if (loading) {
+        return <Text>로딩 중입니다...</Text>;
+    }
+
+    if (error) {
+        return <Text>에러가 발생했습니다: {error.message}</Text>;
+    }
+
     return (
         <Box maw={400} mx='auto'>
             <h2>회원가입</h2>
