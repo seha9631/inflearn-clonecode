@@ -9,42 +9,36 @@ import {
 import { useEffect, useState } from 'react';
 import CartList from './CartList';
 import CartSummary from './CartSummary';
-import { useAuth } from '../../contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
-import useCourses from '../../hooks/useCourses';
-import { DEFAULT_COURSE_QUERY } from '../../utils/constants';
+import useCartItems from '../../hooks/useCartItems';
+import useUpdateUserCourseMeta from '../../hooks/useUpdateUserCourseMeta';
+import supabase from '../../lib/supabaseClient';
 
 function CartsPage() {
-    const { user, updateUser } = useAuth();
     const location = useLocation();
     const [cartCourses, setCartCourses] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
-    const { courses, loading, error } = useCourses(DEFAULT_COURSE_QUERY);
+    const { cartItems, loading, error } = useCartItems();
+    const { removeCourseMeta, addCourseMeta } = useUpdateUserCourseMeta();
 
     useEffect(() => {
-        if (user?.cart) {
-            const courseList = courses.filter(course =>
-                user.cart.includes(course.courseCode)
-            );
-            setCartCourses(courseList);
+        if (cartItems) {
+            setCartCourses(cartItems);
 
             if (location.state?.selectedCourse) {
                 setSelectedIds([location.state.selectedCourse]);
             }
         }
-    }, [user, location.state, courses]);
+    }, [location.state, cartItems]);
 
-    if (loading) {
-        return <Text>로딩 중입니다...</Text>;
-    }
-
-    if (error) {
-        return <Text>에러가 발생했습니다: {error.message}</Text>;
-    }
+    if (loading) return <Text>로딩 중입니다...</Text>;
+    if (error) return <Text>에러가 발생했습니다: {error.message}</Text>;
 
     const toggleSelect = (courseCode) => {
         setSelectedIds((prev) =>
-            prev.includes(courseCode) ? prev.filter((v) => v !== courseCode) : [...prev, courseCode]
+            prev.includes(courseCode)
+                ? prev.filter((v) => v !== courseCode)
+                : [...prev, courseCode]
         );
     };
 
@@ -52,39 +46,70 @@ function CartsPage() {
         setSelectedIds(checked ? cartCourses.map((c) => c.courseCode) : []);
     };
 
-    const handleDelete = (courseCode) => {
-        const updatedCourses = cartCourses.filter((c) => c.courseCode !== courseCode);
-        setCartCourses(updatedCourses);
-        setSelectedIds((prev) => prev.filter((v) => v !== courseCode));
+    const handleDelete = async (courseCode) => {
+        const {
+            data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) return;
 
-        const updatedCart = user.cart.filter((code) => code !== courseCode);
-        updateUser({ ...user, cart: updatedCart });
+        const success = await removeCourseMeta({
+            userId: user.id,
+            courseCodes: [courseCode],
+            type: 'cart',
+        });
+
+        if (success) {
+            const updatedCourses = cartCourses.filter((c) => c.courseCode !== courseCode);
+            setCartCourses(updatedCourses);
+            setSelectedIds((prev) => prev.filter((v) => v !== courseCode));
+        }
     };
 
-    const handleBulkDelete = () => {
-        const updatedCourses = cartCourses.filter((c) => !selectedIds.includes(c.courseCode));
-        setCartCourses(updatedCourses);
-        setSelectedIds([]);
+    const handleBulkDelete = async () => {
+        const {
+            data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) return;
 
-        const updatedCart = user.cart.filter((code) => !selectedIds.includes(code));
-        updateUser({ ...user, cart: updatedCart });
+        const success = await removeCourseMeta({
+            userId: user.id,
+            courseCodes: selectedIds,
+            type: 'cart',
+        });
+
+        if (success) {
+            const updatedCourses = cartCourses.filter((c) => !selectedIds.includes(c.courseCode));
+            setCartCourses(updatedCourses);
+            setSelectedIds([]);
+        }
     };
 
-    const handlePurchase = () => {
-        const enrolledCourses = selectedIds;
-        const updatedCart = cartCourses
-            .filter(course => !selectedIds.includes(course.courseCode))
-            .map(course => course.courseCode);
+    const handlePurchase = async () => {
+        const {
+            data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) return;
 
-        const updatedUser = {
-            ...user,
-            cart: updatedCart,
-            enrolled: [...(user.enrolled || []), ...enrolledCourses],
-        };
+        const enrollResults = await Promise.all(
+            selectedIds.map((courseCode) =>
+                addCourseMeta({ userId: user.id, courseCode, type: 'enrolled' })
+            )
+        );
 
-        updateUser(updatedUser);
-        setSelectedIds([]);
-    }
+        const removeResult = await removeCourseMeta({
+            userId: user.id,
+            courseCodes: selectedIds,
+            type: 'cart',
+        });
+
+        if (removeResult && enrollResults.every(Boolean)) {
+            const updatedCourses = cartCourses.filter(
+                (course) => !selectedIds.includes(course.courseCode)
+            );
+            setCartCourses(updatedCourses);
+            setSelectedIds([]);
+        }
+    };
 
     return (
         <Box p='lg' maw={800} mx='auto'>
@@ -105,9 +130,7 @@ function CartsPage() {
                     disabled={selectedIds.length === 0}
                     bg={selectedIds.length === 0 ? 'lightGray' : 'green'}
                 >
-                    <Text c='white'>
-                        선택삭제
-                    </Text>
+                    <Text c='white'>선택삭제</Text>
                 </Button>
             </Group>
 
@@ -120,7 +143,11 @@ function CartsPage() {
                 />
             </Stack>
 
-            <CartSummary courses={cartCourses} selectedIds={selectedIds} onPurchase={handlePurchase} />
+            <CartSummary
+                courses={cartCourses}
+                selectedIds={selectedIds}
+                onPurchase={handlePurchase}
+            />
         </Box>
     );
 }
