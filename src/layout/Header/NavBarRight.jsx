@@ -31,7 +31,7 @@ function NavBarRight({ onLogout }) {
     const { cartItems, loading: cartLoading, error: cartError } = useCartItems();
 
     const totalPrice = cartItems.reduce(
-        (sum, item) => sum + (item.courses.discountPrice ?? item.courses.originalPrice ?? 0),
+        (sum, item) => sum + (item.discountPrice ?? item.originalPrice ?? 0),
         0
     );
 
@@ -107,23 +107,23 @@ function NavBarRight({ onLogout }) {
                             {cartItems.map((item) => (
                                 <Group key={item.courseCode} align='flex-start' spacing='sm'>
                                     <Image
-                                        src={item.courses.thumbnailUrl}
+                                        src={item.thumbnailUrl}
                                         radius='sm'
-                                        alt={item.courses.title}
+                                        alt={item.title}
                                         style={{ width: 80, height: 56, objectFit: 'cover' }}
                                     />
                                     <Box style={{ flex: 1 }}>
                                         <Text size='sm' lineClamp={2}>
-                                            {item.courses.title}
+                                            {item.title}
                                         </Text>
                                         <Group spacing={4}>
-                                            {item.courses.discountPrice && (
+                                            {item.discountPrice && (
                                                 <Text size='xs' c='dimmed' td='line-through'>
-                                                    {item.courses.originalPrice.toLocaleString()}원
+                                                    {item.originalPrice.toLocaleString()}원
                                                 </Text>
                                             )}
                                             <Text fw={600}>
-                                                {(item.courses.discountPrice ?? item.courses.originalPrice)?.toLocaleString()}원
+                                                {(item.discountPrice ?? item.originalPrice)?.toLocaleString()}원
                                             </Text>
                                         </Group>
                                     </Box>
