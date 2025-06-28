@@ -12,13 +12,24 @@ import NavBarRight from './NavBarRight';
 import LoginModal from '../../components/LoginModal';
 import { useState } from 'react';
 import { useSearch } from '../../contexts/SearchContext';
-import { useAuth } from '../../contexts/AuthContext';
+import { useIsLoggedIn } from '../../contexts/IsLoggedInContext';
+import { logOut } from '../../utils/auth';
 
 function Header() {
-    const { user, logout } = useAuth();
+    const { isLoggedIn, setIsLoggedIn } = useIsLoggedIn();
     const [loginModalOpened, setLoginModalOpened] = useState(false);
     const { query, setQuery } = useSearch();
-    const isLoggedIn = !!user;
+
+    const handleLogOut = async () => {
+        const errorMessage = await logOut();
+
+        if (errorMessage) {
+            alert(errorMessage);
+            return;
+        }
+
+        setIsLoggedIn(false);
+    };
 
     return (
         <>
@@ -35,7 +46,7 @@ function Header() {
                         <Group spacing='sm'>
                             <LanguageButton />
                             {isLoggedIn ? (
-                                <NavBarRight onLogout={logout} />
+                                <NavBarRight onLogout={() => handleLogOut()} />
                             ) : (
                                 <LoginButton onLogin={() => setLoginModalOpened(true)} />
                             )}

@@ -16,36 +16,31 @@ import {
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { PiPlay, PiPlayFill, PiShoppingCart } from 'react-icons/pi';
-import { useAuth } from '../../contexts/AuthContext';
-import { DEFAULT_COURSE_QUERY } from '../../utils/constants';
-import useCourses from '../../hooks/useCourses';
+import useUserName from '../../hooks/useUserName';
+import useCartItems from '../../hooks/useCartItems';
+import useCouponCount from '../../hooks/useCouponCount';
+import useUserPoint from '../../hooks/useUserPoint';
 
 function NavBarRight({ onLogout }) {
     const [hovered, setHovered] = useState(false);
     const [userOpened, setUserOpened] = useState(false);
     const [cartOpened, setCartOpened] = useState(false);
-    const { user } = useAuth();
-
-    const couponCount = user?.coupon?.length ?? 0;
-    const userPoint = user?.point ?? 0;
-
-    const { courses, loading, error } = useCourses(DEFAULT_COURSE_QUERY);
-
-    const cartItems = courses.filter(course =>
-        user.cart.includes(course.courseCode)
-    );
+    const { name, loading: nameLoading, error: nameError } = useUserName();
+    const { couponCount, loading: couponLoading, error: couponError } = useCouponCount();
+    const { point, loading: pointLoading, error: pointError } = useUserPoint();
+    const { cartItems, loading: cartLoading, error: cartError } = useCartItems();
 
     const totalPrice = cartItems.reduce(
-        (sum, item) => sum + (item.discountPrice ?? item.originalPrice ?? 0),
+        (sum, item) => sum + (item.courses.discountPrice ?? item.courses.originalPrice ?? 0),
         0
     );
 
-    if (loading) {
-        return <Text>로딩 중입니다...</Text>;
+    if (nameLoading || cartLoading || couponLoading || pointLoading) {
+        console.log('로딩 중입니다...');
     }
 
-    if (error) {
-        return <Text>에러가 발생했습니다: {error.message}</Text>;
+    if (nameError || cartError || couponError || pointError) {
+        console.log('에러가 발생했습니다.');
     }
 
     return (
@@ -112,23 +107,23 @@ function NavBarRight({ onLogout }) {
                             {cartItems.map((item) => (
                                 <Group key={item.courseCode} align='flex-start' spacing='sm'>
                                     <Image
-                                        src={item.thumbnailUrl}
+                                        src={item.courses.thumbnailUrl}
                                         radius='sm'
-                                        alt={item.title}
+                                        alt={item.courses.title}
                                         style={{ width: 80, height: 56, objectFit: 'cover' }}
                                     />
                                     <Box style={{ flex: 1 }}>
                                         <Text size='sm' lineClamp={2}>
-                                            {item.title}
+                                            {item.courses.title}
                                         </Text>
                                         <Group spacing={4}>
-                                            {item.discountPrice && (
+                                            {item.courses.discountPrice && (
                                                 <Text size='xs' c='dimmed' td='line-through'>
-                                                    {item.originalPrice.toLocaleString()}원
+                                                    {item.courses.originalPrice.toLocaleString()}원
                                                 </Text>
                                             )}
                                             <Text fw={600}>
-                                                {(item.discountPrice ?? item.originalPrice)?.toLocaleString()}원
+                                                {(item.courses.discountPrice ?? item.courses.originalPrice)?.toLocaleString()}원
                                             </Text>
                                         </Group>
                                     </Box>
@@ -168,7 +163,7 @@ function NavBarRight({ onLogout }) {
                             size='lg'
                         />
                         <Box>
-                            <Text fw={700}>{user?.name ?? '로그인 필요'}</Text>
+                            <Text fw={700}>{name ?? '로그인 필요'}</Text>
                             <Text size='xs' c='dimmed'>학생</Text>
                         </Box>
                     </Group>
@@ -181,7 +176,7 @@ function NavBarRight({ onLogout }) {
                         </Button>
                         <Button color='#f1f3f5'>
                             <Link to='/user/points' style={{ textDecoration: 'none', color: 'black' }}>
-                                포인트 {userPoint}
+                                포인트 {point}
                             </Link>
                         </Button>
                     </Group>
