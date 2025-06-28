@@ -8,12 +8,12 @@
 프로젝트를 최초로 실행하면 사용자가 2명 등록 되어있다.
 
 사용자1
+아이디: gktkddms631@naver.com
+비밀번호: sangeun9631
+
+사용자2 (이메일 인증이 되지 않은 사용자)
 아이디: ha9631@naver.com
 비밀번호: sang9631
-
-사용자2
-아이디: jhlim@naver.com
-비밀번호: itnc0937
 
 ## 현재 구현된 기능
 ### 🏠 홈 / 강의 목록 페이지 (/courses?types=ONLINE)
