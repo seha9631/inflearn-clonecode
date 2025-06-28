@@ -1,20 +1,24 @@
-export function useFindEmailByPhone() {
-  const findEmailByPhone = (phone) => {
-    for (let key in localStorage) {
-      try {
-        const user = JSON.parse(localStorage.getItem(key));
-        if (user?.phoneNumber === phone) return key;
-      } catch { }
+import { useState } from 'react';
+import supabase from '../lib/supabaseClient';
+
+function useFindEmailByPhone() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const findEmailByPhone = async (phoneNumber) => {
+    setLoading(true);
+    setError(null);
+
+    const { data, error } = await supabase.rpc('find_id', { phone: phoneNumber });
+    if (error) {
+      setError(error.message);
+      return null;
     }
-    return '';
+    setLoading(false);
+    return data;
   };
 
-  const maskEmail = (email) => {
-    const [user, domain] = email.split('@');
-    return `${user.slice(0, 2)}***${user.slice(-2)}@${domain}`;
-  };
-
-  return { findEmailByPhone, maskEmail };
+  return { findEmailByPhone, loading, error };
 }
 
 export default useFindEmailByPhone;
