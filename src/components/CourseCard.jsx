@@ -2,10 +2,18 @@ import { Card, Image, Text, Group, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import CartToggleButton from './CartToggleButton';
 import WishlistToggleButton from './WishlistToggleButton';
-import useEnrollmentCheck from '../hooks/useEnrollmentCheck';
 
-function CourseCard({ courseCode, thumbnailUrl, title, instructor, level, originalPrice, discountRate, discountPrice }) {
-    const isEnrolled = useEnrollmentCheck(courseCode);
+function CourseCard({
+    courseCode,
+    thumbnailUrl,
+    title,
+    instructor,
+    level,
+    originalPrice,
+    discountRate,
+    discountPrice,
+    isEnrolled
+}) {
 
     return (
         <Link to={`/course/${courseCode}`} style={{ textDecoration: 'none', color: 'black' }}>
