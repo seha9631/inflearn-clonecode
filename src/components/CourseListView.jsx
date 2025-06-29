@@ -1,9 +1,11 @@
 import { Container, Grid, Center, Pagination } from '@mantine/core';
 import CourseCard from './CourseCard';
 import { ITEMS_PER_PAGE } from '../utils/constants';
+import useUserCoursesByType from '../hooks/useCoursesByType';
 
 function CourseListView({ title, description, courses, totalCourseCount, activePage, setActivePage }) {
     const totalPages = Math.ceil(totalCourseCount / ITEMS_PER_PAGE);
+    const { courses: enrolledCourses } = useUserCoursesByType('enrolled');
 
     return (
         <Container size="xl" py="md">
@@ -15,7 +17,13 @@ function CourseListView({ title, description, courses, totalCourseCount, activeP
             <Grid gutter="lg">
                 {courses.map((course) => (
                     <Grid.Col key={course.courseCode} span={2.4}>
-                        <CourseCard {...course} />
+                        <CourseCard
+                            {...course}
+                            isEnrolled={
+                                enrolledCourses.some(
+                                    c => c.courseCode === course.courseCode)
+                            }
+                        />
                     </Grid.Col>
                 ))}
             </Grid>
